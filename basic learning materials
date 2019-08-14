@@ -5,8 +5,5 @@ https://blog.csdn.net/v_july_v/article/details/7624837
 应该用最大几何间隔分类超平面
 让函数间隔等于1 之所以令等于1，是为了方便推导和优化，且这样做对目标函数的优化没有影响，至于为什么，请见本文评论下第42楼回复
 
-拉格朗日乘子法的高数推导
-https://blog.csdn.net/weixin_37688445/article/details/79275526
-
-拉格朗日乘子法的高数例子
-https://www.cnblogs.com/mo-wang/p/4775548.html
+拉格朗日乘子、对偶以及KKT的理解，看懂这个下面这个文章的推导，并且能够手动推导
+https://www.cnblogs.com/maybe2030/p/4946256.html
