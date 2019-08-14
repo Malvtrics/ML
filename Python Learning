@@ -15,4 +15,5 @@ IndentationError: unindent does not match any outer indentation level错误表�
 
 IED就用 VSCODE 原因是https://arbisoft.com/vs-code-versus-pycharm-the-smackdown/
 
-test
+eval 函数的用法，把引号去掉后执行引号里面的内容
+print('转换之后的温度是{:.2f}C'.format(C)) 把C改成两位小数的格式输出，注意没有四舍五入
