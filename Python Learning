@@ -24,4 +24,8 @@ print('转换之后的温度是{:.2f}C'.format(C)) 把C改成两位小数的格�
 解决方法：1.将文件名称修改为与安装目录下得系统文件名称不冲突。
 2.最好直接将自己得文件保存路径修改为其他地方，不要与安装目录重复
 
-print的一种使用方法，将要打印的东西用逗号分隔 eg: print("Hello", "Martin")
+print的一种使用方法，将要打印的东西用逗号分隔 eg: print("Hello", "Martin") 注意这样的输出是 Hello Martin 中间是有空格的
+
+import 简单导入 
+from import  容易导致引用库的函数名字和自己定义的函数名字重复
+import as  推荐这种引用方法
