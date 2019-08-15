@@ -17,3 +17,9 @@ IED就用 VSCODE 原因是https://arbisoft.com/vs-code-versus-pycharm-the-smackd
 
 eval 函数的用法，把引号去掉后执行引号里面的内容
 print('转换之后的温度是{:.2f}C'.format(C)) 把C改成两位小数的格式输出，注意没有四舍五入
+
+关于报错：AttributeError: module 'turtle' has no attribute 'setup' 问题 (我的文件是turtle.py估计系统那个文件也是。。。)
+对于我们菜鸟，往往安装软件后，都容易使用默认设置，结果将写的文件保存到了安装目录下。
+这样造成了很大得隐患，如果写得文件，名称与安装目录下得系统文件名称重复，就容易出现以上报错。
+解决方法：1.将文件名称修改为与安装目录下得系统文件名称不冲突。
+2.最好直接将自己得文件保存路径修改为其他地方，不要与安装目录重复
