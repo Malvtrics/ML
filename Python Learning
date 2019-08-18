@@ -79,6 +79,5 @@ try catch else finally
 while和for也可以通过else来看是否有用到break
 
 def fab(n,m=1) m是可选参数 可选参数要放在必须参数后面
-def fab(n,*b) *b是可变
-
+def fab(n,*b) *b是可变参数 可以是逗号分开的很多参数
 
