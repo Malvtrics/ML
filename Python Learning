@@ -73,4 +73,12 @@ perf_counter() end - start CPU纳米级别精准时间差
 getrandbits(n) 以长整型形式返回n个随机位（二进制数）
 需要将多行代码放在一行中 用分号隔开
 
+根据二八法则，八成时间消耗在两成代码中，这些代码大部分是循环代码，所以主要看循环代码的性能
+
+try catch else finally
+while和for也可以通过else来看是否有用到break
+
+def fab(n,m=1) m是可选参数 可选参数要放在必须参数后面
+def fab(n,*b) *b是可变
+
 
