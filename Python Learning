@@ -69,6 +69,8 @@ gtime() 程序易用
 strftime() strptime()
 perf_counter() end - start CPU纳米级别精准时间差
 
-
+2019-8-18
+getrandbits(n) 以长整型形式返回n个随机位（二进制数）
+需要将多行代码放在一行中 用分号隔开
 
 
