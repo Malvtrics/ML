@@ -43,12 +43,15 @@ def drawDate(date):
             drawDigit(eval(i))
 
 def main():
-    t.Turtle().screen.delay(0)
+    t.speed(0) #fastest:0 fast10 normal6 slow3 slowest1
     t.setup(1000,350,200,200)
     t.penup()
     t.fd(-400)
     t.pensize(5)
+    
     #locale.setlocale(locale.LC_CTYPE,'chinese')
+    #drawDate(ti.strftime("%Y年%m月%d日",ti.gmtime()))
+    
     drawDate(ti.strftime("%Y-%m=%d+",ti.gmtime()))
     t.hideturtle() 
     t.done()
