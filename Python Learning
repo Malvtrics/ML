@@ -67,6 +67,15 @@ time() 1970年0点0分开始 的时间戳 秒为单位
 ctime() 用户易读
 gtime() 程序易用
 strftime() strptime()
+注意：在Windows里，time.strftime使用C运行时的多字节字符串函数strftime，这个函数必须先根据当前locale配置来编码格式化字符串
+（使用PyUnicode_EncodeLocale）。”如果不设置好locale的话，根据默认的"C" locale，底层的wcstombs函数会使用latin-1编码（单字节编码）
+来编码格式化字符串
+所以要用下面代码
+import locale
+locale.setlocale(locale.LC_CTYPE, 'chinese')
+print(nt.strftime('%Y年%m月%d日'))
+2015年08月10日
+
 perf_counter() end - start CPU纳米级别精准时间差
 
 2019-8-18
