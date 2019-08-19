@@ -1,11 +1,17 @@
 import turtle as t
-#import time as ti
+import time as ti
 #import locale
 
 def drawline(draw):
+    drawGap()
     t.pendown() if draw else t.penup()
     t.fd(40)
+    drawGap()
     t.right(90)
+
+def drawGap():
+    t.penup() 
+    t.fd(5)
 
 def drawDigit(digit):
     drawline(True) if digit in (2,3,4,5,6,8,9) else drawline(False)
@@ -21,18 +27,29 @@ def drawDigit(digit):
     t.fd(40)
 
 def drawDate(date):
+    t.pencolor("red")
     for i in date:
-        drawDigit(eval(i))
+        if i == '-':
+            t.write("年",font = ('Arial',18, "normal"))
+            t.pencolor("green")
+            t.fd(40)
+        elif i == '=':
+            t.write("月",font = ('Arial',18, "normal"))
+            t.pencolor("blue")
+            t.fd(40)
+        elif i == '+':
+            t.write("日",font = ('Arial',18,"normal"))
+        else:
+            drawDigit(eval(i))
 
 def main():
-    t.setup(800,350,200,200)
+    t.Turtle().screen.delay(0)
+    t.setup(1000,350,200,200)
     t.penup()
-    t.fd(-300)
+    t.fd(-400)
     t.pensize(5)
-    t.pencolor("red")
     #locale.setlocale(locale.LC_CTYPE,'chinese')
-    #tmp = ti.strftime("%Y年%m月%d日",ti.gmtime())
-    drawDate('20190819')
+    drawDate(ti.strftime("%Y-%m=%d+",ti.gmtime()))
     t.hideturtle() 
     t.done()
 
