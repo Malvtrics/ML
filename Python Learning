@@ -100,3 +100,10 @@ f = lambda x,y : x+y
 一般最好使用def方式 lambda是用于特定情况
 
 写递归的主要思路 ： 基例（n=1时候初始处理） 链条（n-1的时候是如果处理的） 分支（用if else的形式呈现出来）
+
+2019-8-20
+windows电脑安装 pyinstaller
+在CMD下执行 pip install pyinstaller
+然后在对应python文件夹中执行 pyinstaller -i -curve.ico -Fxxxx.py
+注意 图标，要生成EXE的python文件要统一在当前目录 cmd也要先进入当前程序目录
+结束后会生成一个dist的文件夹，里面包含了EXE文件
