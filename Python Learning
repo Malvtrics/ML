@@ -107,3 +107,9 @@ windows电脑安装 pyinstaller
 然后在对应python文件夹中执行 pyinstaller -i -curve.ico -Fxxxx.py
 注意 图标，要生成EXE的python文件要统一在当前目录 cmd也要先进入当前程序目录
 结束后会生成一个dist的文件夹，里面包含了EXE文件
+
+2019-8-21
+list1 = [1,2]
+list2 = list1
+list2.append(3)
+list1 变成 [1,2,3] 所以list2只是列表的另外一个别名，和list1共同指向同一块数值内存空间
