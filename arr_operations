@@ -1,0 +1,37 @@
+#array operations
+scores = []
+def getNumbers():
+    global scores
+    inputstr = input("请输入样本数据,逗号隔开:")
+    scores = list(eval(inputstr))
+
+def getAllParams():
+
+    global scores
+    length = len(scores)
+    sum,d,mid = 0,0,0
+    
+    for i in scores:
+        sum += i
+
+    aver = sum/length
+    for i in scores:
+        d += pow(i-aver,2)
+    
+    ss = scores.copy()
+    ss.sort()
+    
+    if length%2 == 0:
+        mid = (ss[length/2] + ss[length/2+1])/2  
+    else:
+        mid = ss[length//2]   
+
+    print("样本数量:{}".format(length))  
+    print("样本总和:{}".format(sum))
+    print("样本均值:{:.2f}".format(aver))
+    print("样本方差:{:.2f}".format(d))
+    print("样本排序:{}".format(ss))
+    print("样本中位数:{}".format(mid))
+
+getNumbers()
+getAllParams()
