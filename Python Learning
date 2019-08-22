@@ -123,8 +123,8 @@ remove() 函数用于移除列表中某个值的第一个匹配项， 注意是�
 {}空大括号的形式本来是用来表示集合的，但是因为字典在编程中更常出现，所以把这个保留给空字典
 jieba 库 和 pyinstaller的用法要回去之后在家里试验一下，单位电脑无法安装
 
-字典按照key 或者value排序
-items.sort(key=lambda x:x[1], reverse=True)
+字典按照key 或者value排序 其中一种思路 先转化成list 然后调用list的排序方法
+list.sort(key=lambda x:x[1], reverse=True)
 
 处理的文件类型主要包括文本文件和二进制文件
 文本文件 由单一特定编码组成的文件
