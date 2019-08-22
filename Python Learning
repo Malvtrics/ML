@@ -1,11 +1,6 @@
 2019-8-14
-用编译型语言写的程序执行之前，需要一个专门的编译过程，通过编译系统（不仅仅只是通过编译器，编译器只是编译系统的一部分）把高级语言翻译成机器语言（具体翻译过程可以参看下图），把源高级程序编译成为机器语言文件，比如windows下的exe文件。以后就可以直接运行而不需要编译了，因为翻译只做了一次，运行时不需要翻译，所以编译型语言的程序执行效率高，但也不能一概而论，部分解释型语言的解释器通过在运行时动态优化代码，甚至能够使解释型语言的性能超过编译型语言。
-安装的时候有个选项可以直接修改环境变量，用CMD运行一个PYTHON文件时要首先进入该文件所在目录
 
-IED就用 VSCODE 原因是https://arbisoft.com/vs-code-versus-pycharm-the-smackdown/
-
-关于报错：AttributeError: module 'turtle' has no attribute 'setup' 问题 
-自己的文件命名不要和系统文件命名一样 turtle.py wordcloud.py etc
+IDE 用 VSCODE 原因是https://arbisoft.com/vs-code-versus-pycharm-the-smackdown/
 
 2019-8-15
 import 简单导入 
@@ -21,6 +16,9 @@ import as  推荐这种引用方法
 以双下划线开头的（__foo）代表类的私有成员；以双下划线开头和结尾的（__foo__）代表python里特殊方法专用的标识，如__init__（）代表类的构造函数。
 
 print的一种使用方法，将要打印的东西用逗号分隔 eg: print("Hello", "Martin") 注意这样的输出是 Hello Martin 中间是有空格的
+
+关于报错：AttributeError: module 'turtle' has no attribute 'setup' 问题 
+自己的文件命名不要和系统文件命名一样 turtle.py wordcloud.py etc
 
 2019-8-16
 -308到+308 精度10的﹣16次方
