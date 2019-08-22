@@ -3,6 +3,8 @@
 IDE 用 VSCODE 原因是https://arbisoft.com/vs-code-versus-pycharm-the-smackdown/
 
 2019-8-15
+命名规范 字母和下划线开头 后面跟数字 字母和下划线
+
 import 简单导入 
 from import  容易导致引用库的函数名字和自己定义的函数名字重复
 import as  推荐这种引用方法
