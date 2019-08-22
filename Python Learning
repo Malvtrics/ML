@@ -15,8 +15,7 @@ IndentationError: unindent does not match any outer indentation level错误表�
 
 IED就用 VSCODE 原因是https://arbisoft.com/vs-code-versus-pycharm-the-smackdown/
 
-eval 函数的用法，把引号去掉后执行引号里面的内容
-print('转换之后的温度是{:.2f}C'.format(C)) 把C改成两位小数的格式输出，注意没有四舍五入
+
 
 关于报错：AttributeError: module 'turtle' has no attribute 'setup' 问题 (我的文件是turtle.py估计系统那个文件也是。。。)
 对于我们菜鸟，往往安装软件后，都容易使用默认设置，结果将写的文件保存到了安装目录下。
@@ -48,7 +47,7 @@ python中共有两类四种字符串表示方法
 2019-8-17
 字符串处理函数6个常用
 len python中认为一个中文是一个字符
-str(做了和eval函数相反的工作） 
+str(做了和eval函数相反的工作） eval 函数的用法，把引号去掉后执行引号里面的内容
 hex() ox() 
 chr(u)/ord(x) unicode 编码从0到0x10ffff 1114111 空间
 
@@ -61,6 +60,12 @@ lower upper count replace center strip join format
 数字千位分隔符， 需要的话就写逗号
 小数点后精度 以及字符串最大长度
 类型 整数类型b c d o x X 浮点类型 e f E %
+
+注意有四舍五入
+print('用百分号表示是{:.2%}C'.format(0.25679)) 
+print('用小数表示是{:.2f}C'.format(0.25679)) 
+用百分号表示是25.68%C
+用百分号表示是0.26C
 
 time库  
 time() 1970年0点0分开始 的时间戳 秒为单位
