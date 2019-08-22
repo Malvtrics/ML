@@ -48,7 +48,8 @@ chr(u)/ord(x) unicode 编码从0到0x10ffff 1114111 空间
 
 8个常用的字符串处理方法
 lower upper count replace center strip join format
-其中字符串格式化有6中
+其中format用法 参数序号:格式控制参数
+有6种格式控制参数
 填充 默认空字符串
 对齐 默认左对齐 箭头向左， 有三种 左右中
 宽度 
