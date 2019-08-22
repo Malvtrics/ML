@@ -84,7 +84,8 @@ getrandbits(n) 以长整型形式返回n个随机位（二进制数）
 
 根据二八法则，八成时间消耗在两成代码中，这些代码大部分是循环代码，所以主要看循环代码的性能
 
-try catch else finally
+try except 如果出现异常 到except块处理，也可以  except 异常类型名称 来单独响应某一类异常
+
 while和for也可以通过else来看是否有用到break
 
 def fab(n,m=1) m是可选参数 可选参数要放在必须参数后面
@@ -154,3 +155,5 @@ if a == b 写了一个等于号，赋值语句和判断语句
 python数据分析中常用的库
 https://www.cnblogs.com/chaojiyingxiong/p/9939303.html
 
+file open方法返回一个文件对象
+The open() function returns a file object, which has a read() method for reading the content of the file:
