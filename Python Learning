@@ -177,7 +177,8 @@ bytes类型= encode()str类型 默认utf8 反之亦然
 
 做练习夯实基础
 1）循环中如何控制步长 for i in range(1, 10, 2):
-print(''.join(['零一二三四五六七八九'[eval(i)] for i in input()]))
+2) print(''.join(['零一二三四五六七八九'[eval(i)] for i in input()]))
+3) turtle.pendown()只是放下画笔，并不绘制任何内容。
 
 Python中可以用如下方式表示正负无穷：float("inf"), float("-inf")
 
