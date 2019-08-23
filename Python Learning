@@ -178,3 +178,13 @@ bytes类型= encode()str类型 默认utf8 反之亦然
 做练习夯实基础
 1）循环中如何控制步长 for i in range(1, 10, 2):
 print(''.join(['零一二三四五六七八九'[eval(i)] for i in input()]))
+
+Python中可以用如下方式表示正负无穷：float("inf"), float("-inf")
+
+>>> 0 * float("inf")
+nan
+>>> float('inf')/float('inf')
+nan
+当涉及 > 和 < 运算时，
+所有数都比-inf大
+所有数都比+inf小
