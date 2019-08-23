@@ -50,7 +50,13 @@ chr(u)/ord(x) unicode 编码从0到0x10ffff 1114111 空间
 lower upper count replace center strip(没有参数默认去掉两侧空格 str.strip([chars])去除指定) join format
 其中format用法 参数序号:格式控制参数
 有6种格式控制参数
-填充 默认空字符串
+填充 默认空字符串  
+
+注意填充时下面的例子
+s='PYTHON'
+print("{0:3}".format(s))
+{0:3}表示输出的宽度是3，但如果字符串超过长度3，则以字符串长度显示。
+
 对齐 默认左对齐 箭头向左， 有三种 左右中
 宽度 
 数字千位分隔符， 需要的话就写逗号
