@@ -222,3 +222,6 @@ seek函数有三个参数012
 
 一个函数可以有return，也可以没有。
 但无论有没有return，函数都被返回一个对象。如果没有return,返回的是None对象，它的type就是NoneType.
+
+
+判断一行是不是空行 len(line) == 1  and line[-1]=='\n'
