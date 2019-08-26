@@ -247,3 +247,12 @@ sys.setrecursionlimit(1000000) #执行这个代码后，递归深度调整到100
 其他办法：
 递归是个好东西，但是要少些，太耗费内存。容易溢出，所以递归的改成非递归的即可。
 当前执行文件路径、系统最大UNICODE编码值 sys.executable, sys.maxunicode 扩展：知道这些有什么意义？？
+
+s=0
+for i in range(2,100):
+    for j in range(2,i):
+        if(i%j==0):
+            break
+    else:
+        s+=i
+print(s)
