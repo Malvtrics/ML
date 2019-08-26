@@ -47,9 +47,13 @@ hex() ox()
 chr(u)/ord(x) unicode 编码从0到0x10ffff 1114111 空间
 
 8个常用的字符串处理方法
-lower upper count replace center strip(没有参数默认去掉两侧空格 str.strip([chars])去除指定) join format
+lower upper count replace center strip(没有参数默认去掉两侧空格 str.strip([chars])去除指定) 
+
+join函数 注意join函数的参数是字符串数组 
+
+format函数
 其中format用法 参数序号:格式控制参数
-有6种格式控制参数
+有6种格式控制参数 记忆=》 记忆：冒号 TDK
 填充 默认空字符串  
 
 注意填充时下面的例子
