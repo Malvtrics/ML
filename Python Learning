@@ -1,262 +1,152 @@
-2019-8-14
+夯实基础
+1:命名规范:字母/下划线开头后跟数字/字母/下划线
+2:import 简单导入 / from import  容易导致引用库的函数名字和自己定义的函数名字重复 /import as 推荐这种引用方法
+3:代码包含中文要在头部指定 #coding=utf-8
+4:如果脚本文件的第一行以 #! 开头称为 "shebang" 行,Linux和其他类Unix操作系统用该行指示应该如何执行脚本
+5:print的一种使用方法，将要打印的东西用逗号分隔 eg: print("Hello", "Martin") 注意这样的输出是 Hello Martin 中间是有空格的
+6:错误AttributeError: module 'turtle' has no attribute 'setup' 问题:自己的文件命名不要和系统文件命名一样 turtle.py wordcloud.py etc
+7:python整数范围-308到+308 精度10的﹣16次方 / 用53位二进制表示小数部分 / 整数除法结果是浮点数 两个除号结果是整数 / 0o八进制 0x16
+8:print(pow(3,pow(3,99),4512)) 没有最后一个参数的话，数值太大无法显示，作用是控制目标数据大小
+9:三单引表示的是字符串，只不过可以当成注释来使用而已 / 串中有单引号，外面就用双引 反之亦然 / 串中有单引号也有双外面用三单引
+10:字符串 str[M:N] / str[M:N:K] 表示从M开始到N前一位结束，注意是N前面一位，不包括N 包含M / 把字符串倒序的一种方式 str[::-1]
+11:6个串处理函数
+   len('草') = 1 / str() / hex(255) '0xff' 10转16串 / oct(10) '024' 10转8串 / chr(97) 'a' ord('a') 97 ascii数值和码转换
+12:8个串处理方法
+   lower/upper count replace center 
+   str.center(20, '*')'*******runoob*******' / strip(没有参数默认去掉两侧空格 str.strip([chars])去除指定) 
+   join函数 注意join函数的参数是字符串数组 
+   format函数 注意格式是: 参数序号:格式控制参数
+      有6种格式控制参数 前三个记忆T(填充)D(对齐)K(宽度)
+      填充 默认空字符串 注意下面特殊实例
+        s='PYTHON'
+        print("{0:3}".format(s))
+        {0:3}表示输出的宽度是3，但如果字符串超过长度3，则以字符串长度显示
+      对齐 默认左对齐 箭头向左， 有三种 左右中
+      宽度 
+      数字千位分隔符， 需要的话就写逗号
+      小数点后精度 以及字符串最大长度
+      类型 整数类型b c d o x X 浮点类型 e f E %
+        注意有四舍五入
+        print('用百分号表示是{:.2%}C'.format(0.25679)) 
+        print('用小数表示是{:.2f}C'.format(0.25679)) 
+        用百分号表示是25.68%C
+        用百分号表示是0.26C
+13:time库  
+  time() 1970年0点0分开始 的时间戳 秒为单位
+  ctime() 用户易读
+  gtime() 程序易用
+  strftime() strptime()
+    注意：在Windows里，time.strftime使用C运行时的多字节字符串函数strftime，这个函数必须先根据当前locale配置来编码格式化字符串
+   （使用PyUnicode_EncodeLocale）如果不设置好locale的话，根据默认的"C" locale，底层的wcstombs函数会使用latin-1编码（单字节编码）来编码格式化串
+    所以要用下面代码
+      import locale
+      locale.setlocale(locale.LC_CTYPE, 'chinese')
+      print(nt.strftime('%Y年%m月%d日'))
+  perf_counter() end - start CPU纳米级别精准时间差
+14:getrandbits(n) 以长整型形式返回n个随机位（二进制数）
+15:需要将多行代码放在一行中用分号隔开
+16:try except 如果出现异常 到except块处理，也可以  except 异常类型名称 来单独响应某一类异常
+17:while和for也可以通过else来看是否有用到break
+18:def fab(n,m=1) m是可选参数 可选参数要放在必须参数后面 / def fab(n,*b) *b是可变参数 可以是逗号分开的很多参数
+20:可以返回0个或者多个结果 return s,s1,s2
+21:在函数中用global保留字申明使用全局变量
+22:局部变量是组合数据类型且没有创建，等同于全局变量/如果局部变量声明了，那么还是局部变量的值 
+   理解局部变量：底层是C实现的，所以用的是指针，如果没有声明的时候，相当于用的是指针，这个时候指针指向全局变量的指针
+23:f = lambda x,y : x+y
+  一般最好使用def方式 lambda是用于特定情况, 理解：x,y是函数参数 后面的是函数主体 也可以这样用 (lambda x,y : x+y)(4,5) 注意前面上括号
+  问题：为什么 print((lambda x,y : print("aver is {:.2f}".format((x+y)/2)))(4,5)) 会打印出一个多余的None
+24:写递归的主要思路: 基例（n=1时候初始处理） 链条（n-1的时候是如果处理的） 分支（用if else的形式呈现出来）
+25:append 是把对象当成一个整体加入 / extend 是分开加入
+26:remove() 函数用于移除列表中某个值的第一个匹配项， 注意是只删除第一个
+27:{}空大括号的形式本来是用来表示集合的，但是因为字典在编程中更常出现，所以把这个保留给空字典
+28:集合操作：
+    t.add('x')            # 添加一项
+    s.update([10,37,42])  # 在s中添加多项
+    t.remove('H')
+    len(s)
+  集合间: A&B 交集 A^B 补集 A|B 并集 
+29:字典按照value排倒序的一种方法
+a = list(dict.items())
+a.sort(key=lambda x:x[1], reverse=True)
+30:处理的文件类型主要包括文本文件和二进制文件 / 文本文件 由单一特定编码组成的文件
+31:/斜杠 在windwow 中 用反斜杠表示路径 但是python中反斜杠是转义字符，所以在python中表示路径的时候: 1）用斜杠表示 2）用两个反斜杠
+32:四种文件读写模式 r读 w覆盖写 x创建写 a追加写 注意区别 （默认模式是r）
+   两种文件格式模式 b二进制打开 t文本文件模式 默认模式是t
+   +号 和rwxa共同使用 增加读写功能
+33:在mac上使用wordcloud的时候遇到两个问题 1)文件命名不能是wordcloud.py和以前的老毛病一样 2)需额外装matplotlib库 不然运行会报错 图片无法输出
+34:习惯问题
+  if a == b 写了一个等于号，赋值语句和判断语句 / 使用and不要&& 习惯python语法  / 分支函数依次写在主函数上面，更加清晰明了
+35:文件处理
+  1)The open() function returns a file object, which has a read() method for reading the content of the file:
+  2)writelines函数参数是列表，但是并不是把列表中每一个元素按照行写到文件中，是把列表中元素拼接为一个字符串然后写一行到文件中
+  3)注意文件操作过程中文件指针的作用
+    seek函数有三个参数012
+    0表示文件头1表示当前位置2表示文件尾
+    当写完一个文件时，指针在文件尾，这个时候需要将文件指针回到文件头，才能读取全部文件信息
+36:Python3 是如何解决棘手的字符编码问题的？https://foofish.net/how-python3-handle-charset-encoding.html
+  摘要：
+  Python2 字符串设计上的一些缺陷：
+    1）使用 ASCII 码作为默认编码方式，对中文处理很不友好
+    2）把字符串的牵强地分为 unicode 和 str 两种类型，误导开发者
+  Python3 把系统默认编码设置为 UTF-8。
+  文本字符全部用 str 类型表示，str 能表示 Unicode 字符集中所有字符，
+  二进制字节数据用一种全新的数据类型，用 bytes 来表示。
+  Python3 中，在字符引号前加‘b’，明确表示这是一个 bytes 类型的对象，实际上它就是一组二进制字节序列组成的数据，
+  bytes 类型可以是 ASCII范围内的字符和其它十六进制形式的字符数据，但不能用中文等非ASCII字符表示。
+  bytes类型= encode()str类型 默认utf8 反之亦然 
+37:循环中如何控制步长 for i in range(1, 10, 2):
+38:print(''.join(['零一二三四五六七八九'[eval(i)] for i in input()]))
+39:turtle.pendown()只是放下画笔，并不绘制任何内容。
+40:Python中可以用如下方式表示正负无穷：float("inf"), float("-inf")
+  0 * float("inf") => nan / float('inf')/float('inf') => nan
+  当涉及 > 和 < 运算时 / 所有数都比-inf大 / 所有数都比+inf小
+41:id() 函数用于获取对象的内存地址
+42:Python运算符通常由左向右结合，即具有相同优先级的运算符按照从左向右的顺序计算。例如，2 + 3 + 4被计算成(2 + 3) + 4。
+一些如赋值运算符那样的运算符是由右向左结合的，即a = b = c被处理为a = (b = c)
+x=3==3,5 从右向左  x => (True,5)
+42:类的学习
+先用pass占位置 起架构 再用具体的函数代替
+类中定义函数时，语法规定第一个参数必须是self
+43:split 方法默认用空格分割
+44:一个函数可以有return，也可以没有,但无论有没有return，函数都被返回一个对象。如果没有return,返回的是None对象，它的type就是NoneType.
+45:判断一行是不是空行 len(line) == 1  and line[-1]=='\n'
+46:打开文件后采用close()关闭文件,不写也行，程序关闭时也会清理
+47:处理CSV文件的时候 注意\n换行符的处理
+48:isdigit() 方法检测字符串是否只由数字组成
+49:python递归深度问题
+  Python语言默认的递归深度是很有限的，当递归深度超过值的时候，就会引发RuntimeError异常。
+  Python专门设置的一种机制用来防止无限递归造成Python溢出，这个值理论上1000(可以用sys.getrecursionlimit()获得)，实际运行时在900多次时就会报错。
+  解决方法:最大递归次数是可以重新调整的。解决的方式是手工设置递归调用深度： 
+    import sys 
+    sys.setrecursionlimit(1000000) #执行这个代码后，递归深度调整到1000000层，基本上够用了。
+    其他办法：
+    递归是个好东西，但是要少些，太耗费内存。容易溢出，所以递归的改成非递归的即可。
+50:当前执行文件路径、系统最大UNICODE编码值 sys.executable, sys.maxunicode 扩展：知道这些有什么意义？？
+51:100以内质数求和简单代码
+    s=0
+    for i in range(2,100):
+        for j in range(2,i):
+            if(i%j==0):
+                break
+        else:
+            s+=i
+    print(s)
 
-IDE 用 VSCODE 原因是https://arbisoft.com/vs-code-versus-pycharm-the-smackdown/
-
-2019-8-15
-命名规范 字母和下划线开头 后面跟数字 字母和下划线
-
-import 简单导入 
-from import  容易导致引用库的函数名字和自己定义的函数名字重复
-import as  推荐这种引用方法
-
-代码包含中文要在头部指定 #coding=utf-8
-
-如果脚本文件的第一行以 #! 开头，则称为 "shebang" 行。Linux和其他类Unix操作系统都有对这些行的本机支持，它们通常在此类系统上用来指示应该如何执行脚本
-
-以下划线开头的标识符是有特殊意义的。以单下划线开头（_foo）的代表不能直接访问的类属性，需通过类提供的接口进行访问，不能用"from xxx import *"而导入；
-
-以双下划线开头的（__foo）代表类的私有成员；以双下划线开头和结尾的（__foo__）代表python里特殊方法专用的标识，如__init__（）代表类的构造函数。
-
-print的一种使用方法，将要打印的东西用逗号分隔 eg: print("Hello", "Martin") 注意这样的输出是 Hello Martin 中间是有空格的
-
-关于报错：AttributeError: module 'turtle' has no attribute 'setup' 问题 
-自己的文件命名不要和系统文件命名一样 turtle.py wordcloud.py etc
-
-2019-8-16
--308到+308 精度10的﹣16次方
-PYTHON中用53位二进制表示小数部分
-整数除法结果是浮点数 两个除号结果是整数
-0o八进制 0x16
-X**Y计算X的Y次幂
-print(pow(3,pow(3,99),4512)) 没有最后一个参数的话，数值太大无法显示，作用是控制目标数据大小
-
-三个单引号 表示的是字符串，只不过可以当成注释来使用而已 
-python中共有两类四种字符串表示方法
-如果希望一个字符串中有单引号，外面就用双引号 反之亦然
-如果希望一个字符串中又有单引号 又有双引号  外面就用一对三单引号
-
-字符串 str[M:N] 表示从M开始到N前一位结束，注意是N前面一位，不包括N 包含M
-字符串 str[M:N:K] 表示从M开始到N前一位结束，注意是N前面一位，不包括N 包含M，注意有步长的时候也包含M
-把字符串倒序的一种方式 str[::-1]
-
-2019-8-17
-字符串处理函数6个常用
-len python中认为一个中文是一个字符
-str(做了和eval函数相反的工作） eval 函数的用法，把引号去掉后执行引号里面的内容
-hex() ox() 
-chr(u)/ord(x) unicode 编码从0到0x10ffff 1114111 空间
-
-8个常用的字符串处理方法
-lower upper count replace center strip(没有参数默认去掉两侧空格 str.strip([chars])去除指定) 
-
-join函数 注意join函数的参数是字符串数组 
-
-format函数
-其中format用法 参数序号:格式控制参数
-有6种格式控制参数 记忆=》 记忆：冒号 TDK
-填充 默认空字符串  
-
-注意填充时下面的例子
-s='PYTHON'
-print("{0:3}".format(s))
-{0:3}表示输出的宽度是3，但如果字符串超过长度3，则以字符串长度显示。
-
-对齐 默认左对齐 箭头向左， 有三种 左右中
-宽度 
-数字千位分隔符， 需要的话就写逗号
-小数点后精度 以及字符串最大长度
-类型 整数类型b c d o x X 浮点类型 e f E %
-
-注意有四舍五入
-print('用百分号表示是{:.2%}C'.format(0.25679)) 
-print('用小数表示是{:.2f}C'.format(0.25679)) 
-用百分号表示是25.68%C
-用百分号表示是0.26C
-
-time库  
-time() 1970年0点0分开始 的时间戳 秒为单位
-ctime() 用户易读
-gtime() 程序易用
-strftime() strptime()
-注意：在Windows里，time.strftime使用C运行时的多字节字符串函数strftime，这个函数必须先根据当前locale配置来编码格式化字符串
-（使用PyUnicode_EncodeLocale）。”如果不设置好locale的话，根据默认的"C" locale，底层的wcstombs函数会使用latin-1编码（单字节编码）
-来编码格式化字符串
-所以要用下面代码
-import locale
-locale.setlocale(locale.LC_CTYPE, 'chinese')
-print(nt.strftime('%Y年%m月%d日'))
-2015年08月10日
-
-perf_counter() end - start CPU纳米级别精准时间差
-
-2019-8-18
-getrandbits(n) 以长整型形式返回n个随机位（二进制数）
-需要将多行代码放在一行中 用分号隔开
-
-根据二八法则，八成时间消耗在两成代码中，这些代码大部分是循环代码，所以主要看循环代码的性能
-
-try except 如果出现异常 到except块处理，也可以  except 异常类型名称 来单独响应某一类异常
-
-while和for也可以通过else来看是否有用到break
-
-def fab(n,m=1) m是可选参数 可选参数要放在必须参数后面
-def fab(n,*b) *b是可变参数 可以是逗号分开的很多参数
-可以返回0个或者多个结果 return s,s1,s2
-在函数中用global保留字申明使用全局变量
-
-局部变量是组合数据类型且没有创建，等同于全局变量
-如果局部变量声明了，那么还是局部变量的值 
-理解局部变量：底层是C实现的，所以用的是指针，如果没有声明的时候，相当于用的是指针，这个时候指针指向全局变量的指针
-
-f = lambda x,y : x+y
-一般最好使用def方式 lambda是用于特定情况, 理解：x,y是函数参数 后面的是函数主体 也可以这样用 (lambda x,y : x+y)(4,5) 注意前面上括号
-问题：为什么 print((lambda x,y : print("aver is {:.2f}".format((x+y)/2)))(4,5)) 会打印出一个多余的None
-
-写递归的主要思路 ： 基例（n=1时候初始处理） 链条（n-1的时候是如果处理的） 分支（用if else的形式呈现出来）
-
-2019-8-20
-windows电脑安装 pyinstaller
+非语法问题
+1:IDE用VSCODE原因是 扩展性、易用性强，免费，具体可以参考https://arbisoft.com/vs-code-versus-pycharm-the-smackdown/
+2:根据二八法则，八成时间消耗在两成代码中，这些代码大部分是循环代码，所以主要看循环代码的性能
+3:windows电脑安装 pyinstaller
 在CMD下执行 pip install pyinstaller
 然后在对应python文件夹中执行 pyinstaller -i -curve.ico -Fxxxx.py
 注意 图标，要生成EXE的python文件要统一在当前目录 cmd也要先进入当前程序目录
 结束后会生成一个dist的文件夹，里面包含了EXE文件
-
-2019-8-21
-list1 = [1,2]
-list2 = list1
-list2.append(3)
-list1 变成 [1,2,3] 所以list2只是列表的另外一个别名，和list1共同指向同一块数值内存空间
-如果要复制一个新的用 list2 = list1.copy()
-append 是把对象当成一个整体加入 extend 是分开加入
-remove() 函数用于移除列表中某个值的第一个匹配项， 注意是只删除第一个
-
-{}空大括号的形式本来是用来表示集合的，但是因为字典在编程中更常出现，所以把这个保留给空字典
-A&B 交集 A^B 补集 A|B 并集 
-集合基本操作：
-t.add('x')            # 添加一项
-s.update([10,37,42])  # 在s中添加多项
-t.remove('H')
-len(s)
-
-jieba 库 和 pyinstaller的用法要回去之后在家里试验一下，单位电脑无法安装
-
-字典按照key 或者value排序 其中一种思路 先转化成list 然后调用list的排序方法
-注意 字典的 dict.items() 方法 返回可遍历的(键, 值) 元组数组。
-list.sort(key=lambda x:x[1], reverse=True)
-
-处理的文件类型主要包括文本文件和二进制文件
-文本文件 由单一特定编码组成的文件
-
-/斜杠 在windwow 中 用反斜杠表示路径 但是python中反斜杠是转义字符，所以在python中表示路径的时候
-1）用斜杠表示 2）用两个反斜杠
-四种文件读写模式 r读 w覆盖写 x创建写 a追加写 注意区别 （默认模式是r）
-两种文件格式模式 b二进制打开 t文本文件模式 默认模式是t
-+号 和rwxa共同使用 增加读写功能
-
-2019-08-22
-在mac上使用wordcloud的时候遇到两个问题 1)文件命名不能是wordcloud.py和以前的老毛病一样 2)需要额外安装一个库matplotlib 不然运行会报错 图片无法输出
-
-今日编程问题 手写：
-if a == b 写了一个等于号，赋值语句和判断语句 
-使用and不要&& 习惯python语法 
-分支函数依次写在主函数上面，更加清晰明了
-
-人类的三种思维特征
+4:人类的三种思维特征
 逻辑思维 推理和演绎 数学为代表 A->B B->C 则可以推出 A->C
 实证思维 实验和验证 物理为代表 引力波 -> 实验
 计算思维 设计和构造 计算机为代表 汉诺塔递归
   计算思维主要用于抽象问题的计算过程 关心设计和构造而非因果， 关心抽象和自动化
-  
-天气预报现在利用的是MM5模型
-
-计算生态的概念 开源历史 python现在有超过15万个第三方库，以网络爬虫库为例，python自带的库已经被淘汰
-
-做测试题补漏
-可以用type判断数据类型
-
-python数据分析中常用的库
-https://www.cnblogs.com/chaojiyingxiong/p/9939303.html
-
-file open方法返回一个文件对象
-The open() function returns a file object, which has a read() method for reading the content of the file:
-
-2019-8-23 
-Python3 是如何解决棘手的字符编码问题的？https://foofish.net/how-python3-handle-charset-encoding.html
-摘要：
-Python2 字符串设计上的一些缺陷：
-  1）使用 ASCII 码作为默认编码方式，对中文处理很不友好
-  2）把字符串的牵强地分为 unicode 和 str 两种类型，误导开发者
-Python3 把系统默认编码设置为 UTF-8。
-文本字符全部用 str 类型表示，str 能表示 Unicode 字符集中所有字符，
-二进制字节数据用一种全新的数据类型，用 bytes 来表示。
-Python3 中，在字符引号前加‘b’，明确表示这是一个 bytes 类型的对象，实际上它就是一组二进制字节序列组成的数据，
-bytes 类型可以是 ASCII范围内的字符和其它十六进制形式的字符数据，但不能用中文等非ASCII字符表示。
-bytes类型= encode()str类型 默认utf8 反之亦然 
-
-做练习夯实基础
-1）循环中如何控制步长 for i in range(1, 10, 2):
-2) print(''.join(['零一二三四五六七八九'[eval(i)] for i in input()]))
-3) turtle.pendown()只是放下画笔，并不绘制任何内容。
-
-Python中可以用如下方式表示正负无穷：float("inf"), float("-inf")
-
->>> 0 * float("inf")
-nan
->>> float('inf')/float('inf')
-nan
-当涉及 > 和 < 运算时，
-所有数都比-inf大
-所有数都比+inf小
-
-id() 函数用于获取对象的内存地址
-
-Python运算符通常由左向右结合，即具有相同优先级的运算符按照从左向右的顺序计算。例如，2 + 3 + 4被计算成(2 + 3) + 4。
-一些如赋值运算符那样的运算符是由右向左结合的，即a = b = c被处理为a = (b = c)
-x=3==3,5 从右向左  x => (True,5)
-
-类的学习
-先用pass占位置 起架构 再用具体的函数代替
-类中定义函数时，语法规定第一个参数必须是self
-
-Split 方法默认用空格分割
-writelines函数参数是列表，但是并不是把列表中每一个元素按照行写到文件中，是把列表中元素拼接为一个字符串然后写一行到文件中
-
-注意文件操作过程中文件指针的作用
-seek函数有三个参数012
-0表示文件头1表示当前位置2表示文件尾
-当写完一个文件时，指针在文件尾，这个时候需要将文件指针回到文件头，才能读取全部文件信息
-
-数据存储 主要关心存储格式
-数据表示 主要关心数据类型
-数据操作 主要关心操作方式
-在存储一维数据的时候最好采用文件内容中没有的字符，比如美元字符
-
-一个函数可以有return，也可以没有。
-但无论有没有return，函数都被返回一个对象。如果没有return,返回的是None对象，它的type就是NoneType.
-
-
-判断一行是不是空行 len(line) == 1  and line[-1]=='\n'
-打开文件后采用close()关闭文件是一个好习惯。如果不调用close()，当前Python程序完全运行退出时，该文件引用被释放，即程序退出时，相当于调用了close()。
-处理CSV文件的时候 注意\n换行符的处理
-
-isdigit() 方法检测字符串是否只由数字组成
-
-python递归深度问题
-Python语言默认的递归深度是很有限的，当递归深度超过值的时候，就会引发RuntimeError异常。
-Python专门设置的一种机制用来防止无限递归造成Python溢出，这个值理论上1000(可以用sys.getrecursionlimit()获得)，实际运行时在900多次时就会报错。
-解决方法
-最大递归次数是可以重新调整的。解决的方式是手工设置递归调用深度： 
-import sys 
-sys.setrecursionlimit(1000000) #执行这个代码后，递归深度调整到1000000层，基本上够用了。
-其他办法：
-递归是个好东西，但是要少些，太耗费内存。容易溢出，所以递归的改成非递归的即可。
-当前执行文件路径、系统最大UNICODE编码值 sys.executable, sys.maxunicode 扩展：知道这些有什么意义？？
-
-s=0
-for i in range(2,100):
-    for j in range(2,i):
-        if(i%j==0):
-            break
-    else:
-        s+=i
-print(s)
+5:天气预报现在利用的是MM5模型
+6:计算生态的概念 开源历史 python现在有超过15万个第三方库，以网络爬虫库为例，python自带的库已经被淘汰
+7:python数据分析中常用的库 https://www.cnblogs.com/chaojiyingxiong/p/9939303.html
+8:数据存储 主要关心存储格式 / 数据表示 主要关心数据类型 / 数据操作 主要关心操作方式
+  在存储一维数据的时候最好采用文件内容中没有的字符，比如美元字符
