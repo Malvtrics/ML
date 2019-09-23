@@ -105,8 +105,9 @@ a.sort(key=lambda x:x[1], reverse=True)
 一些如赋值运算符那样的运算符是由右向左结合的，即a = b = c被处理为a = (b = c)
 x=3==3,5 从右向左  x => (True,5)
 42:类的学习
-先用pass占位置 起架构 再用具体的函数代替
-类中定义函数时，语法规定第一个参数必须是self 注意self是类的实例 self._class_ 指向类 self不是python关键字 可以换成其他名称
+   先用pass占位置 起架构 再用具体的函数代替
+   类中定义函数时，语法规定第一个参数必须是self 注意self是类的实例 self._class_ 指向类 self不是python关键字 可以换成其他名称
+   两个下划线开头定义私有成员和私有方法 注意不是一个下划线
 43:split 方法默认用空格分割
 44:一个函数可以有return，也可以没有,但无论有没有return，函数都被返回一个对象。如果没有return,返回的是None对象，它的type就是NoneType.
 45:判断一行是不是空行 len(line) == 1  and line[-1]=='\n'
