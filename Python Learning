@@ -136,6 +136,7 @@ x=3==3,5 从右向左  x => (True,5)
 52:注意函数调用中参数的语法 http://www.runoob.com/python3/python3-function.html
    以及如何给函数参数增加元信息 https://python3-cookbook.readthedocs.io/zh_CN/latest/c07/p03_attach_informatinal_matadata_to_function_arguments.html
 53:注意is运算符 理解：一个人起了两个名字
+54:变量可以交换赋值，比如 a,b,c = c,a,b 
 
 非语法问题
 1:IDE用VSCODE原因是 扩展性、易用性强，免费，具体可以参考https://arbisoft.com/vs-code-versus-pycharm-the-smackdown/
