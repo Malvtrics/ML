@@ -14,8 +14,8 @@
    len('草') = 1 / str() 
    bin(10) 10转2 / hex(255) 10转16 / oct(10) 10转8 
    chr(97) 'a' ord('a') 97 ascii数值和码转换
-12:8个串处理方法
-   lower/upper count replace center 
+12:串处理方法
+   lower/upper count replace center find(返回匹配支付串的第一个位置)
    str.center(20, '*')'*******runoob*******' / strip(没有参数默认去掉两侧空格 str.strip([chars])去除指定) 
    join函数 注意join函数的参数是字符串数组 
    format函数 注意格式是: 参数序号:格式控制参数
