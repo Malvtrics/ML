@@ -11,7 +11,9 @@
   注意注释的时候可以加\t或者\n增强字符串的可读性
 10:字符串 str[M:N] / str[M:N:K] 表示从M开始到N前一位结束，注意是N前面一位，不包括N 包含M / 把字符串倒序的一种方式 str[::-1]
 11:6个串处理函数
-   len('草') = 1 / str() / hex(255) '0xff' 10转16串 / oct(10) '024' 10转8串 / chr(97) 'a' ord('a') 97 ascii数值和码转换
+   len('草') = 1 / str() 
+   bin(10) 10转2 / hex(255) 10转16 / oct(10) 10转8 
+   chr(97) 'a' ord('a') 97 ascii数值和码转换
 12:8个串处理方法
    lower/upper count replace center 
    str.center(20, '*')'*******runoob*******' / strip(没有参数默认去掉两侧空格 str.strip([chars])去除指定) 
