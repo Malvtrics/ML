@@ -155,8 +155,12 @@ x=3==3,5 从右向左  x => (True,5)
     print(list(a1))
     print(list(a2))
 57: any() 有true就true all() 全true才true 
-58:两个列表的比较是逐元素进行对比  
-  
+58: 两个列表的比较是逐元素进行对比  
+59: 列表推导式 l1 = list(range(300)); l2 = [x for x in l1 if x > 255] ; 
+              l3 = list(range(20)) ; l5 = [(x,y) for x in l1 if x>288 for y in l3 if y < 14]
+              
+              
+
 非语法问题
 1:IDE用VSCODE原因是 扩展性、易用性强，免费，具体可以参考https://arbisoft.com/vs-code-versus-pycharm-the-smackdown/
 2:根据二八法则，八成时间消耗在两成代码中，这些代码大部分是循环代码，所以主要看循环代码的性能
