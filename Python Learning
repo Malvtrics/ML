@@ -155,6 +155,7 @@ x=3==3,5 从右向左  x => (True,5)
     print(list(a1))
     print(list(a2))
 57: any() 有true就true all() 全true才true 
+58:两个列表的比较是逐元素进行对比  
   
 非语法问题
 1:IDE用VSCODE原因是 扩展性、易用性强，免费，具体可以参考https://arbisoft.com/vs-code-versus-pycharm-the-smackdown/
