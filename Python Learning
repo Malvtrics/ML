@@ -146,6 +146,10 @@ x=3==3,5 从右向左  x => (True,5)
     li = ['tensorflow','AI','seven']
     for i,tem in enumerate(li):
       print(i,tem)
+ 56:l1 = [a,b,c]
+    l2  =['1','2','3']
+    zip(l1,l2) => ()
+      
 非语法问题
 1:IDE用VSCODE原因是 扩展性、易用性强，免费，具体可以参考https://arbisoft.com/vs-code-versus-pycharm-the-smackdown/
 2:根据二八法则，八成时间消耗在两成代码中，这些代码大部分是循环代码，所以主要看循环代码的性能
