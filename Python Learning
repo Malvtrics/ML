@@ -158,7 +158,8 @@ x=3==3,5 从右向左  x => (True,5)
 58: 两个列表的比较是逐元素进行对比  
 59: 列表推导式 l1 = list(range(300)); l2 = [x for x in l1 if x > 255] ; 
               l3 = list(range(20)) ; l5 = [(x,y) for x in l1 if x>288 for y in l3 if y < 14]
-60: 用rindex和rfind可以从右边开始找              
+60: 用rindex和rfind可以从右边开始找
+61: index和find的区别在于当元素不存在的时候index会报错find不会报错
               
 
 非语法问题
