@@ -161,6 +161,8 @@ x=3==3,5 从右向左  x => (True,5)
 60: 用rindex和rfind可以从右边开始找
 61: index和find的区别在于当元素不存在的时候index会报错find不会报错
 62: 只有不可变对象可以作为字典的key，可以被哈希 (数字、字符串和元组)              
+63: 当传递某个引用给 getrefcount时候也引用了一次，所以得到的结果比实际多1
+
 
 非语法问题
 1:IDE用VSCODE原因是 扩展性、易用性强，免费，具体可以参考https://arbisoft.com/vs-code-versus-pycharm-the-smackdown/
