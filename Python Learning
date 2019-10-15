@@ -167,6 +167,14 @@ x=3==3,5 从右向左  x => (True,5)
     arr = [[1,2,3],[4,5,6],[7,8,9],[10,11,12]]
     1） list(map(list,zip(*arr)))
     2） [[row[col] for row in arr] for col in range(len(arr[0]))]
+66: 输入参数解包
+    def zipmartin(**args):
+        for key,value in args.items():
+            print(key, ':' , value)
+
+    zipmartin(film='xiuxiudetiequan',title='loveyou')
+    x = {'film':'xiuxiu','title':'love'}
+    zipmartin(**x)
 
 非语法问题
 1:IDE用VSCODE原因是 扩展性、易用性强，免费，具体可以参考https://arbisoft.com/vs-code-versus-pycharm-the-smackdown/
