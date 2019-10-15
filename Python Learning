@@ -186,7 +186,8 @@ x=3==3,5 从右向左  x => (True,5)
     martin(a,b)
     #before refrence: 1 2
     #after refrence: 3 4
-68: from functools import partial
+68: 偏函数 固定住某些参数的值
+    from functools import partial
     hex2int = partial(int, base=16)
     print(hex2int('E'))
 
