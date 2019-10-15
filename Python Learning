@@ -186,6 +186,10 @@ x=3==3,5 从右向左  x => (True,5)
     martin(a,b)
     #before refrence: 1 2
     #after refrence: 3 4
+68: from functools import partial
+    hex2int = partial(int, base=16)
+    print(hex2int('E'))
+
 
 非语法问题
 1:IDE用VSCODE原因是 扩展性、易用性强，免费，具体可以参考https://arbisoft.com/vs-code-versus-pycharm-the-smackdown/
