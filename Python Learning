@@ -190,7 +190,11 @@ x=3==3,5 从右向左  x => (True,5)
     from functools import partial
     hex2int = partial(int, base=16)
     print(hex2int('E'))
-
+69: 高阶函数 接收函数名作为参数
+    >>> def martin(list1,func):
+	        return func(list1)
+    >>> martin([1,2,3,4,], max)
+    4
 
 非语法问题
 1:IDE用VSCODE原因是 扩展性、易用性强，免费，具体可以参考https://arbisoft.com/vs-code-versus-pycharm-the-smackdown/
