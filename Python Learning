@@ -175,6 +175,17 @@ x=3==3,5 从右向左  x => (True,5)
     zipmartin(film='xiuxiudetiequan',title='loveyou')
     x = {'film':'xiuxiu','title':'love'}
     zipmartin(**x)
+67: a = 1
+    b = 2 
+    def martin(x,y):
+        print("before refrence:",x,y)
+        x = 3
+        y = 4
+        print("after refrence:",x,y)
+
+    martin(a,b)
+    #before refrence: 1 2
+    #after refrence: 3 4
 
 非语法问题
 1:IDE用VSCODE原因是 扩展性、易用性强，免费，具体可以参考https://arbisoft.com/vs-code-versus-pycharm-the-smackdown/
