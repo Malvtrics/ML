@@ -73,6 +73,9 @@
 29:字典按照value排倒序的一种方法
 a = list(dict.items())
 a.sort(key=lambda x:x[1], reverse=True)
+或者
+b=sorted(dict.items(),key=lambda x:x[1],reverse=True)
+注意两种不同的用法
 30:处理的文件类型主要包括文本文件和二进制文件 / 文本文件 由单一特定编码组成的文件
 31:/斜杠 在windwow 中 用反斜杠表示路径 但是python中反斜杠是转义字符，所以在python中表示路径的时候: 1）用斜杠表示 2）用两个反斜杠
 32:四种文件读写模式 r读 w覆盖写 x创建写 a追加写 注意区别 （默认模式是r）
