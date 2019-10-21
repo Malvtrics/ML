@@ -205,7 +205,8 @@ x=3==3,5 从右向左  x => (True,5)
      
     from functools import reduce
     reduce(lambda a,b:a+b, [-1,2,-3,4,-9,10])
-
+70: def commonFunction(obj):
+    obj.selfShow() #只要obj对象有对应方法就行，不用关心obj具体是什么
 
 非语法问题
 1:IDE用VSCODE原因是 扩展性、易用性强，免费，具体可以参考https://arbisoft.com/vs-code-versus-pycharm-the-smackdown/
