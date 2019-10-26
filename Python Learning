@@ -18,7 +18,7 @@
    chr(97) 'a' ord('a') 97 ascii数值和码转换
 12:串处理方法
    lower/upper/title(首字母大写) count replace(不改变原来字符串的内容) center find(返回匹配支付串的第一个位置)
-   str.center(20, '*')'*******runoob*******' / strip(没有参数默认去掉两侧空格 str.strip([chars])去除指定) 
+   str.center(20, '*')'*******runoob*******' / strip(没有参数默认去掉两侧空格(包括\r\n) str.strip([chars])去除指定) 
    join函数 注意join函数的参数是字符串数组 
    format函数 注意格式是: 参数序号:格式控制参数
       有6种格式控制参数 前三个记忆T(填充)D(对齐)K(宽度)
@@ -207,6 +207,10 @@ x=3==3,5 从右向左  x => (True,5)
     reduce(lambda a,b:a+b, [-1,2,-3,4,-9,10])
 70: def commonFunction(obj):
     obj.selfShow() #只要obj对象有对应方法就行，不用关心obj具体是什么
+71: 七月在线python课程第五课 文件操作 并发
+    用with操作如果发生异常文件句柄依然会正常关闭
+    
+
 
 非语法问题
 1:IDE用VSCODE原因是 扩展性、易用性强，免费，具体可以参考https://arbisoft.com/vs-code-versus-pycharm-the-smackdown/
