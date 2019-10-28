@@ -1,3 +1,5 @@
+##循环显示文件夹和下面的子文件
+
 import os,sys
 
 def dir_s(path,tab):
