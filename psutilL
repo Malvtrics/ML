@@ -1,0 +1,18 @@
+import psutil
+
+# print(psutil.cpu_count())
+# print(psutil.cpu_count(logical=False))
+# print(psutil.cpu_times())
+# print(psutil.cpu_percent(interval=1,percpu=True))
+# print(psutil.swap_memory())
+# print(psutil.disk_usage('/'))
+# print(psutil.disk_partitions())
+# print(psutil.disk_io_counters())
+
+pids = psutil.pids()
+print(pids)
+p = psutil.Process(pids[5])
+print(dir(p))
+print(p.name())
+print(p.cwd())
+print(p.status())
