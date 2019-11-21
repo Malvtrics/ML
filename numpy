@@ -45,7 +45,7 @@ n5 = np.random.randn(3,4) #rand 平均分布 randn 正态分布
 n5 = np.random.randn(4,8)
 n5.fill(7) 
 n6 = np.arange(10)
-n7 = np.random.shuffle(n6) #洗牌
+np.random.shuffle(n6) #洗牌 注意用法 不需要另外赋值
 n8 = np.zeros(4)
 n8 = np.zeros((4,5)) #param is turple
 n9 = np.ones((6,7)) 
