@@ -2,7 +2,6 @@
 1:命名规范:字母/下划线开头后跟数字/字母/下划线  变量命名推荐使用驼峰标识
 3:代码包含中文要在头部指定 #coding=utf-8
 4:如果脚本文件的第一行以 #! 开头称为 "shebang" 行,Linux和其他类Unix操作系统用该行指示应该如何执行脚本
-5:print的一种使用方法，将要打印的东西用逗号分隔 eg: print("Hello", "Martin") 注意这样的输出是 Hello Martin 中间是有空格的
 6:错误AttributeError: module 'turtle' has no attribute 'setup' 问题:自己的文件命名不要和系统文件命名一样 turtle.py wordcloud.py etc
 7:python整数范围-308到+308 精度10的﹣16次方 / 用53位二进制表示小数部分 
   注意：整数除法结果是浮点数 两个除号结果是整数 在pyhton3中，"/"表示的就是float除，不需要再引入模块，就算分子分母都是int，返回的也将是浮点数
