@@ -89,8 +89,6 @@ b=sorted(dict.items(),key=lambda x:x[1],reverse=True)
    两种文件格式模式 b二进制打开 t文本文件模式 默认模式是t
    +号 和rwxa共同使用 增加读写功能
 33:在mac上使用wordcloud的时候遇到两个问题 1)文件命名不能是wordcloud.py和以前的老毛病一样 2)需额外装matplotlib库 不然运行会报错 图片无法输出
-34:习惯问题
-  if a == b 写了一个等于号，赋值语句和判断语句 / 使用and不要&& 习惯python语法  / 分支函数依次写在主函数上面，更加清晰明了
 35:文件处理
   1)The open() function returns a file object, which has a read() method for reading the content of the file:
   2)writelines函数参数是列表，但是并不是把列表中每一个元素按照行写到文件中，是把列表中元素拼接为一个字符串然后写一行到文件中
