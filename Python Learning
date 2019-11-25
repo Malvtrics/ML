@@ -216,7 +216,22 @@ x=3==3,5 从右向左  x => (True,5)
     obj.selfShow() #只要obj对象有对应方法就行，不用关心obj具体是什么
 71: 七月在线python课程第五课 文件操作 并发
     用with操作如果发生异常文件句柄依然会正常关闭
-    
+72: 注意使用单下划线开头还是双下划线开头的问题
+    双下划线主要是针对于类使用，单下划线主要用于模块导入时候的限制
+aaa.py
+
+def _a():
+    print('fuck')
+1.py
+
+from aaa  import *
+_a()
+#NameError: name '_a' is not defined
+2.py
+
+from aaa  import _a
+_a()
+#funck
 
 
 非语法问题
