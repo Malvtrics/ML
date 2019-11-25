@@ -218,21 +218,7 @@ x=3==3,5 从右向左  x => (True,5)
     用with操作如果发生异常文件句柄依然会正常关闭
 72: 注意使用单下划线开头还是双下划线开头的问题
     双下划线主要是针对于类使用，单下划线主要用于模块导入时候的限制
-aaa.py
-
-def _a():
-    print('fuck')
-1.py
-
-from aaa  import *
-_a()
-#NameError: name '_a' is not defined
-2.py
-
-from aaa  import _a
-_a()
-#funck
-
+https://stackoverflow.com/questions/6930144/underscore-vs-double-underscore-with-variables-and-methods
 
 非语法问题
 1:IDE用VSCODE原因是 扩展性、易用性强，免费，具体可以参考https://arbisoft.com/vs-code-versus-pycharm-the-smackdown/
