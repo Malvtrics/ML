@@ -52,6 +52,8 @@
 15:需要将多行代码放在一行中用分号隔开
 16:try except 如果出现异常 到except块处理，也可以  except 异常类型名称 来单独响应某一类异常
 17:while和for也可以通过else来看是否有用到break
+   注意python里面的for循环，在循环内部不能修改index 详细区别可以参考
+   https://kaijento.github.io/2017/03/15/modifying-index-in-a-python-for-loop/
 18:def fab(n,m=1) m是可选参数 可选参数要放在必须参数后面 / def fab(n,*b) *b是可变参数 可以是逗号分开的很多参数
 20:可以返回0个或者多个结果 return s,s1,s2
 21:在函数中用global保留字申明使用全局
