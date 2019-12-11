@@ -1,0 +1,42 @@
+from sklearn import datasets
+import numpy as np
+import imp
+iris = datasets.load_iris()
+
+#print(type(iris))
+#“bunch”: 一个简单的包含多个 “field” 的存储对象，
+#可以方便的使用 python 中的 dict keys 或 object 属性来读取
+#比如 target_names 包含了所请求的类别名称
+
+#print(iris.target)
+#print(iris.target_names)
+#print(iris.data.shape)
+#print(iris.target.shape)
+
+a=iris.data
+b=iris.target #b原来的shape是150个元素的一维数组，需要变成二维才能拼接
+c=np.hstack((a,b.reshape(150,1)))
+
+X = iris.data[:, [2, 3]]
+y = iris.target
+print('Class labels:', np.unique(y))
+
+from sklearn.model_selection import train_test_split
+#random_state的值相当于一种规则，通过设定为相同的数，每次分割的结果都是相同的
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
+
+from sklearn.linear_model import Perceptron
+
+#n_iter_int
+#The actual number of iterations to reach the stopping criterion. 
+#For multiclass fits, it is the maximum over every binary fit.
+
+#eta0double
+#Constant by which the updates are multiplied. Defaults to 1.
+ppn = Perceptron(n_iter_no_change=40,eta0=0.1, random_state=0,max_iter=5)
+print(ppn)#打印出perceptron的信息
+
+ppn.fit(X_train, y_train)
+print(ppn.coef_)#coef_是训练得到的模型参数
+y_pred = ppn.predict(X_test)
+print(y_pred)
