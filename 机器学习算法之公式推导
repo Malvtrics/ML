@@ -1,0 +1,14 @@
+学习图谱
+1)线性回归线路：
+    广义线性回归 线性回归 logistic回归 人工神经网络 CNN RNN->LSTM GAN
+               感知机  SVM
+2)决策树线路:
+    ID3 C4.5 CART     BDT -> GBDT(Gradient BDT)
+    RF <- Bagging Boosting AdaBoost
+3)贝叶斯线路:
+    朴素贝叶斯 Naive Bayes  HMM(Hidden Markov Model)->CRF(Condition Random Field)
+    期望最大->GMM(高斯混合模型)
+    K均值->密度聚类->层次聚类
+
+最基本的五个公式推导：线性回归、logistic回归、决策树、贝叶斯、SVM 
+
