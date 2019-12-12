@@ -1,6 +1,6 @@
 import numpy as np
 
-l1 = np.array([[1,2,3],[4,5,6]])
+l1 = np.array([[1,2,3],[4,5,6]]) #如何初始化一个ndarray
 # #res1 = l1 + np.ones(list(l1.shape)) # func11
 # #res1 = res1.tolist()  #question:为啥出来的都是decimal 类型 不是整数
 # res2 = []
