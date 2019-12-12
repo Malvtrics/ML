@@ -1,6 +1,6 @@
 首先都是左闭右开
 
-python自带的random
+python自带的random 返回一个小数或者一个整数 没有维度概念
 random.random() #0.15543373681847383
 random.randint(1,50)  #37
 
