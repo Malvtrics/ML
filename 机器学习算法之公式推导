@@ -20,6 +20,7 @@
         min(w,b) max(m,n) l = f(w,b)+m*c(w,b)+n*h(w,b) m,n为拉格朗日乘子
         两种理解方法：1）惩罚项 把 m*c(w,b)+n*h(w,b) 想象为对函数的惩罚，我们要求l最小值，当不满足约束条件时 函数会无穷大
                    2）可以证明满足约束条件时 max(m,n) l 的最小值 = l的最小值
+                   https://www.cnblogs.com/90zeng/p/Lagrange_duality.html
      然后理解拉格朗日对偶 在满足KKT条件下 min(w,b) max(m,n) l  问题转化为  max(m,n) min(w,b) l 问题
          理解KKT条件 凸优化函数f(x)中有最小点记为x_ 在该点满足约束条件并且 l'(x_)=0 
      核函数理解： 为什么用核函数？ 在线性不可分情况下需要把数据从低维空间映射到高维空间 注意上面用拉格朗日方法求出的结果中x是内积形式
