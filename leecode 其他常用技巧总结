@@ -1,0 +1,7 @@
+#用list实现去引用 384题
+a = [2,4,53,2,4]
+c = a
+b = list(a)
+a[0]= -1
+print(b)
+print(c)
