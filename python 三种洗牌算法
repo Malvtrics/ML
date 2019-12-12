@@ -1,0 +1,18 @@
+Fisher-Yates Shuffle
+思路：从原始数据中随便抽一个数字到新数组中
+
+import random 
+def fisher_yates_shuffle(list):
+  res = []
+  while(list):
+    p=random.randrange(len(list))
+    res.append(list[p])
+    list.pop(p)
+   return res
+  
+Knuth-Durstenfeld Shuffle
+思路：对上面算法的改进，每次从未处理的数据中随机取出一个数字，然后放在数组的末尾，原地打乱
+
+import random
+def kunth_shuffle(list):
+  
