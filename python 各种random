@@ -1,0 +1,13 @@
+python自带的random
+random.randint(1,50)  #37
+random.randrange(0, 101, 2) (start,end,step)
+
+numpy 中的random
+rand                 Uniformly distributed values.  (均匀分布) 
+randn                Normally distributed values. (正态分布)
+randint              Uniformly distributed integers in a given range.
+
+np.random.rand(d0,d1...dN) 生成一个[0,1)之间的随机浮点数或N维浮点数组
+np.random.randn(d0, d1, ..., dn)：生成一个浮点数或N维浮点数组，取数范围：正态分布的随机样本数
+np.random.randint(low, high=None, size=None, dtype='l')：
+生成一个整数或N维整数数组ndarray，取数范围：若high不为None时，取[low,high)之间随机整数，否则取值[0,low)之间随机整数,数组长度为size
