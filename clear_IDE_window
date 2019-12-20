@@ -1,5 +1,0 @@
-https://blog.csdn.net/howard2005/article/details/79879289
-
-1、在Python X\Lib\idlelib目录下创建ClearWindow.py（其中X是Python版本号）
-2、 在Python X\Lib\idlelib目录下编辑config-extensions.def（IDLE扩展配置文件）
-注意：文件名ClearWindow.py，类名ClearWindow，配置文件里两处ClearWindow，务必保持一致，包括大小写，否则无法启动IDLE。
