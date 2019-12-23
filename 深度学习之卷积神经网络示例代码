@@ -1,0 +1,35 @@
+import numpy as np
+from sklearn.datasets import make_moons
+import matplotlib.pyplot as plt
+
+np.random.seed(0)
+X,y = make_moons(200,noise=0.2)# 200个样本.noise表示有0.1的点是异常点
+plt.scatter(x=X[:,0],y=X[:,1],s=10,c=y,cmap=plt.cm.Spectral)
+#s表示点的大小 c表示颜色，这里为什么0和1可以表示蓝色和橙色 查官方文档 如果是数字的时候，有个默认的颜色列表
+#cmap采用什么用的colormap 不太理解这个 可能就是为了用不同的色彩
+#plt.show()
+
+def plot_decision_boundary(pred_func):
+    x_min,x_max = X[:,0].min() - .5,X[:,0].max() + .5
+    y_min,y_max = X[:,1].min() - .5,X[:,1].max() + .5
+    h = 0.01
+    
+    #xx,yy = np.meshgrid(np.arange(x_min,x_max,h),np.arange(y_min,y_max,h))
+    xx,yy = np.meshgrid(np.arange(x_min, x_max, h), np.arange(y_min, y_max, h))
+    #####np.r_是按列连接两个矩阵，就是把两矩阵上下相加，要求列数相等，类似于pandas中的concat()
+    #####np.c_是按行连接两个矩阵，就是把两矩阵左右相加，要求行数相等，类似于pandas中的merge()
+    
+    Z = pred_func(np.c_[xx.ravel(),yy.ravel()])#ravel->Return a contiguous flattened array.注意是[]使用
+    Z = Z.reshape(xx.shape) #!!!注意又被这个地方坑了 Z.reshape()并没有改变原来的数组，需要赋值！！！
+    
+    #contour轮廓的意思 contourf 对等高线中间的区域进行颜色填充
+    plt.contourf(xx,yy,Z,cmap=plt.cm.Spectral)
+    plt.scatter(x=X[:,0],y=X[:,1],s=10,c=y,cmap=plt.cm.Spectral)
+
+from sklearn.linear_model import LogisticRegressionCV
+clf = LogisticRegressionCV()
+clf.fit(X,y)
+
+plot_decision_boundary(lambda x:clf.predict(x))
+plt.title('logistic regression')
+plt.show()
