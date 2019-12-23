@@ -274,24 +274,3 @@ print(data1.info())
 #注意一但某一列被设置成索引后，不能通过data1['Date'] = pd.to_datetime(data1['Date'])这种方式来改类型 
 需要通过data1.index = pd.to_datetime(data1.index)来改类型
 所以最好就是test1中在开始读取的时候就设置好索引，尤其是时间列索引的解析
-
-
-#################################################################### matplotlib bar example #######################################
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-
-df_info = pd.read_csv('student-info.csv',sep=';')
-df_score = pd.read_csv('student-score.csv',sep=';')
-result = pd.merge(df_info,df_score,on=['ID'])
-print(result.head())
-result1 = result.groupby(['age']).aggregate({'G1':'mean','G2':'mean','G3':'mean'})
-ax = result1.plot(figsize=(15,5),kind='bar',width=0.9)# figsize unit: inch
-
-#print(type(ax))   #<class 'matplotlib.axes._subplots.AxesSubplot'>
-#can get all the rects (24)
-for p in ax.patches:
-    text = str(round(p.get_height(),2))
-    ax.annotate(text, (p.get_x()+0.02, p.get_height()+0.2))
-    #print(p)
-###############################################################################################################################
