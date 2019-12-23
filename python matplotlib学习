@@ -21,3 +21,22 @@ X2,Y2=np.meshgrid(x2,y2)
 plt.plot(X2,Y2,color='red',marker='.',markersize=10,linestyle='')
 plt.grid = True
 plt.show()
+
+##如何在柱状图上面显示数字
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df_info = pd.read_csv('student-info.csv',sep=';')
+df_score = pd.read_csv('student-score.csv',sep=';')
+result = pd.merge(df_info,df_score,on=['ID'])
+print(result.head())
+result1 = result.groupby(['age']).aggregate({'G1':'mean','G2':'mean','G3':'mean'})
+ax = result1.plot(figsize=(15,5),kind='bar',width=0.9)# figsize unit: inch
+
+#print(type(ax))   #<class 'matplotlib.axes._subplots.AxesSubplot'>
+#can get all the rects (24)
+for p in ax.patches:
+    text = str(round(p.get_height(),2))
+    ax.annotate(text, (p.get_x()+0.02, p.get_height()+0.2))
+    #print(p)
