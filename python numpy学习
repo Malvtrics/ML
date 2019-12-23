@@ -82,3 +82,8 @@ np.tile(arr,2)
 np.tile(arr,(2,3))
 
 np.save('C:\\Users\\mengwang\\Desktop\\GPMA\\Other\\Python\\a1',arr) #注意要用双斜线 不然会报错
+
+x = np.array([[1, 2, 3], [4, 5, 6]])
+np.ravel(x)
+#array([1, 2, 3, 4, 5, 6])
+#It is equivalent to reshape(-1, order=order).
