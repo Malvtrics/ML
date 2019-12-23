@@ -1,0 +1,23 @@
+##如何使用np.meshgrid 主要用来解决坐标网格点太多时候显示的问题
+import numpy as np
+import matplotlib.pyplot as plt
+x = np.array([[0,1,2],[0,1,2]])
+y = np.array([[1,1,1],[0,0,0]])
+plt.plot(x,y,color='red',marker='.',markersize=10,linestyle='-')
+plt.grid=True
+plt.show()
+
+x1 = np.array([0,1,2]) #注意这里的x1,y1表示横纵坐标的列向量 已经不是上面的二维矩阵
+y1 = np.array([0,1])
+X1,Y1=np.meshgrid(x1,y1)
+plt.plot(X1,Y1,color='red',marker='.',markersize=10,linestyle='-')
+plt.grid=True
+plt.show()
+
+#接下来就是NB之处，对于需要大量的横纵坐标点
+x2 = np.linspace(0,2000,20)
+y2 = np.linspace(0,2000,10)
+X2,Y2=np.meshgrid(x2,y2)
+plt.plot(X2,Y2,color='red',marker='.',markersize=10,linestyle='')
+plt.grid = True
+plt.show()
