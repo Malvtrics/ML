@@ -1,3 +1,9 @@
+首先看清楚几个缩写 
+ANN artificial neural network 人工神经网络 
+FNN feedforward 前馈神经网络 
+CNN convolutional 卷积神经网络 
+RNN recurrent 循环神经网络
+
 1.为什么要用CNN? 
 1）过拟合 2）计算量
 以图像为例
