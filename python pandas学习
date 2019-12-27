@@ -1,36 +1,24 @@
-import pandas as pd
-from matplotlib import pyplot as plt
+Series:One-dimensional ndarray with axis labels (including time series).
+Construction:class pandas.Series(data=None, index=None, dtype=None, name=None, copy=False, fastpath=False)
+          data : array-like, Iterable, dict, or scalar value->Contains data stored in Series.
+eg1:Series(ndarray,index = [id1,id2,id3])
+eg2:Series([1,2,3],index = [id1,id2,id3])
 
-data = pd.read_csv('C:\\Users\\buptw\\Desktop\\lesson8 pandas表格处理\\data\\titanic_train.csv')
-#print(data.info())
+value_counts()  #Return a Series containing counts of unique values.->NaN exclued as default
 
-s01 = data.Pclass[data.Survived==0].value_counts()
-s02 = data.Pclass[data.Survived==1].value_counts()
-#
-#print(s01)
-#print(s02)
+child_series = s[[col1,col2,col3]]
+Series.loc
+Access a group of rows and columns by label(s) or a boolean array.
+.loc[] is primarily label based, but may also be used with a boolean array.
+Allowed inputs are:
+A single label, e.g. 5 or 'a', (note that 5 is interpreted as a label of the index, and never as an integer position along the index).
+A list or array of labels, e.g. ['a', 'b', 'c'].
+A slice object with labels, e.g. 'a':'f'.
+A boolean array of the same length as the axis being sliced, e.g. [True, False, True].
+A callable function with one argument (the calling Series or DataFrame) and that returns valid output for indexing (one of the above)
 
 
-s03 = data.Sex[data.Survived==0].value_counts()
-s04 = data.Sex[data.Survived==1].value_counts()
-#
-#print(s03)
-#print(s04)
-          
-#fig = plt.figure(figsize=(20,10))
-#ax1 = fig.add_subplot(141)
-#data.Survived[data.Sex=='female'][data.Pclass!=3].value_counts().plot(kind='bar',label='hf')
-#ax2 = fig.add_subplot(142)
-#data.Survived[data.Sex=='female'][data.Pclass==3].value_counts().plot(kind='bar',label='lf')
-#ax3 = fig.add_subplot(143)
-#data.Survived[data.Sex=='male'][data.Pclass!=3].value_counts().plot(kind='bar',label='hm')
-#ax4 = fig.add_subplot(144)
-#data.Survived[data.Sex=='maie'][data.Pclass==3].value_counts().plot(kind='bar',label='lm')
- 
-#from sklearn.ensemble import RandomForestRegressor
-#
-##从大的dataframe中取几个列形成的dataframe
-#age_df = data[['Age','Fare','Parch','SibSp','Pclass']] # data['Age'] 取一列 取多列需要[[]]
+
 ##从dataframe中取符合条件的数据输出series 然后用values输出ndarray
 #known_age = age_df[age_df.Age.notnull()].values
 #unknown_age = age_df[age_df.Age.isnull()].values
