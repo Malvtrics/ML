@@ -81,6 +81,15 @@ b=sorted(dict.items(),key=lambda x:x[1],reverse=True)
 
 对于字典，如果其中key很多，有时候不知道某个key是否存在，用key直接访问比较危险，所以应当使用 get 而且如果key不存在还可以赋值
 
+dict method: fromkeys
+seq = ('Google', 'Runoob', 'Taobao')
+dict = dict.fromkeys(seq)
+print(str(dict))
+#{'Google': None, 'Taobao': None, 'Runoob': None} 
+dict = dict.fromkeys(seq, 10)
+print(str(dict)))
+{'Google': 10, 'Taobao': 10, 'Runoob': 10}
+
 元组 当有一个元素时要定义为 (1,) 如果是(1) 是int类型
 元组 add是打包添加 update是拆分添加
 
