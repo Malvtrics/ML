@@ -47,3 +47,8 @@ A 反正正反反
 可以发现PA PB逐渐接近真实值
 经过不断的迭代最终可以收敛到真实值，这就是EM算法的思想
 
+对drop out的另外一种理解：还不是很理解 哈哈
+one major issue in learning large networks is co-adaptation
+In such a network, if all the weights are learned together it is common that 
+some of the connections will have more predictive capability than the others. 
+Over many iterations,only a fraction of the node connections is trained, and the rest stop participating
