@@ -52,3 +52,27 @@ one major issue in learning large networks is co-adaptation
 In such a network, if all the weights are learned together it is common that 
 some of the connections will have more predictive capability than the others. 
 Over many iterations,only a fraction of the node connections is trained, and the rest stop participating
+
+the loss is decreasing more or less linearly, indicating learning rate may be too low
+the loss flucuates a lot, suggesting batch size maybe too small
+there is no gap between  the training  and validation accuracy, we should increase the training size
+
+推荐系统中的 wide and deep learning:
+wide linear model => memorization pigeons can fly!  seagulls can fly!
+deep model => generalization Animals with wing can fly!
+我们期待的是 wide linear model + deep model => generalization + memorization exceptions 
+=>animals with wings can fly, but penguins can't fly
+
+wide linear models:
+memorization can be achieved by adding crossed features to  learn frequent co-current items (哪些app用户经常一起装)
+crosses add understandable  non-lineariry to the model 
+user feature=> installed app = 途牛  +0.1
+impression feature => impression app => 携程 +0.5
+crossed feature => AND(installed_app = '途牛',impression_app  = '携程') +1.4
+
+deep  neural networks:
+deep  models can generalize prediction to <user,impression> that never or rately co-occured via dense embeddings
+hidden layers can learn complex but less interpretable feature interactions
+(炸鸡和汉堡看起来没有关联，但是出现在快餐店（理解为一个embedding）的时候，就关联起来了)s
+
+所以借助这两种model的结合得出更好的模型=>后面学下deep FM
