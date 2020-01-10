@@ -12,3 +12,18 @@ class Solution:
         n_list = list(range(1, N+1))
         beatiful_list = _helper(n_list)
         return beatiful_list
+
+1250检查好数组
+数论：如果两个数互斥，则存在整数 x,yx,y，使得 ax+by=1。 推到多个数也成立。
+import math  
+求最大公约数
+# prints gcd of x, y 
+print ("math.gcd(44, 12) : ", math.gcd(44, 12)) 
+print ("math.gcd(69, 23) : ", math.gcd(65, 45)) 
+class Solution:
+    def isGoodArray(self, nums: List[int]) -> bool:
+        from math import gcd
+        g = nums[0]
+        for i in nums:
+            g = gcd(g, i)
+        return g == 1
