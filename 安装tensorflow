@@ -1,5 +1,0 @@
-已经安装anaconda的情况下
-
-conda create --name tensorflow
-activate tensorflow 
-pip install --user tensorflow (没有--user会出现权限不够无法更新包的问题)
