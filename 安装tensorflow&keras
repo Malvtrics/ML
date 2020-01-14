@@ -3,6 +3,20 @@ conda create --name tensorflow
 activate tensorflow 
 pip install --user tensorflow (没有--user会出现权限不够无法更新包的问题)
 
+安装Tensorflow 2.0后的坑has no attribute 'contrib'所以要装回1.x
+pip uninstall tensorflow
+pip uninsall tensorflow-gpu 装新的之前把旧的所有没用的都卸载干净
+https://blog.csdn.net/qiancaobaicheng/article/details/95226499
+通过我的电脑 属性 设备管理器 display adaptors 可以看有没有显卡，有的话显卡是什么系列 
+显卡是否NVIDIA系列？	是=GPU；否=CPU
+若是NVIDIA系列，计算能力如何？大于等于3.5=GPU；小于3.5=CPU
+几个可以加速的源
+pip install tensorflow==1.14.0 -i http://pypi.douban.com/simple/ --trusted-host pypi.douban.com
+pip install tensorflow==1.14.0 -i https://pypi.tuna.tsinghua.edu.cn/simple --trusted-host pypi.tuna.tsinghua.edu.cn
+pip install tensorflow==1.14.0 -i https://www.lfd.uci.edu/~gohlke/pythonlibs/ --trusted-host www.lfd.uci.edu
+pip install tensorflow==1.14.0 -i https://mirrors.ustc.edu.cn/pypi/web/simple --trusted-host mirrors.ustc.edu.cn
+pip install tensorflow==1.14.0 -i https://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
+
 没有依赖包时候的几个解决方法 ：
 1) anaconda search -t conda 要安装的包,选择符合条件的安装包路径
 2) conda install -c https://conda.anaconda.org/列表中对应的Name 要安装的包
