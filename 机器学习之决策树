@@ -1,6 +1,7 @@
 ID3 Iterative dichotomiser /dai'kɔtəmaizer   迭代分类器三代（注意这里分类不一定是二分类，不能因为老师上课给的二分类例子就认为模型是二叉树） 
 ID3模型是多叉树模型 可以参考西瓜书的例子
 利用信息增益
+C4.5 C = Classifier Ross Quinlan 只能重新命名算法因为ID4 ID5等被研究者相继占用
 C4.5 与ID3 的3点不同：
   1）用信息增益比率来衡量
   2）可以处理连续属性值
