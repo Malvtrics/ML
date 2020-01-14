@@ -28,3 +28,8 @@ pip install keras -U --pre
 
 anaconda修改channel删除默认default添加清华大学的源 https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free
 清华大学开源软件镜像站官网 https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/
+
+如何查看tensorflow版本信息
+import tensorflow as tf
+tf.__version__
+如何查看python版本信息 cmd python --version
