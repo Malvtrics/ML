@@ -50,7 +50,7 @@ activation layer=> 对卷积层的结果做非线性映射
  
  fc layer=> 一般放在CNN尾部 用softmax 做分类或者 做回归
  如果放在其他层次 可能是做融合，使信息更加完善
- 现在可有可无 
+ google2014 inception net中用全局池化代替全连接层，从那以后这个层可有可无 inception net 参考论文going deep with revolutions
  
 3.CNN的损失函数是怎样的？
 先看下GD BGD SGD
