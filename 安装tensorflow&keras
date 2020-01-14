@@ -1,21 +1,16 @@
-已经安装anaconda的情况下
-
+anaconda下安装tensorflow
 conda create --name tensorflow
 activate tensorflow 
 pip install --user tensorflow (没有--user会出现权限不够无法更新包的问题)
 
 没有依赖包时候的几个解决方法 ：
-
-anaconda search -t conda 要安装的包
-选择符合条件的安装包路径
-
-conda install -c https://conda.anaconda.org/列表中对应的Name 要安装的包
-如果还是没有对应的安装包用：
-
-pip install 要安装的包
-
-再没有，就只能手动下载包 然后pip安装
+1) anaconda search -t conda 要安装的包,选择符合条件的安装包路径
+2) conda install -c https://conda.anaconda.org/列表中对应的Name 要安装的包
+3)如果还是没有对应的安装包用：pip install 要安装的包
+4)再没有，就只能手动下载包 然后pip安装
 
 安装keras
 pip install keras -U --pre
 
+anaconda修改channel删除默认default添加清华大学的源 https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free
+清华大学开源软件镜像站官网 https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/
