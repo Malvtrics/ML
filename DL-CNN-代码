@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 np.random.seed(0)
 X,y = make_moons(200,noise=0.2)# 200个样本.noise表示有0.1的点是异常点
 plt.scatter(x=X[:,0],y=X[:,1],s=10,c=y,cmap=plt.cm.Spectral)
+#scatter用来画散点图
 #s表示点的大小 c表示颜色，这里为什么0和1可以表示蓝色和橙色 查官方文档 如果是数字的时候，有个默认的颜色列表
 #cmap采用什么用的colormap 不太理解这个 可能就是为了用不同的色彩
 #plt.show()
