@@ -1,40 +1,24 @@
 import numpy as np
-
-l1 = np.array([[1,2,3],[4,5,6]]) #如何初始化一个ndarray
-# #res1 = l1 + np.ones(list(l1.shape)) # func11
-# #res1 = res1.tolist()  #question:为啥出来的都是decimal 类型 不是整数
-# res2 = []
-# for row in l1:
-#     for col in row:
-#         res2[row][col] = l1[row][col] + 1
-# print(res2)
-
-# arr= [[1, 2, 3], [4, 5, 6], [7,8, 9], [10, 11, 12]]
-# arrn = np.array(arr)
-# arrn2 = arrn.T
-# print(arrn2)
-
-import numpy as np
 import matplotlib.pyplot as plt
 
-#numpy 最重要的两个 ndarray 和 ufunction
+arr = np.array([[1,2,3],[4,5,6]]) #初始化
+arr_sum = arr + np.ones((2,3),dtype='int32') 
+arr_t = arr.T
 
-# x = np.linspace(0,2*np.pi,50)
-# #x = np.arange(-np.pi,np.pi,1)
-# y1 = np.sin(x)
-# y2 = np.cos(x)
+x = np.linspace(0,2*np.pi,50)
+y = np.sin(x)
+plt.plot(x,y,'b')
 
-# plt.plot(x,y1,'b')
-# plt.plot(x,y2,'r')
-# plt.show()
+arr2 = np.arange(12).reshape(3,4)
 
-# n = 12
-# x = np.arange(12)
-# y1 = (1-x/n)*np.random.uniform(0.5,1,n)
-# y2 = (1-x/n)*np.random.uniform(0.5,1,n)
-
-# plt.bar(x,y1)
-# plt.bar(x,-y2)
+#连续均匀分布 设汽通过某站的汽车每10min 一辆那么乘客候车的时间是在[0.10] 上服从均匀分布
+#离散均匀分布 掷骰子
+设汽通过某站的汽车每10min 一辆那么乘客候车的时间是在[0.10] 上服从均匀分布的
+官方例子：
+s = np.random.uniform(-1,0,1000)
+count, bins, ignored = plt.hist(s, 15, normed=True)
+plt.plot(bins, np.ones_like(bins), linewidth=2, color='r')
+plt.show()
 
 n1 = np.array([1,2,3])
 n1.shape  #class member if one dimension then only display count of elements (3,) using turple type
