@@ -1,5 +1,5 @@
 word2vec是干嘛的？？？ 
-完成单词的向量化表示
+完成单词的向量化表示 word2vec = word to vector 单词向量化
 找到这些带有语义的词向量
 语义相近的词向量距离会接近 从这个角度来讲当前一些模型的效果 bert>cbow/skip-gram>not-hot
 
