@@ -76,3 +76,8 @@ hidden layers can learn complex but less interpretable feature interactions
 (炸鸡和汉堡看起来没有关联，但是出现在快餐店（理解为一个embedding）的时候，就关联起来了)s
 
 所以借助这两种model的结合得出更好的模型=>后面学下deep FM
+
+机器学习中的基模型一般指弱模型，即在训练集上表现比较弱的模型，可能有防止过拟合的能力，也就是偏差比较大，方差比较小的模型
+偏差大就是在训练集上表现不好，用打靶来比喻就是打得不准
+方差大就是在测试集上表现不好，用打靶来比喻就是打得不稳 散点图
+bagging和stacking上的模型是强模型 boosting是弱模型
