@@ -1,0 +1,18 @@
+推荐的目的是？
+推荐能给公司带来？
+
+目标：点击率
+做推荐的基本点：货找人
+PGC（全称：Professional Generated Content）互联网术语，指专业生产内容。用来泛指内容个性化、视角多元化、传播民主化、社会关系虚拟化
+UGC（User Generated Content，也就是用户生成内容，即用户原创内容
+CF = collabrative filtering 协同过滤算法 输出召回分支 -> i2i/u2u/u2i/tag2i/city2i/category2i (user,item) [key:value]
+
+流程：
+召回->'粗排'->精排
+1：粗排y=model(item,context) 没有用户特征
+   精排y=model(user,item,context) = learn to rank
+2：其中粗排可以不要，粗排存在的意义在于降低系统性能开销
+3：精排直接产生topn截断
+4: 召回在有大量候选时还是很有必要，判断已有数据排序是否会造成0.1的latency -> latency>0.1 effect user experience
+5: 排序组
+6：粗排->百度搜索算法中的粗排与精排->https://zhuanlan.zhihu.com/p/69825651 怕以后不再了在本repo里面也有
