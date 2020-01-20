@@ -14,5 +14,5 @@ CF = collabrative filtering 协同过滤算法 输出召回分支 -> i2i/u2u/u2i
 2：其中粗排可以不要，粗排存在的意义在于降低系统性能开销
 3：精排直接产生topn截断
 4: 召回在有大量候选时还是很有必要，判断已有数据排序是否会造成0.1的latency -> latency>0.1 effect user experience
-5: 排序组
+5: 召回组（设计召回算法，有多个召回分支，返回多类型key的字典）-> 排序组
 6：粗排->百度搜索算法中的粗排与精排->https://zhuanlan.zhihu.com/p/69825651 怕以后不再了在本repo里面也有
