@@ -5,7 +5,22 @@
 做推荐的基本点：货找人
 PGC（全称：Professional Generated Content）互联网术语，指专业生产内容。用来泛指内容个性化、视角多元化、传播民主化、社会关系虚拟化
 UGC（User Generated Content，也就是用户生成内容，即用户原创内容
-CF = collabrative filtering 协同过滤算法 输出召回分支 -> i2i/u2u/u2i/tag2i/city2i/category2i (user,item) [key:value]
+CF = collabrative filtering 协同过滤算法 输出召回分支 -> i2i/u2u/u2i/tag2i/city2i/category2i (user,item) [key:value] 
+这些city category等都是召回组的同学自己YY出来的，哈哈哈
+
+埋点就是在应用中特定的流程收集一些信息，用来跟踪应用使用的状况，后续用来进一步优化产品或是提供运营的数据支撑，
+包括访问数（Visits），访客数（Visitor），停留时长（Time On Site），页面浏览数（Page Views）和跳出率（Bounce Rate）。
+这样的信息收集可以大致分为两种：页面统计（track this virtual page view），统计操作行为（track this button by an event）。
+
+数据埋点的方式现在埋点的主流有两种方式：
+第一种：自己公司研发在产品中注入代码统计，并搭建起相应的后台查询。
+第二种：第三方统计工具，如友盟、神策、Talkingdata、GrowingIO等。
+
+如果是产品早期，通常会使用第二种方式来采集数据，并直接使用第三方分析工具进行基本的分析。
+而对于那些对数据安全比较重视，业务又相对复杂的公司则通常是使用第一种方式采集数据，并搭建相应的数据产品实现其数据应用或是分析的诉求。
+
+feed是将用户主动订阅的若干消息源组合在一起形成内容聚合器，帮助用户持续地获取最新的订阅源内容。
+feed流即持续更新并呈现给用户内容的信息流。
 
 流程：
 召回->'粗排'->精排
@@ -18,3 +33,9 @@ CF = collabrative filtering 协同过滤算法 输出召回分支 -> i2i/u2u/u2i
    召回分支内部排序，不同召回分支输出的结果去重后做为模型的输入
 ）-> 排序组
 6：粗排->百度搜索算法中的粗排与精排->https://zhuanlan.zhihu.com/p/69825651 怕以后不再了在本repo里面也有
+7: 更新时间一般是天级别，离线跑（老的item可能会下线，新的item可能会产生）
+8：召回算法的校验标准：试验桶的流量点击率有没有增长
+
+app客户端埋点->用户产生相应的点击（点赞 评论等）->回传服务器 -> kafka 无延时地上传到实时计算集群 storm -> label拼接 行程log
+-> 数据建模-> rerank -> 给用户呈现的结果
+注意模型的结果不是最终呈现给用户的结果，需要根据业务逻辑将规则打散：理解->某明星新闻今日必须放在第一条
