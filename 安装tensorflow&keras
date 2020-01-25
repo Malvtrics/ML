@@ -33,3 +33,11 @@ anaconda修改channel删除默认default添加清华大学的源 https://mirrors
 import tensorflow as tf
 tf.__version__
 如何查看python版本信息 cmd python --version
+mac: pip3 -V
+
+mac how install tensorflow
+ref:https://www.jianshu.com/p/2e4851df72fb
+1)install brew 
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+2)pip3 install tensorflow==1.14.0 -i https://pypi.tuna.tsinghua.edu.cn/simple --trusted-host pypi.tuna.tsinghua.edu.cn
+  注意mac安装后要重启terminal 验证是否安装成功
