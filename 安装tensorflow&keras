@@ -41,3 +41,7 @@ ref:https://www.jianshu.com/p/2e4851df72fb
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 2)pip3 install tensorflow==1.14.0 -i https://pypi.tuna.tsinghua.edu.cn/simple --trusted-host pypi.tuna.tsinghua.edu.cn
   注意mac安装后要重启terminal 验证是否安装成功
+  
+但是发现anaconda spyder里面还是不行，于是还是要解决没有conda命令的问题
+https://www.jianshu.com/p/13f5d20e61f8
+https://www.cnblogs.com/lucky-sherlock/archive/2018/03/18/8594642.html
