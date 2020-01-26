@@ -15,6 +15,7 @@ y = tf.matmul(a,w2)
 
 y = tf.sigmoid(y)
 #tf.reduce_mean 函数用于计算张量tensor沿着指定的数轴（tensor的某一维度）上的的平均值，主要用作降维或者计算tensor（图像）的平均值。
+#tf.clip_by_value主要是用来把张量中的数值限定在一个范围中，这样可以避免计算中的一些错误 比如log0
 cross_entropy = -tf.reduce_mean(y_*tf.log(tf.clip_by_value(y,1e-10,1.0))+
                                 (1-y_)*tf.log(tf.clip_by_value(1-y,1e-10,1.0)))
 train_step = tf.train.AdamOptimizer(0.001).minimize(cross_entropy)
