@@ -1,0 +1,47 @@
+#coding=utf-8 
+#一定要加，不然注释不能识别 会报错Non-ASCII character '\xe5' in file
+import tensorflow as tf
+
+batch_size = 8
+
+w1 = tf.Variable(tf.random_normal([2,3],stddev=1,seed=1))
+w2 = tf.Variable(tf.random_normal([3,1],stddev=1,seed=1))
+
+x = tf.placeholder(tf.float32, shape=(None,2),name='x-input')
+y_ = tf.placeholder(tf.float32, shape=(None,1),name='y-input')
+
+a = tf.matmul(x,w1)
+y = tf.matmul(a,w2)
+
+y = tf.sigmoid(y)
+#tf.reduce_mean 函数用于计算张量tensor沿着指定的数轴（tensor的某一维度）上的的平均值，主要用作降维或者计算tensor（图像）的平均值。
+cross_entropy = -tf.reduce_mean(y_*tf.log(tf.clip_by_value(y,1e-10,1.0))+
+                                (1-y_)*tf.log(tf.clip_by_value(1-y,1e-10,1.0)))
+train_step = tf.train.AdamOptimizer(0.001).minimize(cross_entropy)
+
+from numpy.random import RandomState
+rdm = RandomState(1)
+data_size = 128
+X = rdm.rand(data_size,2)
+Y = [[int(x1+x2<1)] for (x1,x2) in X]
+
+with tf.Session() as sess:
+    init_op = tf.global_variables_initializer()
+    sess.run(init_op)
+    
+    print(sess.run(w1))
+    print(sess.run(w2))
+    
+    STEPS = 5000
+    for i in range(STEPS):
+        start = (i * batch_size) % data_size
+        end = min(start+batch_size,data_size)
+        if(i>15 and i<20):
+            print('start is {0}, end is {1}'.format(start,end))
+        sess.run(train_step,feed_dict={x:X[start:end],y_:Y[start:end]})
+        if(i%1000==0):
+            total_cross_entropy = sess.run(cross_entropy,feed_dict={x:X,y_:Y})
+            print('after {0} iterations, the loss is {1}'.format(i,total_cross_entropy))
+    
+    print(sess.run(w1))
+    print(sess.run(w2))
