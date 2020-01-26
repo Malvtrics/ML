@@ -36,7 +36,7 @@ with tf.Session() as sess:
     for i in range(STEPS):
         start = (i * batch_size) % data_size
         end = min(start+batch_size,data_size)
-        if(i>15 and i<20):
+        if(i>15 and i<20):#这个地方其实还是不太理解，感觉重复了 到底batch是怎么取的？？？？？
             print('start is {0}, end is {1}'.format(start,end))
         sess.run(train_step,feed_dict={x:X[start:end],y_:Y[start:end]})
         if(i%1000==0):
