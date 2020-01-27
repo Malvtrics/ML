@@ -20,14 +20,25 @@ y = tf.sigmoid(y)
 #在多分类问题中 cross_entropy+softmax = tf.nn.softmax_cross_entropy_with_logits(labels=y_,logits=y)
 #二分类问题有简化函数 tf.nn.sparse_softmax_cross_entropy_with_logits(labels=y_,logits=y)
 #还可以定义mse=tf.reduce_mean(square(y_-y))
+
+#二分类问题损失函数
 cross_entropy = -tf.reduce_mean(y_*tf.log(tf.clip_by_value(y,1e-10,1.0))+
                                 (1-y_)*tf.log(tf.clip_by_value(1-y,1e-10,1.0)))
+#回归问题损失函数
+#loss_less = 10
+#loss_more = 1
+#loss = tf.reduce_sum(tf.where(tf.greater(y,y_),(y-y_)*loss_less,(y_-y)*loss_more))
+
 train_step = tf.train.AdamOptimizer(0.001).minimize(cross_entropy)
+#train_step = tf.train.AdamOptimizer(0.001).minimize(loss)
 
 from numpy.random import RandomState
 rdm = RandomState(1)
 data_size = 128
 X = rdm.rand(data_size,2)
+#回归问题 构建x1+x2+随机噪声
+#Y = [[x1+x2+rdm.rand()/10.0-0.05] for (x1,x2) in X]
+#二分类问题虚构验标签数值
 Y = [[int(x1+x2<1)] for (x1,x2) in X]
 
 with tf.Session() as sess:
