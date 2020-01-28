@@ -61,3 +61,38 @@ with tf.Session() as sess:
     
     print(sess.run(w1))
     print(sess.run(w2))
+
+#使用tensorflow的collection管理正则化参数
+import tensorflow as tf 
+
+#weights = tf.constant([[1.,2.],[3.,4.]])
+#with tf.Session() as sess:
+#    print(sess.run(tf.contrib.layers.l1_regularizer(.5)(weights)))
+#    print(sess.run(tf.contrib.layers.l2_regularizer(.5)(weights)))
+    
+def get_weight(shape,l):
+    var = tf.Variable(tf.random_normal(shape),dtype=tf.float32)
+    tf.add_to_collection('losses',tf.contrib.layers.l2_regularizer(l)(var))
+    return var
+
+x = tf.placeholder(dtype=tf.float32,(None,2),'input-x')
+y_ = tf.placeholder(dtype=tf.float32,(None,1),'input-y')
+
+batch_size = 8
+layers_dimension = [2,10,10,10,10,1]
+n_layers = len(layers_dimension)
+cur_layer =x
+
+in_dimention = layers_dimension[0]
+
+for i in range(1,layers_dimension):
+    out_dimension = layers_dimension[1]
+    weight = get_weight([in_dimention,out_dimension],0.001)
+    bias = tf.constant(0.1,shape=[out_dimension])
+    
+    cur = tf.nn.relu(tf.matmul(in_dimention,weight)+bias)
+    in_dimention = layers_dimension[i]
+    
+mse = tf.reduce_mean(tf.square(y_-cur_layer))
+tf.add_to_collection('losses',mse)
+loss = tf.get_collection('losses')
