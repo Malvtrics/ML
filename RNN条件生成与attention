@@ -82,4 +82,7 @@ RNN生成更加抽象的embedding
 
 show attend and tell 模型
 top-down bottom-up attention 模型
-这两个模型听得云里雾里的，还要继续深化
+这两个模型听得云里雾里的，还要继续深化 要继续看论文
+
+tensorflow 和 theato是静态的网络结构 dynet是动态的网络结构
+https://blog.csdn.net/stdcoutzyx
