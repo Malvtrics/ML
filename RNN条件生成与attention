@@ -55,4 +55,12 @@ w1和w2是可以用梯度下降法去更新的权重
 现在我们引入self attention
 why? tranditional attention only cares the relationship between source and target 
 但是忽略了source和target自己的attention-> 理解：比如输入的一个句子当中，一个单词的语义比另外一个更加丰富
+其实主要是一个句子中单词和单词之间的关联关系
+
+另外一种hierachical attention 以文本分类为例子
+分层： 词到句 word encoder-> word attention-> sentence encoder-> sentence attention
+分层： 句子到段落-> 类似上面
+所以一共有四种attention global local self hierachical 
+
+图像生成文本的需求
 
