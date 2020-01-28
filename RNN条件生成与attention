@@ -63,4 +63,23 @@ why? tranditional attention only cares the relationship between source and targe
 所以一共有四种attention global local self hierachical 
 
 图像生成文本的需求
+百度开发的M-RNN
+可以用来玩耍的数据集：
+      IAPR TC-12       Flickr8k      Flickr30k         MS COCO     AI Challenger(图像有中文描述数据)
+评测标准 BLEU score bilingual evaluation understudy 双语翻译质量辅助工具
+https://blog.csdn.net/allocator/article/details/79657792
+multi-model RNN 百度第一次将CNN应用到图像生成文本领域
+会先用到一个训练好的CNN来预测
+输入词生成embedding 
+embedding输入到RNN和multi-model
+RNN生成更加抽象的embedding
+原始embedding RNN生成的embedding 和图像的feature同时输入给分类层
 
+斯坦福大学的 show and tell 模型
+使用google-net对输入图像做特征提取
+图像特征只提取一次
+用LSTM来生成文本
+
+show attend and tell 模型
+top-down bottom-up attention 模型
+这两个模型听得云里雾里的，还要继续深化
