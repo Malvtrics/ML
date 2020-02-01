@@ -83,11 +83,80 @@ downsampling 的倍数越大 说明resolution越小 说明感受野越大 越不
 上采样常用的方法就是内插值方法
 
 
+小的feature map是用来检测大的物体， 大的feature map用来检测小的物体
+理解：一张图像分的格子越小，每个格子面积大，用来检测大物体
+
+YOLO-V2分类采用的是MSE 
+YOLO-V3分类损失用的交叉熵，这个比较make sense 
+softmaxing classes rest on the assumption that classes are mutually exclusive
+this works fine in COCO dataset (Microsoft Common Objects in Context 微软2014出资标注的数据集)
+however when we have classes like Person and Women in a dataset the above assumption fails.
+This is the reason why the authors of YOLO have refrained(克制 节制 避免) from softmaxing the classes
+instead each class score is predicted using LR and threshold is used to predict multiple labels from an object
+
+clustering for anchor boxes:
+in many problem domains, the boundary boxes ave strong patterns,
+for example, in the autonomous driving, the most common boundary boxes will be cars and pedistrians（行人）at different distances
+to identify the top-k boundary boxes that have the best coverage for the training data, we run K-Means clustering on the data
+to locate the centroids of the top-k clusters
+
+to make a decision on how many anchor boxes to use, we plot the curve IoU vs N cluster plot
+the ides is that the true number of clusters is captured when the increase in the mean IoU slope 开始很大后面逐渐平缓
+in this case I would say that 4 anchor boxes may be a good size 
+anchor box 越多，准确率会上去但是效率会下降，折中取4个
+
+什么是focal loss?
+
+focal loss 解决什么问题？ 样本数量不均衡问题  
+positive sample >>>>> negative samples (class imbalance)
+easy samples >>>>> hard samples 
+
+用交叉熵损失的时候 alpha代表平衡因子 用来解决正负样本不均衡  gamma用来解决难易样本不均衡
+详细看 预习视频 2-深度学习在物体检测中的应用 CV方向 1:17:46
+
+focal loss调整了权重，对于那些分类已经很正确的样本，权重会下降，对于分类错误的样本，权重会升高
+实际应用中 gamma=2 和 alpha=0.25的组合常用
 
 
+VGG: Faster RCNN/SSD
+MobileNet: Faster RCNN/R-FCN/SSD
+InceptionV2 : Faster RCNN/R-FCN/SSD
+Resnet : Faster RCNN/R-FCN/SSD
+Inception Resnet V2 : Faster RCNN/R-FCN/SSD
+
+mAP(mean average precision) 
+准确率和召回率单独来评价模型不科学，结合这两个指标的话可以用F1度量，
+其实还有一种方法，即Average Precision（平均精度AP）——以召回率和准确率为行纵坐标，得到二维曲线，即PR曲线。
+将PR曲线下的面积当作衡量尺度，得到AP值。mAP即平均AP值,是对多个验证集求平均AP值
+
+注意AUC 和 AP 区别 横纵坐标不同
 
 
+The difference between detectors is narrowing , 
+single shot uses more complex designs to make it more accurate 
+region based detectors stramline the operaion to make it faster
+Eventually the significant diff may not be in the basic concept of the models but on the implementation details 
+1) Feature pyramid networks produces semantic rich feature maps with high resolution object spatial information to improve accuracy
+https://blog.csdn.net/qq_17550379/article/details/80375874
+2）complex feature extractors like ResNet and Inception ResNet are key to high accuracy if speed is not a concern
+3) single shot detecotrs with light but powerful extractor like MobileNet is good for realtime processing
+   in particular for less powerful mobile device
+4) use batch normalization
+5) experiment different feature extractors to find a good balance between speed and accuracy
+   some light weight extractors make significant speed improvement with tolerable accuracy drop
+6) use anchors to make boundary box predictions 
+7) select anchors carefully 
+8) crop images in traning to learn features in diff scales
+9) at the cost of speed , higher resolution input images improves accuracy, in particular for small obj
+10) fewer proposals for faster RCNN can imporve speed without to much accuracy drop
+11) end to end traning with multi-task loss improves performance
+12) experiment diff weights for diff losses
+13) experiment atrous mode (https://www.zhihu.com/question/49630217 带洞卷积)
+   it provides wider field of view at the same computational cost. it can help accuracy
+14)exp the number of proposals or predictions per grid cell
 
+https://zhuanlan.zhihu.com/c_1178388040400302080
+   
 
 
 
