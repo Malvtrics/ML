@@ -23,5 +23,76 @@ c1，c2，c3：类别，这里假设分三类。
 
 https://github.com/pjreddie/darknet/wiki/YOLO:-Real-Time-Object-Detection
 
-SSD single shot detector using VGG19 as 
+SSD single shot multibox detector
+1-> let's wheat single shot detector
+single shot detector using VGG19 as a feature extractor 
+image->VG19->conv->conv->conv->conv->conv(five conv layers)+conv(convolution filters)->classes + boundary boxes
+convolution layers reduce spatial dimentsion and resolution
+so the model above can detect large objects only , to fix that we make independent object detections from multiple feature maps
+
 VGG19 https://www.jianshu.com/p/6aa903648ec5 了解下
+
+SSD经过VGG后 38*38 a pretty large reduction from the input image, hence SSD usualy perfoms badly for small objects comparing with other 
+dection methods. 我们可以通过提高原图像分辨率的方法来解决这个问题
+
+模型的两种损失
+1)localization loss 
+the localization loss is the mismatch between the ground truth box and the predicted boundary box 
+SSD only penalizes predictions from positive mathces (首先保证是一个object 如果连个物体都不是，就不用计loss)
+to get coloser to the ground truth. Negtive matches can be ignored (不是object忽略)
+2)confidence loss 分类损失
+the confidence loss is the loss in making a class prediction 
+for every positive match prediction, we penalize the loss according to the confidence score of the corresponding class
+
+hard negative mining 难例挖掘
+there are much more negative matches than positive mathces 
+this creates a class imbalance which hurts training 
+instead of using all the negatives , we sort those negatives by their calculated confidence loss
+SSD picks the negatives with the top loss and makes sure the ratio between the picked negatives and positives is at most 3:1
+this leads to a faster and more stable training
+
+data augmentation
+each training image is randomly sampled by one of the following options:
+2)use the original
+3)sample a pitch with IoU of 0.1 0.3 0.5 0.7 0.9
+3)randomly sample a patch
+the sampled patch will have an aspect ratio between 1/2 and 2 
+aspect ratio: 图像的宽高比
+Then it is resized to a fixed size and we flip one-half of the training data. 
+In addtion, we can apply photo distortion
+
+several points:
+1) SSD performs worse than faster R-CNN for small-scale objects 
+   in SSD small objects can only be detected in higher resolution layers (left most layers)
+   but those layers contains low-level features like edges or color patches, that are less infromative for classification
+2) accuracy increases with the number of default boundary boxes at the cost of speed
+3) multi-scale feature maps improve the detection of objects at different scale(VGG带来了feature map的上限-》后面理解下？？？)
+4) design better default boundary boxes will help accuracy
+5) SSD has lower localization error comparing with RCNN but more classification error dealing with similar categories
+   the higher classification errors are likely because we use the same boundary box to make multiple class predictions
+6) SSD512(512指的是分辨率) has better accuracy 2.5% than SSD300 but run at 22 FPS instead of 59
+
+by removing the delegated region proposal and using lower resolution images , the model can run at real-time speed and still beats 
+the accuracy of the state-of-the-art(应用最先进技术的) faster RCNN
+
+YOLO-V3结构图看得云里雾里啊~~可能需要看一下论文
+经过多层的卷积  分辨率变小 感受野变大
+downsampling 的倍数越大 说明resolution越小 说明感受野越大 越不容易检测出小物体
+
+图像下采样就是缩小图像
+上采样常用的方法就是内插值方法
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
