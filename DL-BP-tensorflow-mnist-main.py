@@ -33,7 +33,7 @@ def train(mnist):
     learning_rate = tf.train.exponential_decay(
         LEARNING_RATE_BASE,#基础学习率
         global_step,#当前迭代次数
-        mnist.num_examples/BATCH_SIZE, #每次训练多少轮 也叫衰减速度
+        mnist.num_examples / BATCH_SIZE, #每次训练多少轮 也叫衰减速度
         LEARNING_RATE_DECAY#衰减系数
     )
     #直观解释：假设给定初始学习率learning_rate为0.1，学习率衰减率为0.1，decay_steps为10000。
@@ -70,7 +70,17 @@ def main(argv=None):
     mnist = input_data.read_data_sets('mnist_data',one_hot=True)
     print('2')
     train(mnist)
-    
+
+#os.environ["TF_CPP_MIN_LOG_LEVEL"]='1'
+# 默认的显示等级，显示所有信息
+#os.environ["TF_CPP_MIN_LOG_LEVEL"]='2'
+# 只显示 warning 和 Error  
+os.environ["TF_CPP_MIN_LOG_LEVEL"]='3'
+# 只显示 Error 
+
 if(__name__=='__main__'):
     tf.app.run()
 
+#目前运行报错
+#ValueError: Variable layer1/weights/ExponentialMovingAverage/ already exists, disallowed. 
+#Did you mean to set reuse=True or reuse=tf.AUTO_REUSE in VarScope? 
