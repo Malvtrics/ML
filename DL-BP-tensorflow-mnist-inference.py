@@ -12,12 +12,14 @@ def get_weight_variable(shape,regularizer):
     return weights
 
 def inference(input_tensor,regularizer):
-    with tf.variable_scope('layer1'):
+    with tf.variable_scope('layer1',reuse=True):
         weights = get_weight_variable([INPUT_NODE,LAYER1_NODE],regularizer)
         biases = tf.get_variable('biases',[LAYER1_NODE],initializer = tf.constant_initializer(0.0))
         layer1 = tf.nn.relu(tf.matmul(input_tensor,weights) + biases) 
-    with tf.variable_scope('layer2'):
+    with tf.variable_scope('layer2',reuse=True):
         weights = get_weight_variable([LAYER1_NODE,OUTPUT_NODE],regularizer)
         biases = tf.get_variable('biases',[OUTPUT_NODE],initializer = tf.constant_initializer(0.0))
         layer2 = tf.matmul(layer1,weights) + biases
     return layer2
+
+#take care of the reuse param, you need to set it to true if you want to resue the layer1 and layer2 variable
