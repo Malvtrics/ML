@@ -1,0 +1,14 @@
+triplet loss 
+CNN是通过softmax来解决排序的问题，想想是不是有哪里不太一样？
+对于某一个神经网络，我的输入是带有三个输
+怎么理解embedding??
+https://www.zhihu.com/question/38002635
+
+Euclidean space 欧式空间
+harmonic embeddings 谐波嵌入
+off the shelf 现成的
+bottleneck layer 瓶颈层 输入输出维度差距较大，就像一个瓶颈一样，上窄下宽亦或上宽下窄，深入理解下如下链接
+https://blog.csdn.net/u011501388/article/details/80389164
+
+robotics
+myriad 无数的
