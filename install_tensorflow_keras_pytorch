@@ -45,3 +45,12 @@ ref:https://www.jianshu.com/p/2e4851df72fb
 但是发现anaconda spyder里面还是不行，于是还是要解决没有conda命令的问题
 https://www.jianshu.com/p/13f5d20e61f8
 https://www.cnblogs.com/lucky-sherlock/archive/2018/03/18/8594642.html
+
+安装Pytorch
+https://blog.csdn.net/zzq060143/article/details/88042075
+
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
+conda config --set show_channel_urls yes
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/
+conda install pytorch torchvision cudatoolkit=10.000 (注意选择自己电脑版本，没有就去掉)
