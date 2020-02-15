@@ -1,6 +1,27 @@
-这个听了一下视频，感觉要学习的东西还是很多的
+计算机视觉：让计算机理解图像的内容
+2012年imagenet alexnet出现之后 CNN 开始蓬勃发展
+flir forward  looking infra-red 前视红外雷达
+里程碑的几个模型
 
-做一下笔记吧，后面可能也不会从事这个方向，就是当做兴趣了解一下：
+RCNN 
+OverFeat 
+Fast R-CNN
+RPN
+Faster R-CNN
+YOLO1
+SSD 
+YOLO V2
+RetinaNet
+Mask R-CNN
+YOLO V3
+
+两个指标 IoU 和 AP 交并比和平均准确率
+IoU Intersection over union 交并比
+
+how to get the AP
+1) plot the recall the recall value increases as we in clude more prediction but the precision will go up and down 
+2) we smooth out the zigzag pattern first (变成横平竖直的折线)
+3）we divide the recall value from 0 to 1 into 11 points and compute teh average of maximum precision value for the 11 recall values
 
 1：首先是对于图像的边缘检测，可能要看opencv的源码
 2：理解从 r-cnn fast-cnn faster-cnn mask-cnn的一个演变的路线和各个阶段所解决的问题
