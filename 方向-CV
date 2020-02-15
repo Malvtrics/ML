@@ -293,6 +293,8 @@ epoch -> iteration to the whole data set
 
 工业界想牺牲一定的准确性保证高效率
 
+Xception:
+depthwise conv on seperate channel 
 
 
 
