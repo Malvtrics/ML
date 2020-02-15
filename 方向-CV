@@ -18,10 +18,14 @@ YOLO V3
 两个指标 IoU 和 AP 交并比和平均准确率
 IoU Intersection over union 交并比
 
-how to get the AP
-1) plot the recall the recall value increases as we in clude more prediction but the precision will go up and down 
-2) we smooth out the zigzag pattern first (变成横平竖直的折线)
-3）we divide the recall value from 0 to 1 into 11 points and compute teh average of maximum precision value for the 11 recall values
+非常好地介绍MAP的文章，解答了自己心中的疑惑
+其实简单理解这个算法就是：对于多标签图像分类问题假设有A个标签 以某个标签（比如是否是车辆）
+一共有N个样本，其中车辆有M个
+将所有样本通过模型的预测值从大到小排序，选取TOP-N作为评判依据，随着N越大，召回率越高而准确率越低，直到所有样本结束
+可以画出一个召回率和准确率的图，其中召回率一定有M个，找出每个召回率对应的最大的准确率，然后求平均 就得到这个标签对应的AP
+将A个标签所有的AP求平均就可以得到MAP
+文中有一句话说得很好： mAP是为解决Precision，Recall，F-measure的单点值局限性的。为了得到 一个能够反映全局性能的指标
+https://www.jianshu.com/p/82be426f776e
 
 1：首先是对于图像的边缘检测，可能要看opencv的源码
 2：理解从 r-cnn fast-cnn faster-cnn mask-cnn的一个演变的路线和各个阶段所解决的问题
