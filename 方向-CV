@@ -230,9 +230,68 @@ we call this method as center-crop
 
 结论：你想让模型区分哪些方面？就喂给模型什么样的数据，否则triplet loss没办法发挥作用
 
+调参工程师 或者 高级 调参工程师
 
+output: 
+loss curves 
+gradient norms
 
+Architecture：
+using or adapt from established networks:
+   classification: AlexNET vgg resnet denseNet
+   segmentation ...
+data is less , then we not need to set the param too large, for small dataset can reduce the channels 
+change the last layers due to real task:
+1) regression task : change to FC+LR
+2)...
 
+when tuning parameters, only use a samll portion of the dataset for fast iteration 
+-> because if you use lots of data to train, then every time if you change one param will need long time 
+eg: make sure you model overfit curernt small portion (make the loss function can 收敛 quickly)
+
+Class YourAwesomeDataset(torch.data.Dataset):
+   def __init__(root_dir,debug=False):
+    ***
+    
+Reading the learning curves:
+Loss curves: 
+6 pictrues:
+1) 来回震荡太厉害,没有收敛 -》比较差的情况，要去检查数据处理阶段问题等等
+2) train loss is lower than val loss -> overfit 看最后收敛的百分比，30% 以上可能就要注意 10%到20%可以酌情
+   方法 L1 L2 norm dropp out 等等 
+3) train loss is lower than val loss -> overfit 比起第二个 
+4) train loss and val loss 相伴下降，但是类似一个斜线  最后的结果不是最好的，应该还能到一个值，收敛的斜率不平
+   方法：先learning rate 大再小
+5) 开始平稳，也要调大学习率
+6) 梯度方向错误 不讨论
+
+7) 8) same problem need to shuffle the original data 
+9) need normlization
+10) train loss lower 
+
+checklist:
+overfit on a small dataset
+train on standard corpora
+mean certering 
+balanced dataset 
+   offline: 
+   online: eg: batch_size = 256 sample from diff classes (if 10) when 11 then sample from class 1,2,3 .. then it will make sure all
+           the classes are balanced in the batch
+   loss function: control weight 
+simplify your model
+weight init 
+pretrianed model 
+learning rate
+cross-entropy loss 
+regularization loss  first close it -> make the model overfit -> then open it 
+action function 
+gradient clipping-> make a threshold for the weight , if over, then pull it back 
+
+iteration vs epoch 
+iteration -> epoch / batch size 
+epoch -> iteration to the whole data set
+
+工业界想牺牲一定的准确性保证高效率
 
 
 
