@@ -10,3 +10,6 @@ variations-》变化名词
 Pascal的全称是Pattern Analysis, Statical Modeling and Computational Learning。每年，
 该组织都会提供一系列类别的、带标签的图片，挑战者通过设计各种精妙的算法，仅根据分析图片内容来将其分类，
 最终通过准确率、召回率、效率来一决高下。
+Pascal VOC Challenge 就是提供数据集的
+ILSVRC->image net large scale visual recognition chanllenge -> 
+evluate algrithms for object detection and image classification at large scale
