@@ -6,3 +6,7 @@ calibration -》 校准
 monotonically -》 单调
 suspectable-》可疑的
 variations-》变化名词
+在计算视觉的领域中，Pascal VOC Challenge 就好比是数学中的哥德巴赫猜想一样。
+Pascal的全称是Pattern Analysis, Statical Modeling and Computational Learning。每年，
+该组织都会提供一系列类别的、带标签的图片，挑战者通过设计各种精妙的算法，仅根据分析图片内容来将其分类，
+最终通过准确率、召回率、效率来一决高下。
