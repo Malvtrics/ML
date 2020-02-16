@@ -54,3 +54,6 @@ conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/m
 conda config --set show_channel_urls yes
 conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/
 conda install pytorch torchvision cudatoolkit=10.000 (注意选择自己电脑版本，没有就去掉)
+
+关于tensorflow和pytorch的一点讨论
+https://blog.csdn.net/sinat_32849897/article/details/103813738
