@@ -1,25 +1,13 @@
 计算机视觉要处理的问题：让计算机理解图像的内容
 
-Alexnet是2012年Imagenet竞赛的冠军模型，准确率达到了57.1%, top-5识别率达到80.2%。此后CNN开始蓬勃发展
-
-几个里程碑模型
-RCNN 
-OverFeat 
-Fast R-CNN
-RPN
-Faster R-CNN
-YOLO V1 (you look only once)
-SSD 
-YOLO V2
-RetinaNet
-Mask R-CNN
-YOLO V3
-
-几个基本概念
+------------------------------------------------基本概念部分开始-----------------------------------------------
 IoU 
 AP(MAP) 
 NMS(soft NMS) 
-Sliding-Window-Detectors
+proposal
+ROI(region of interest)
+  从被处理的图像以方框、圆、椭圆、不规则多边形等方式勾勒出需要处理的区域，称为感兴趣区域，ROI。这个区域是你的图像分析所关注的重点。
+  圈定该区域以便进行进一步处理。使用ROI圈定你想读的目标，可以减少处理时间，增加精度。
 
 两个指标:IoU(Intersection over union交并比)和AP(平均准确率) 
 IoU和precision与recall的关系：IoU->准确率高;IoU低->Boundingbox多->召回率高    => 个人理解也不一定，要看具体情况
@@ -44,16 +32,82 @@ AP across Scales:
 (理解：和置信度最大的box重叠很多的box其实选出了相同的目标，可以丢弃，box数量减少，准确率上升)
 注意这里丢弃、扔掉的意思是：置信度直接置为0
 
-NMS会产生的问题：回想实例：
-this image has two confident horse detectinos shown in red and green which have a score of 0.95 and 0.8 respectively
-the green detection box has a significant overlap with the red one
-is it better to supperss the green box altogether and assign it a 0 score of a slightly lower score of 0.4?
+   NMS会产生的问题：回想实例：
+   this image has two confident horse detectinos shown in red and green which have a score of 0.95 and 0.8 respectively
+   the green detection box has a significant overlap with the red one
+   is it better to supperss the green box altogether and assign it a 0 score of a slightly lower score of 0.4?
 
-如何解决问题？ soft NMS
-不用将置信度置为0而是乘以一个高斯系数，使它比原来小, 目的是不要一篮子丢弃，不然覆水难收
+   如何解决问题？ soft NMS
+   不用将置信度置为0而是乘以一个高斯系数，使它比原来小, 目的是不要一篮子丢弃，不然覆水难收
 
-1：首先是对于图像的边缘检测，可能要看opencv的源码
-3：理解图像处理中的双线性插值 其实挺简单的  https://blog.csdn.net/qq_37577735/article/details/80041586
+关于proposal候选框，
+产生候选框的方式：
+1)暴力破解法：sliding-windows-detector不断滑窗
+2)selective search:自底向上的不断合并的层次聚类的方法,具体实现可以参考paper文件夹中的对应论文
+
+------------------------------------------------基本概念部分结束-----------------------------------------------
+
+AlexNet是2012年Imagenet竞赛的冠军模型，准确率达到了57.1%, top-5识别率达到80.2%。此后CNN开始蓬勃发展
+
+几个里程碑模型
+RCNN (region-CNN) 2013年提出，利用了AlexNet
+Fast R-CNN
+RPN
+Faster R-CNN
+YOLO V1 (you look only once)
+SSD 
+YOLO V2
+RetinaNet
+Mask R-CNN
+YOLO V3
+
+------------------------------------------------基本模型部分开始-----------------------------------------------
+
+RCNN 
+最终的输出是目标和目标边缘(所在位置)
+原始图像
+   ->1.Propose category-independent regions by selective search(~2k candidates per image) 
+     Those regions may contain target objects and they are of diff sizes
+      ->2.Region candidates are warped(改变维度) to have a fixed size as required of CNN
+         ->3.喂给CNN做特征提取(这里的CNN可以是AlexNet VGG ResNet等)
+           You can find a pre-trianed AlexNet in Caffe Model Zoo but not in tensorflow
+           Tensorflow-slim model libary provides pre-trained ResNet/VGG or others
+            ->4.用回归器得到boundarybox+用(binary SVM)确定类别
+              to reduce the localization errors , regression model is trained to correct the predicted detection window on bounding box 
+              correction offset using CNN features
+
+in step3注意：
+1)最后得出K+1类(K是目标物体类别，多出的一类是不带物体的背景图)
+2)in the fine-tunning stage,we should use much smaller learning rate and mini-batch oversamples the positive cases
+   because most proposed regions are just background
+3)Given every image region, one forward propagation through the CNN generates a feature vector. This 
+   feature vector is then consumed by a binary SVM trained for each class independently.
+   The positive sample are proposed region with IoU overlap threshold >= 0.3
+
+RCNN问题：
+1)needs many proposals to be accurate and many regions overlap with each other
+2)is slow in training & inference(推理) :
+if we have 2000 proposals, each of them is processed by a CNN separately so we repeat feature extraction 2000 times for diff ROIs
+
+如何解决问题 
+1)use an extenal region proposal(eg: via SS) to create ROIs
+2)use a feature extractor (a CNN) to extract features for the whole image first
+
+Fast R-CNN
+原始图像 -> region proposal -> region location -> feature maps(small image batches)->ROI pooling->FC->classification and localization
+         -> CNN             -> feature map(whole image)
+ROI pooling 做的事情就是把不同的feature maps统一成一样的大小，实现类似max-pooling/average-pooling
+ROI带来的misalignment的问题：(严格意义上讲第一个misaligment不是ROI pooling产生的)
+   1)bounding box coordinates mapping from original image space to feature map
+   2)ROI pooling quantizations(横切一刀，竖切一刀，不能整除，两次丢失精度)
+如何解决问题2)?
+ROI Align:
+   保留除法之后的小数位，对图像做双线性插值(https://blog.csdn.net/qq_37577735/article/details/80041586) 
+   cv2.resize函数中有这个参数(https://www.tutorialkart.com/opencv/python/)
+
+效果：10* times faster then R-CNN in trainning and 150* faster in inferencing(理解应该是前向传播)
+
+1：首先是对于图像的边缘检测，可能要看opencv的源码 
 4：锚点anchor很重要，好想就这个看明白了，就是为了减少模型训练的时候的参数量，对于每个feature map, 设置9个anchor 
    3组长宽高 每组包括一个正方形和横纵两个长方形
 
