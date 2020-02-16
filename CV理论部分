@@ -4,7 +4,7 @@
 IoU 
 AP(MAP) 
 NMS(soft NMS) 
-proposal
+proposal(候选框)
 ROI(region of interest)
   从被处理的图像以方框、圆、椭圆、不规则多边形等方式勾勒出需要处理的区域，称为感兴趣区域，ROI。这个区域是你的图像分析所关注的重点。
   圈定该区域以便进行进一步处理。使用ROI圈定你想读的目标，可以减少处理时间，增加精度。
@@ -63,6 +63,7 @@ YOLO V3
 
 ------------------------------------------------基本模型部分开始-----------------------------------------------
 
+------------------------------------------------两阶段模型RCNN家族---------------------------------------------
 RCNN 
 最终的输出是目标和目标边缘(所在位置)
 原始图像
@@ -89,7 +90,7 @@ RCNN问题：
 2)is slow in training & inference(推理) :
 if we have 2000 proposals, each of them is processed by a CNN separately so we repeat feature extraction 2000 times for diff ROIs
 
-如何解决问题 
+如何解决问题?
 1)use an extenal region proposal(eg: via SS) to create ROIs
 2)use a feature extractor (a CNN) to extract features for the whole image first
 
@@ -102,15 +103,60 @@ ROI带来的misalignment的问题：(严格意义上讲第一个misaligment不�
    2)ROI pooling quantizations(横切一刀，竖切一刀，不能整除，两次丢失精度)
 如何解决问题2)?
 ROI Align:
-   保留除法之后的小数位，对图像做双线性插值(https://blog.csdn.net/qq_37577735/article/details/80041586) 
+   保留除法之后的小数位，对图像做双线性插值(具体在ROI Align中是怎么做插值的还是不太清楚，这个需要继续研究)
    cv2.resize函数中有这个参数(https://www.tutorialkart.com/opencv/python/)
-
 效果：10* times faster then R-CNN in trainning and 150* faster in inferencing(理解应该是前向传播)
 
-1：首先是对于图像的边缘检测，可能要看opencv的源码 
-4：锚点anchor很重要，好想就这个看明白了，就是为了减少模型训练的时候的参数量，对于每个feature map, 设置9个anchor 
-   3组长宽高 每组包括一个正方形和横纵两个长方形
+Fast R-CNN 的问题：
+depends on an external region proposal method like SS. Those algrithms run on CPU and they are slow. 
+In testing: Fast R-CNN takes 2.3 seconds to make a prediction in which 2 seconds are for genertting 2000 ROIs
+希望网路偶可以通过深度学习直接生成一些候选框，而不是用SS方法，这样可以实现一个端到端的网络
 
+如何解决问题?
+不采用SS，改用RPN(region proposal network区域生成网络) 可以理解为一个子网络，一般训练两三轮即可
+
+Faster R-CNN(2015-2016火了两年)
+原始图像->CNN->RPN->regions-> ROI Pooling->FC->classification and localization
+             ->feature maps->
+             
+为什么RPN具备候选框生成的能力呢???       
+RPN中最重要的一个新概念anchor:
+Faster R-CNN doesn't make random boundry box proposals.Instead, it preidct offsets to the top left corner of some 
+reference boxes called anchors.
+从概念来看:anchor主要是为了减少模型训练时需要寻找的候选框数量，对于每个location, 设置9个anchor(3组长宽高,每组包括一个正方形和横纵两个长方形)
+
+下面这段话加深理解：
+RPN在CNN提取特征之后以sliding window的方式在最后一个feature map上提取特征，每个滑动窗口中心都关联着 k个 box，
+这些box就称为anchor，或者叫anchor box。这些关联的box 可以通过逆向映射对应到原图上，对应到原图上的区域就是region proposals，
+不过这些region proposals都是位于同一个中心点。就是说sliding window时的window（大小固定）
+是由这些原图上的不同大小和比例的 region proposals 生成的（类似于ROI池化的功能）。
+实际上sliding window时每个 window 起到了一部分region proposals 的作用，
+但是由于这里的sliding window的尺寸是固定的，所以不能起到多尺度，多尺寸（multiple scales and sizes ）预测的作用，
+因此提出关联k个不同大小和长宽比的anchor box，这样二者结合即可起到多尺度，多尺寸预测的作用
+
+假设一张800*600的图像，经过VGG下采样16倍后，anchor的总数量是 (800/16)(600/16)*9=17100 anchor的并集已经超出了原图像
+注意：
+对anchor的理解要放在原图上，而不是特征图上
+对anchor的长宽设置要结合目标物体，比如人的话就要设置为细长的长方形，汽车可能要设置为水平的长方形
+对anchor的大小设置要结合目标物体，比如有很多小的人脸，这是要让anchor小一些
+
+Mask R-CNN 
+在Faster R-CNN的基础上多了一个Mask FCN predictor输出层
+多了实例分割：在像素层面识别目标轮廓的任务
+几个概念的区别，以有7个气球的一张图像为例：
+
+分类：这张图像中有一个气球
+语义分割：这些全是气球像素
+目标检测：这张图像中的这些位置上有 7 个气球(Faster R-CNN)
+实例分割：这些位置上有 7 个气球，并且这些像素分别属于每个气球(Mask R-CNN)
+
+RPN扫描anchor速度？
+非常快，滑动窗口是由 RPN 的卷积过程实现的，可以使用 GPU 并行地扫描所有区域。
+此外，RPN 并不会直接扫描图像，而是扫描主干特征图。这使得 RPN 可以有效地复用提取的特征，并避免重复计算。
+通过这些优化手段，RPN 可以在 10ms 内完成扫描（根据引入 RPN 的 Faster R-CNN 论文中所述）。
+在 Mask R-CNN 中，我们通常使用的是更高分辨率的图像以及更多的 anchor，因此扫描过程可能会更久。
+
+-------------------------------------20200216明日继续-------------------------------------------------
 YOLO模型
 在《基于深度学习的目标检测思路》中，提到了可以用滑动窗口的思路来做目标检测。除了滑动窗口，还有其他的目标检测算法吗？
 该方法对目标的标注，需要标注目标的位置、大小、类型等信息，标注成本是很高的。但是，做目标检测是少不了这个标注工作的。
