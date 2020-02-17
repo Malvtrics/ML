@@ -69,8 +69,8 @@ RCNN
 原始图像
    ->1.Propose category-independent regions by selective search(~2k candidates per image) 
      Those regions may contain target objects and they are of diff sizes
-      ->2.Region candidates are warped(改变维度) to have a fixed size as required of CNN
-         ->3.喂给CNN做特征提取(这里的CNN可以是AlexNet VGG ResNet等)
+      ->2.Region candidates are warped(改变维度) to have a fixed size as required of CNN(然后将每个候选区域进行尺寸的修整变换)
+         ->3.喂给CNN做特征提取(这里的CNN可以是AlexNet VGG ResNet等,AlexNet2012一站成名,所以最初用的这个)
            You can find a pre-trianed AlexNet in Caffe Model Zoo but not in tensorflow
            Tensorflow-slim model libary provides pre-trained ResNet/VGG or others
             ->4.用回归器得到boundarybox+用(binary SVM)确定类别
@@ -143,10 +143,7 @@ RPN在CNN提取特征之后以sliding window的方式在最后一个feature map�
 Mask R-CNN 
 在Faster R-CNN的基础上多了一个Mask FCN predictor输出层
 多了实例分割：在像素层面识别目标轮廓的任务
-几个概念的区别，以有7个气球的一张图像为例：
-
-分类：这张图像中有一个气球
-语义分割：这些全是气球像素
+以有7个气球的一张图像为例：
 目标检测：这张图像中的这些位置上有 7 个气球(Faster R-CNN)
 实例分割：这些位置上有 7 个气球，并且这些像素分别属于每个气球(Mask R-CNN)
 
@@ -157,8 +154,10 @@ RPN扫描anchor速度？
 在 Mask R-CNN 中，我们通常使用的是更高分辨率的图像以及更多的 anchor，因此扫描过程可能会更久。
 
 -------------------------------------Single Shot Object Detectors(更加注重性能,部署到实际环境)---------------------------------
-YOLO模型
-在《基于深度学习的目标检测思路》中，提到了可以用滑动窗口的思路来做目标检测。除了滑动窗口，还有其他的目标检测算法吗？
+
+YOLO
+
+除了滑动窗口，还有其他的目标检测算法吗？
 该方法对目标的标注，需要标注目标的位置、大小、类型等信息，标注成本是很高的。但是，做目标检测是少不了这个标注工作的。
 这种传统的滑动窗口目标检测方法，最大的缺点是： 窗口大小不固定，需要动态改变窗口做多次训练、预测操作，这对模型的训练是非常耗时的。
 
