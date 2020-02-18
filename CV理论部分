@@ -213,14 +213,15 @@ SSD中用的两种方法：
   SSD picks the negatives with the top loss and makes sure the ratio between the picked negatives and positives is at most 3:1
   this leads to a faster and more stable training
 2)Data augmentation(来自论文) 这个方法主要用来弥补SSD对于比较小的物体检测困难
-To make the model more robust to various input object sizes and shapes, each training image is randomly sampled by one of the following options:
+To make the model more robust to various input object sizes and shapes, each training image is randomly sampled 
+by one of the following options:
 – Use the entire original input image.
 – Sample a patch so that the minimum jaccard overlap with the objects is 0.1, 0.3,0.5, 0.7, or 0.9.
 – Randomly sample a patch.
 The size of each sampled patch is [0.1, 1] of the original image size, and the aspect ratio is between 1/2 and 2. 
 We keep the overlapped part of the ground truth box if the center of it is in the sampled patch. 
-After the aforementioned sampling step, each sampled patch is resized to fixed size and is horizontally flipped with probability of 0.5, in addition to
-applying some photo-metric distortions similar to those described in 
+After the aforementioned sampling step, each sampled patch is resized to fixed size and is horizontally flipped with 
+probability of 0.5, in addition toapplying some photo-metric distortions similar to those described in 
 
 SSD的几个说明
 1) SSD performs worse than faster R-CNN for small-scale objects 
@@ -316,19 +317,31 @@ https://blog.csdn.net/qq_17550379/article/details/80375874
 14)exp the number of proposals or predictions per grid cell
 
 
-------------------------------------------FPN and Anchor Free Methods Object Detection------------------------------------------------
+------------------------------------------FPN and Anchor Free Methods Object Detection-------------------------------------------
 
+CNN使得feature map越来越小，YOLO/SSD都在试图解决模型对不同大小物体的适应问题->利用之前卷积层的输出->有没有一种适应一切大小的方法呢？
+即用同一套检测算法对应不同尺度的目标呢？？
+resnet50 and inceptionv3 常用CNN网络结构
+目前有两种方案 FPN / Scale-Aware Trident Networks
 
+FPN (对小物体检测出众)
 
+向前5次，每次减半，终点返回，每次加倍，每次同时加上去程同一位置再过一个 3*3 的卷积(消除不同特征混在一起的影响) 输出预测
 
+这里注意一点！FPN自己不是目标检测器，它是一个特征检测器，可以融入到我们之前的模型中，是一种特征检测方法！不是一个模型！！
+比如我们可以把FPN的输出作为RPN的输入
 
+那如何理解FPN based Faster RCNN比resnet based Faster RCNN快呢？ 它还得算归程的时间，应该慢啊！
+答：主要是nms ! 在常规faster rcnn中 假设候选框数量为n nms的复杂度是 n^2 , 但是在FPN中，由于n已经被分散到不同的桶中(feature map) 
+每个桶再去做nms的复杂度已经大大降低 eg: 25^2 = 625  5*(5^2)=125
 
+Scale-Aware Trident Network
 
+这里要理解一下空洞卷积的概念
+理解之后有一个结论，dilation值比较大的时候，对于大的物体检测效果会比较好
 
-
-
-
-
+所以Trident Network其实是让图像->CNN拿到整个图像的feature map->再通过不同参数的空洞卷积，dilation系数小的对应检测小物体，大的检测大物体
+假设我有3条不同dilation系数的路径，那我的训练时间也要3倍，为了平衡效率，我们看只用其中某一条路径产生的结果，如果还OK，那么可以牺牲准确率
 
 
 ---------------------------------------------------------其他--------------------------------------------------
