@@ -183,7 +183,6 @@ box confidence score:refelects how likely the box contains an object and how acc
 YOLO的github demo地址： https://github.com/pjreddie/darknet/wiki/YOLO:-Real-Time-Object-Detection
 
 
-
 SSD (single shot --multibox-- detector)
 
 为什么引出SSD? use multi-scale feature map and default bounding boxes to detect objects at different scale
@@ -245,7 +244,6 @@ the later stages of a network in order to perform detection at multiple scales
 3)Jaccard index,又称为Jaccard相似系数（Jaccard similarity coefficient）用于比较有限样本集之间的相似性与差异性,值越大，样本相似度越高。
 
 
-
 YOLO-V3
 
 YOLOV3有3个scale分别对应到不同大小的物体
@@ -255,8 +253,7 @@ YOLOV3有3个scale分别对应到不同大小的物体
 
 理解：步子迈得越大->得到的feature map越小->感受野(对应到原来的区域越大)越大->所以用来检测大物体
 
----------------------------------------------------20200217继续-------------------------------------------------------------
-YOLO-V2分类采用的是MSE 
+YOLO-V2相比V3计算损失函数的时候采用的是MSE 
 YOLO-V3分类损失用的交叉熵，这个比较make sense 
 softmaxing classes rest on the assumption that classes are mutually exclusive
 this works fine in COCO dataset (Microsoft Common Objects in Context 微软2014出资标注的数据集)
@@ -264,39 +261,40 @@ however when we have classes like Person and Women in a dataset the above assump
 This is the reason why the authors of YOLO have refrained(克制 节制 避免) from softmaxing the classes
 instead each class score is predicted using LR and threshold is used to predict multiple labels from an object
 
-clustering for anchor boxes:
+YOLOV3中的anchor聚类：clustering for anchor boxes:
 in many problem domains, the boundary boxes ave strong patterns,
 for example, in the autonomous driving, the most common boundary boxes will be cars and pedistrians（行人）at different distances
 to identify the top-k boundary boxes that have the best coverage for the training data, we run K-Means clustering on the data
 to locate the centroids of the top-k clusters
 
+YOLOV3中应该用多少个anchor?
 to make a decision on how many anchor boxes to use, we plot the curve IoU vs N cluster plot
 the ides is that the true number of clusters is captured when the increase in the mean IoU slope 开始很大后面逐渐平缓
 in this case I would say that 4 anchor boxes may be a good size 
 anchor box 越多，准确率会上去但是效率会下降，折中取4个
 
-什么是focal loss?
+YOLOV3中的focal loss:
 
-focal loss 解决什么问题？ 样本数量不均衡问题  
+focal loss 解决什么问题？ 
+答：样本数量不均衡问题：两种样本不均衡 正负样本 难易样本
 positive sample >>>>> negative samples (class imbalance)
 easy samples >>>>> hard samples 
 
-用交叉熵损失的时候 alpha代表平衡因子 用来解决正负样本不均衡  gamma用来解决难易样本不均衡
-详细看 预习视频 2-深度学习在物体检测中的应用 CV方向 1:17:46
-
-focal loss调整了权重，对于那些分类已经很正确的样本，权重会下降，对于分类错误的样本，权重会升高
+和交叉熵很像但是又有区别：
+设置两个参数 alpha代表平衡因子 用来解决正负样本不均衡  gamma用来解决难易样本不均衡
+对于那些分类已经很正确的样本，权重会下降，对于分类错误的样本，权重会升高
 实际应用中 gamma=2 和 alpha=0.25的组合常用
 
-
+------------------------------------------关于以上模型的一些讨论------------------------------------------------
 VGG: Faster RCNN/SSD
 MobileNet: Faster RCNN/R-FCN/SSD
 InceptionV2 : Faster RCNN/R-FCN/SSD
 Resnet : Faster RCNN/R-FCN/SSD
 Inception Resnet V2 : Faster RCNN/R-FCN/SSD
 
-The difference between detectors is narrowing , 
+The difference between detectors is narrowing 准确率和速度的权衡
 single shot uses more complex designs to make it more accurate 
-region based detectors stramline the operaion to make it faster
+region based detectors streamilne the operaion to make it faster
 Eventually the significant diff may not be in the basic concept of the models but on the implementation details 
 1) Feature pyramid networks produces semantic rich feature maps with high resolution object spatial information to improve accuracy
 https://blog.csdn.net/qq_17550379/article/details/80375874
@@ -317,8 +315,27 @@ https://blog.csdn.net/qq_17550379/article/details/80375874
    it provides wider field of view at the same computational cost. it can help accuracy
 14)exp the number of proposals or predictions per grid cell
 
+
+------------------------------------------FPN and Anchor Free Methods Object Detection------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---------------------------------------------------------其他--------------------------------------------------
+番外篇：知乎上的优秀文章：
 https://zhuanlan.zhihu.com/c_1178388040400302080
 
+FPN啥关系？ 
 triplet loss 
 CNN是通过softmax来解决排序的问题，想想是不是有哪里不太一样？
 对于某一个神经网络，我的输入是带有三个输
