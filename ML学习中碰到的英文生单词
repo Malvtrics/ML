@@ -1,15 +1,18 @@
-CUDA compute unified device architecture -》 NVIDIA 推出的通用并行计算架构，使GPU可以解决复杂的计算问题
-NVIDIA 因为invidia被人注册改成了nvidia 所以中文翻译是英伟达而不是恩伟达 拉丁文中，Invidia有忌妒与目不转睛之意-》“邪恶之眼”
-negligable-> so small or unimportant as to be not worth considering; insignificant.
-in·ter·po·late -> 插值
-calibration -》 校准
-monotonically -》 单调
-suspectable-》可疑的
-variations-》变化名词
-在计算视觉的领域中，Pascal VOC Challenge 就好比是数学中的哥德巴赫猜想一样。
-Pascal的全称是Pattern Analysis, Statical Modeling and Computational Learning。每年，
-该组织都会提供一系列类别的、带标签的图片，挑战者通过设计各种精妙的算法，仅根据分析图片内容来将其分类，
-最终通过准确率、召回率、效率来一决高下。
-Pascal VOC Challenge 就是提供数据集的
-ILSVRC->image net large scale visual recognition chanllenge -> 
-evluate algrithms for object detection and image classification at large scale
+Normal words:
+
+negligable -> so small or unimportant as to be not worth considering; insignificant.
+interpolate -> 插值
+calibration -> 校准
+monotonically -> 单调
+revamp -> 改造
+
+
+Abbreviations:
+
+CUDA -> compute unified device architecture->NVIDIA 推出的通用并行计算架构，使GPU可以解决复杂的计算问题
+NVIDIA -> 因为invidia被人注册改成了nvidia 所以中文翻译是英伟达而不是恩伟达 拉丁文中，Invidia有忌妒与目不转睛之意-》“邪恶之眼”
+PASCAL VOC Challenge->提供数据集的，在计算视觉的领域中，Pascal VOC Challenge 就好比是数学中的哥德巴赫猜想一样。
+  Pascal的全称是Pattern Analysis, Statical Modeling and Computational Learning。每年，该组织都会提供一系列类别的、带标签的图片，
+  挑战者通过设计各种精妙的算法，仅根据分析图片内容来将其分类，最终通过准确率、召回率、效率来一决高下
+ILSVRC -> imagenet large scale visual recognition chanllenge -> 
+  evluate algrithms for object detection and image classification at large scale
