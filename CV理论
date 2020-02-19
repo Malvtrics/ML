@@ -1,6 +1,6 @@
 计算机视觉要处理的问题：让计算机理解图像的内容
 
-------------------------------------------------基本概念部分开始-----------------------------------------------
+-----------------------------------------------------------基本概念----------------------------------------------------------
 IoU 
 AP(MAP) 
 NMS(soft NMS) 
@@ -45,42 +45,43 @@ AP across Scales:
 1)暴力破解法：sliding-windows-detector不断滑窗
 2)selective search:自底向上的不断合并的层次聚类的方法,具体实现可以参考paper文件夹中的对应论文
 
-------------------------------------------------基本概念部分结束-----------------------------------------------
+-------------------------------------------------------物体检测模型演变史----------------------------------------------------
 
-AlexNet是2012年Imagenet竞赛的冠军模型，准确率达到了57.1%, top-5识别率达到80.2%。此后CNN开始蓬勃发展
+物体检测模型经过了三个阶段 two stage (region based) -> one stage (anchor based) -> anchor free
 
-几个里程碑模型
-
---RCNN家族-两阶段检测-先拿到proposal再根据特征图像做分类和回归------
+两阶段检测-主要是RCNN家族-先拿到proposal再根据特征图像做分类和回归
 RCNN (region-CNN) 2013年提出，利用了AlexNet
 Fast R-CNN
-RPN
 Faster R-CNN
---一阶段检测---没有proposal生成阶段--更加高效适合部署到工业生产环境---
+Mask R-CNN
+
+一阶段检测-没有proposal生成阶段-更加高效适合部署到工业生产环境
 YOLO V1 (you look only once)
 SSD 
 YOLO V2
-RetinaNet
-Mask R-CNN
 YOLO V3
 
-------------------------------------------------基本模型部分开始----------------------------------------------------------
+Anchor free阶段
+Trident
+CSP
+CenterNet
 
-------------------------------------------------Region Based Object Detectors---------------------------------------------
+-------------------------------------------Phase I--Region Based Object Detectors---------------------------------------------
+
 RCNN 
-最终的输出是目标和目标边缘(所在位置)
-原始图像
+
+Image
    ->1.Propose category-independent regions by selective search(~2k candidates per image) 
      Those regions may contain target objects and they are of diff sizes
       ->2.Region candidates are warped(改变维度) to have a fixed size as required of CNN(然后将每个候选区域进行尺寸的修整变换)
          ->3.喂给CNN做特征提取(这里的CNN可以是AlexNet VGG ResNet等,AlexNet2012一站成名,所以最初用的这个)
            You can find a pre-trianed AlexNet in Caffe Model Zoo but not in tensorflow
            Tensorflow-slim model libary provides pre-trained ResNet/VGG or others
-            ->4.用回归器得到boundarybox+用(binary SVM)确定类别
+            ->4.用回归器得到boundarybox+用(binary SVM)确定类别(最终的输出是目标和目标边缘(所在位置))
               to reduce the localization errors , regression model is trained to correct the predicted detection window on bounding box 
               correction offset using CNN features
 
-in step3注意：
+Step3注意：
 1)最后得出K+1类(K是目标物体类别，多出的一类是不带物体的背景图)
 2)in the fine-tunning stage,we should use much smaller learning rate and mini-batch oversamples the positive cases
    because most proposed regions are just background
@@ -126,7 +127,8 @@ Faster R-CNN(2015-2016火了两年)
 RPN中最重要的一个新概念anchor:
 Faster R-CNN doesn't make random boundry box proposals.Instead, it preidct offsets to the top left corner of some 
 reference boxes called anchors.
-从概念来看:anchor主要是为了减少模型训练时需要寻找的候选框数量，对于每个location, 设置9个anchor(3组长宽高,每组包括一个正方形和横纵两个长方形)
+从概念来看:anchor主要是为了减少模型训练时需要寻找的候选框数量
+对于每个location, 设置9个anchor(3组长宽高,每组包括一个正方形和横纵两个长方形)
 
 下面这段话加深理解：
 RPN在CNN提取特征之后以sliding window的方式在最后一个feature map上提取特征，每个滑动窗口中心都关联着 k个 box，
@@ -156,7 +158,7 @@ RPN扫描anchor速度？
 通过这些优化手段，RPN 可以在 10ms 内完成扫描（根据引入 RPN 的 Faster R-CNN 论文中所述）。
 在 Mask R-CNN 中，我们通常使用的是更高分辨率的图像以及更多的 anchor，因此扫描过程可能会更久。
 
--------------------------------------Single Shot Object Detectors(更加注重性能,部署到实际环境)---------------------------------
+--------------------------------Phase II-Single Shot Object Detectors(更加注重性能,部署到实际环境)----------------------------------
 
 YOLO
 
@@ -274,9 +276,9 @@ the ides is that the true number of clusters is captured when the increase in th
 in this case I would say that 4 anchor boxes may be a good size 
 anchor box 越多，准确率会上去但是效率会下降，折中取4个
 
-YOLOV3中的focal loss:
+YOLOV3中的 Focol Loss:
 
-focal loss 解决什么问题？ 
+Focol Loss 解决什么问题？ 
 答：样本数量不均衡问题：两种样本不均衡 正负样本 难易样本
 positive sample >>>>> negative samples (class imbalance)
 easy samples >>>>> hard samples 
@@ -286,12 +288,7 @@ easy samples >>>>> hard samples
 对于那些分类已经很正确的样本，权重会下降，对于分类错误的样本，权重会升高
 实际应用中 gamma=2 和 alpha=0.25的组合常用
 
-------------------------------------------关于以上模型的一些讨论------------------------------------------------
-VGG: Faster RCNN/SSD
-MobileNet: Faster RCNN/R-FCN/SSD
-InceptionV2 : Faster RCNN/R-FCN/SSD
-Resnet : Faster RCNN/R-FCN/SSD
-Inception Resnet V2 : Faster RCNN/R-FCN/SSD
+-----------------------------------------------------关于以上模型的一些讨论---------------------------------------------------------
 
 The difference between detectors is narrowing 准确率和速度的权衡
 single shot uses more complex designs to make it more accurate 
@@ -316,17 +313,16 @@ https://blog.csdn.net/qq_17550379/article/details/80375874
    it provides wider field of view at the same computational cost. it can help accuracy
 14)exp the number of proposals or predictions per grid cell
 
+-------------------------------------------Phase III-Anchor Free Methods Object Detection-----------------------------------------
 
-------------------------------------------FPN and Anchor Free Methods Object Detection-------------------------------------------
+首先来讨论方法论：
 
-CNN使得feature map越来越小，YOLO/SSD都在试图解决模型对不同大小物体的适应问题->利用之前卷积层的输出->有没有一种适应一切大小的方法呢？
-即用同一套检测算法对应不同尺度的目标呢？？
-resnet50 and inceptionv3 常用CNN网络结构
-目前有两种方案 FPN / Scale-Aware Trident Networks
+在之前所有的模型中，都是简单地用CNN(常用的是resnet50 and inceptionv3)做特征提取，CNN中不断下采样，使得feature map越来越小，
+YOLO/SSD都在试图解决模型对不同大小物体的适应问题(通过将前面的输出加到后面)->即用同一套检测算法对应不同尺度的目标呢？？
 
-FPN (对小物体检测出众)
+于是有了FPN (对小物体检测出众)
 
-向前5次，每次减半，终点返回，每次加倍，每次同时加上去程同一位置再过一个 3*3 的卷积(消除不同特征混在一起的影响) 输出预测
+方案精髓：向前5次，每次减半，终点返回，每次加倍，每次同时加上去程同一位置再过一个 3*3 的卷积(消除不同特征混在一起的影响) 输出预测
 
 这里注意一点！FPN自己不是目标检测器，它是一个特征检测器，可以融入到我们之前的模型中，是一种特征检测方法！不是一个模型！！
 比如我们可以把FPN的输出作为RPN的输入
@@ -335,39 +331,81 @@ FPN (对小物体检测出众)
 答：主要是nms ! 在常规faster rcnn中 假设候选框数量为n nms的复杂度是 n^2 , 但是在FPN中，由于n已经被分散到不同的桶中(feature map) 
 每个桶再去做nms的复杂度已经大大降低 eg: 25^2 = 625  5*(5^2)=125
 
+
 Scale-Aware Trident Network
 
 这里要理解一下空洞卷积的概念
-理解之后有一个结论，dilation值比较大的时候，对于大的物体检测效果会比较好
+理解之后有一个经过试验得出的结论(论文中)，dilation值比较大的时候，对于大的物体检测效果会比较好
 
 所以Trident Network其实是让图像->CNN拿到整个图像的feature map->再通过不同参数的空洞卷积，dilation系数小的对应检测小物体，大的检测大物体
 假设我有3条不同dilation系数的路径，那我的训练时间也要3倍，为了平衡效率，我们看只用其中某一条路径产生的结果，如果还OK，那么可以牺牲准确率
 
+Trident Network github源码
+https://github.com/TuSimple/simpledet/tree/master/models/tridentnet
 
----------------------------------------------------------其他--------------------------------------------------
-番外篇：知乎上的优秀文章：
+CSP
+行人检测(pedestrian detection)
+有名的数据集Caltech Dataset/旷视face++开源的Crowd Human Dataset
+
+行人检测中的anchor free的方法：CSP Center Scale Prediction/CenterNet 
+CSP: http://github.com/liuwei16/CSP
+
+简单理解C就是中心，我去找目标物体的中心点 center heatmap S就是scale我去找框的大小 scale map
+有个问题：CSP里面做了一个默认假设，高和宽比例是4，感觉只为了行人预测
+CSP训练中心点是比较困难的，因为比如一张800*800的图，中心点就一两个，沧海一粟，负样本太多
+所以作者采用的Gaussion Mask的方法，具体可能要去看论文，这里理解:不是采用非0即1的判断，而是以中心点向外，逐渐降低的方式，像热度图
+
+注意这里计算loss的时候(也是在物体检测算法中用的比较多的) smooth-L1 loss
+自己找视频理解smooth-L1 loss
+
+如何更近一步把人脸也预测出来呢？需要人脸标注以及寻找人脸中心点，旷视face++开源的Crowd Human Dataset数据集中有人脸标注
+基于目前最牛逼的anchor free的CSP算法提出自己的一些观点是面试加分项
+
+CenterNet 
+模型其实和CSP一毛一样，只是在应用上不局限于行人，还有其他各种物体
+
+
+---------------------------------------------------常用的物体检测的3个实践技巧-----------------------------------------------------
+
+1)亚马逊提出的一个技巧，发现在不同的模型上使用该技巧时可以获得1个点到4个点的收益
+这个技巧叫做mix-up object detection具体实现细节需要去查，讲解太泛泛
+简单举例理解:0.9*正样本图片(强相关的图片)+0.1*负样本图片(不相关的图片) 组合成一张新图片作为样本
+或者做像素融合等等，总之是用融合的方式产生新的图片
+这里有个beta destribution for mixup的东西，有d1和d2两个参数
+
+2)有的时候训练集中有一些错误的标注会影响最后的预测结果，所以要让模型适当地去学习一些噪声,怎么去做呢？
+有一种方法叫做label smoothing平滑标签，比如原来的标签都是非1即0 现在我们把1改成0.9，剩下的均分
+
+3)调整学习率，牛逼的名字：余弦退火，不知道怎么来的，就是利用余弦函数调整学习率
+可以参考文章https://blog.csdn.net/qq_38290475/article/details/103548680
+以及对应的论文DECOUPLED_WEIGHT_DECAY_REGULARIZATION
+
+
+---------------------------------------------------准备敲代码实现的部分------------------------------------------------------------
+
+Faster RCNN(调节anchor数目以及大小)
+YOLO-V3
+CSP
+
+---------------------------------------------------------其他----------------------------------------------------------------------
+
+知乎文章:
 https://zhuanlan.zhihu.com/c_1178388040400302080
 
-FPN啥关系？ 
 triplet loss 
 CNN是通过softmax来解决排序的问题，想想是不是有哪里不太一样？
 对于某一个神经网络，我的输入是带有三个输
+
 怎么理解embedding??
 https://www.zhihu.com/question/38002635
 
-Euclidean space 欧式空间
-harmonic embeddings 谐波嵌入
-off the shelf 现成的
-bottleneck layer 瓶颈层 输入输出维度差距较大，就像一个瓶颈一样，上窄下宽亦或上宽下窄，深入理解下如下链接
+理解瓶颈层
 https://blog.csdn.net/u011501388/article/details/80389164
-
-cross level vehicle recongnition CLVR
-robotics
-myriad 无数的
 
 数据扩增的包 imgaug 数据增强库 网上有对应的学习笔记
 
-如果现在有一个车辆识别任务
+
+如果现在有一个车辆识别任务, 如何进行呢？
 
 method1: train convnets to predict vehicle models
 training 就直接用inception v3
@@ -463,11 +501,5 @@ epoch -> iteration to the whole data set
 
 工业界想牺牲一定的准确性保证高效率
 
-Xception:
-depthwise conv on seperate channel 
+Xception:depthwise conv on seperate channel 
 
-flir forward  looking infra-red 前视红外雷达
-
-
-VGG19 https://www.jianshu.com/p/6aa903648ec5 了解下
-aspect ratio: 图像的宽高比
