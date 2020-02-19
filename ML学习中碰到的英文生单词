@@ -5,7 +5,13 @@ interpolate -> 插值
 calibration -> 校准
 monotonically -> 单调
 revamp -> 改造
-
+myriad -> 无数的
+aspect ratio -> 图像的宽高比
+flir forward looking infra-red -> 前视红外雷达
+Euclidean space ->　欧式空间
+harmonic embeddings -> 谐波嵌入
+off-the-shelf -> 现成的
+bottleneck layer -> 瓶颈层 -> 1*1卷积
 
 Abbreviations:
 
@@ -16,3 +22,4 @@ PASCAL VOC Challenge->提供数据集的，在计算视觉的领域中，Pascal 
   挑战者通过设计各种精妙的算法，仅根据分析图片内容来将其分类，最终通过准确率、召回率、效率来一决高下
 ILSVRC -> imagenet large scale visual recognition chanllenge -> 
   evluate algrithms for object detection and image classification at large scale
+CLVR -> cross level vehicle recongnition 
