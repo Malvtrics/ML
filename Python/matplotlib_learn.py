@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 x = np.array([[0,1,2],[0,1,2]])
 y = np.array([[1,1,1],[0,0,0]])
-plt.plot(x,y,color='red',marker='.',markersize=10,linestyle='-')
+plt.plot(x,y,color='red',marker='.',markersize=10,linestyle='-')#要求x,y维度相同，不然会报错
 plt.grid=True
 plt.show()
 
