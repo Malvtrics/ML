@@ -14,6 +14,8 @@ off-the-shelf -> 现成的
 bottleneck layer -> 瓶颈层 -> 1*1卷积
 coordinate -> 坐标
 convergence -> 收敛
+spatial -> 空间的
+
 
 Abbreviations:
 
