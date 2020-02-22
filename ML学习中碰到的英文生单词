@@ -1,5 +1,6 @@
 Normal words:
 
+ground truth -> 基本事实
 negligable -> so small or unimportant as to be not worth considering; insignificant.
 interpolate -> 插值
 calibration -> 校准
@@ -23,19 +24,21 @@ meta algrithom -> Loosely speaking, a meta-algorithm is an algorithm that wraps 
     compared to the performance of each of those algorithms on their own.
 Springs show the spatial connections between parts
 chronological -> 按照时间顺序的
-SOTA -> state-of-the-art -> 目前最好的
 cascade -> 级联的
 occlusion -> 咬合
 deformable -> 变形的
 if certain joints(关节) are hidden, they can be estimated if the pose is reasoned(推理) about holistically(整体)
 coarse  pose -> 粗略的姿势
-w.r.t. -> with respect to -> 关于
 rectified linear unit -> 整流线性单元函数 = relu
 The diameter diam(y) of the pose is defined as the distance between opposing joints on the human torso
 -> 姿势的半径函数指躯干上对应关节的距离(过中心点的直径 )
 As verbs the difference between displace and replace is that 
 displace is to move something, or someone, especially to forcibly move people from their homeland while 
 replace is to restore to a former place, position, condition, or the like.
+limb -> 肢
+et al -> etc 
+proportions -> 比例
+
 
 Abbreviations:
 
@@ -47,3 +50,7 @@ PASCAL VOC Challenge->提供数据集的，在计算视觉的领域中，Pascal 
 ILSVRC -> imagenet large scale visual recognition chanllenge -> 
   evluate algrithms for object detection and image classification at large scale
 CLVR -> cross level vehicle recongnition 
+w.r.t. -> with respect to -> 关于
+SOTA -> state-of-the-art -> 目前最好的
+
+
