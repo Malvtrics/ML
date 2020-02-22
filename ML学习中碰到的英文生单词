@@ -30,6 +30,9 @@ deformable -> 变形的
 if certain joints(关节) are hidden, they can be estimated if the pose is reasoned(推理) about holistically(整体)
 coarse  pose -> 粗略的姿势
 w.r.t. -> with respect to -> 关于
+rectified linear unit -> 整流线性单元函数 = relu
+The diameter diam(y) of the pose is defined as the distance between opposing joints on the human torso
+-> 姿势的半径函数指躯干上对应关节的距离(过中心点的直径 )
  
 Abbreviations:
 
