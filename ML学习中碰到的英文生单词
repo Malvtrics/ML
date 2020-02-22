@@ -28,6 +28,8 @@ cascade -> 级联的
 occlusion -> 咬合
 deformable -> 变形的
 if certain joints(关节) are hidden, they can be estimated if the pose is reasoned(推理) about holistically(整体)
+coarse  pose -> 粗略的姿势
+w.r.t. -> with respect to -> 关于
  
 Abbreviations:
 
