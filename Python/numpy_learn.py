@@ -2,12 +2,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 arr = np.array([[1,2,3],[4,5,6]]) #初始化
-arr_sum = arr + np.ones((2,3),dtype='int32') 
-arr_t = arr.T
+arr_sum = arr.T + np.ones((3,2),dtype='int32') 
 
-x = np.linspace(0,2*np.pi,50)
+x = np.linspace(0,2*np.pi,50) #不要写成linespace
 y = np.sin(x)
 plt.plot(x,y,'b')
+plt.show() #注意在cmd下需要加上这一句才能显示出来
 
 arr2 = np.arange(12).reshape(3,4)
 
