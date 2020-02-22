@@ -13,8 +13,8 @@ arr2 = np.arange(12).reshape(3,4)
 
 #连续均匀分布 设汽通过某站的汽车每10min 一辆那么乘客候车的时间是在[0.10] 上服从均匀分布
 #离散均匀分布 掷骰子
-设汽通过某站的汽车每10min 一辆那么乘客候车的时间是在[0.10] 上服从均匀分布的
-官方例子：
+#设汽通过某站的汽车每10min 一辆那么乘客候车的时间是在[0.10] 上服从均匀分布的
+#官方例子：
 s = np.random.uniform(-1,0,1000)
 count, bins, ignored = plt.hist(s, 15, normed=True)
 plt.plot(bins, np.ones_like(bins), linewidth=2, color='r')
