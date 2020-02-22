@@ -17,7 +17,18 @@ convergence -> 收敛
 spatial -> 空间的
 compactness -> 紧凑
 proximity -> 接近
-
+elbow -> 弯头 肘
+meta algrithom -> Loosely speaking, a meta-algorithm is an algorithm that wraps and executes other algorithms 
+    and might feed them input data or use their output data. A common goal is to achieve a better task performance 
+    compared to the performance of each of those algorithms on their own.
+Springs show the spatial connections between parts
+chronological -> 按照时间顺序的
+SOTA -> state-of-the-art -> 目前最好的
+cascade -> 级联的
+occlusion -> 咬合
+deformable -> 变形的
+if certain joints(关节) are hidden, they can be estimated if the pose is reasoned(推理) about holistically(整体)
+ 
 Abbreviations:
 
 CUDA -> compute unified device architecture->NVIDIA 推出的通用并行计算架构，使GPU可以解决复杂的计算问题
