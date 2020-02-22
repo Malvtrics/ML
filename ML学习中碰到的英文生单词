@@ -33,7 +33,10 @@ w.r.t. -> with respect to -> 关于
 rectified linear unit -> 整流线性单元函数 = relu
 The diameter diam(y) of the pose is defined as the distance between opposing joints on the human torso
 -> 姿势的半径函数指躯干上对应关节的距离(过中心点的直径 )
- 
+As verbs the difference between displace and replace is that 
+displace is to move something, or someone, especially to forcibly move people from their homeland while 
+replace is to restore to a former place, position, condition, or the like.
+
 Abbreviations:
 
 CUDA -> compute unified device architecture->NVIDIA 推出的通用并行计算架构，使GPU可以解决复杂的计算问题
