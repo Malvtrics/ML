@@ -43,6 +43,20 @@ anatomically viable -> 解剖上可行的
 Siamese network -> 孪生神经网络  | Triplet network -> 三元组网络
 Joints are infrequently co-located -> 关节很少位于同一位置
 HOG -> Histogram of oriented gradients (方向梯度直方图) 
+repetitions -> 重复(多遍) vs repeat(重复一遍)
+modular -> 模块化的
+self-occlusion -> 自我遮挡
+Such non-tree structured graphical models tyally require the use of approximate inference
+这种非树形结构的图形模型通常需要使用近似推断
+parameter -> parametric 参数化的
+tractable -> 易处理的
+emulate vs imitate 
+emulate : to be as good or sucessful as 
+imitate : to copy or fashion oneself after
+pinpoint -> 查明
+bounded corrections -> 边界矫正
+retinotopic -> 视网膜
+
 
 Abbreviations:
 
