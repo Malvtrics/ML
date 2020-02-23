@@ -71,3 +71,9 @@ x = np.array([[1, 2, 3], [4, 5, 6]])
 np.ravel(x)
 #array([1, 2, 3, 4, 5, 6])
 #It is equivalent to reshape(-1, order=order).
+
+test_result = [1,0,1,1,1]
+test_labels = [1,0,1,0,1]
+correct = [float(y==y_) for (y,y_) in zip(test_result,test_labels)]
+#is there any other way ?????
+
