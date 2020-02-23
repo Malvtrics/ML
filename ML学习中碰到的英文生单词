@@ -26,7 +26,7 @@ Springs show the spatial connections between parts
 chronological -> 按照时间顺序的
 cascade -> 级联的
 occlusion -> 咬合
-deformable -> 变形的
+deformable part models -> 可变性部件模型
 if certain joints(关节) are hidden, they can be estimated if the pose is reasoned(推理) about holistically(整体)
 coarse  pose -> 粗略的姿势
 rectified linear unit -> 整流线性单元函数 = relu
