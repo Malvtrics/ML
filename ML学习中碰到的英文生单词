@@ -60,6 +60,7 @@ interplay -> 相互作用
 indispensible -> 不可或缺的
 ablation experiment -> 消融实验 -> 因为作者提出了一种方案，同时改变了多个条件/参数，他在接下去的消融实验中，
 会一一控制一个条件/参数不变，来看看结果，到底是哪个条件/参数对结果的影响更大
+caret -> 插入符
 
 Abbreviations:
 
