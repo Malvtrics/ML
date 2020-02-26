@@ -1,5 +1,22 @@
 ##一些比较好玩的第三方库
 
+
+##专门用来读配置文件的库，这个库还是有点用的
+from configobj import ConfigObj
+conf_ini = "test.ini"
+config = ConfigObj(conf_ini, encoding='UTF8')
+# 读配置文件
+print(config['server'])
+print(config['server']['servername'])
+##配置文件内容
+[server]
+servername = 192.168.11.1
+serverport = 8000
+[client_srv]
+# 这里是注释
+server = localhost
+port = 8000
+
 ##pickle库有毛用？？？ 知乎上的回答：
 ##很多入门教程里讲解序列化一般是这个流程：对象1->序列化->字节串->反序列化->对象2
 ##所以很多人并不知道为什么要序列化
