@@ -55,6 +55,51 @@ plt.bar(np.arange(16), y, alpha=0.5, width=0.3, color='yellow',edgecolor='red', 
 plt.bar(np.arange(16)+0.4, y, alpha=0.2, width=0.3, color='green',edgecolor='blue', label='The Second Bar', lw=3)
 #饼图
 plt.pie(np.array([0.4,0.2,0.15,0.2]),labels=['dog','cat','bird','cow'],shadow=True,explode=[0.1,0,0,0],autopct='%0.1f%%')
+#散点图
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+
+midwest = pd.read_csv('midwest_filter.csv')
+categories = np.unique(midwest['category'])
+colors = [plt.cm.tab10(i/float(len(categories)-1)) for i in range(len(categories))]
+plt.figure(figsize=(16,10),dpi=80,facecolor='w',edgecolor='k')
+
+for i,cat in enumerate(categories):
+    #正常情况下都是输入x y这么玩的
+    #后来为了能更好的结合pandas使用新加了功能data,参考下面的帖子
+    #https://matplotlib.org/users/prev_whats_new/whats_new_1.5.html#working-with-labeled-data-like-pandas-dataframes
+    
+    #Working with labeled data like pandas DataFrames
+    #Plot methods which take arrays as inputs can now also work with labeled data and unpack such data.
+    #
+    #This means that the following two examples produce the same plot:
+    #
+    #Example
+    #
+    #df = pd.DataFrame({"var1":[1,2,3,4,5,6], "var2":[1,2,3,4,5,6]})
+    #print(df)
+    #plt.plot(df["var1"], df["var2"])
+    #Copy to clipboard
+    #Example
+    #plt.scatter("var1", "var2", data=df)
+    #Copy to clipboard
+    #This works for most plotting methods, which expect arrays/sequences as inputs. data can be anything which supports __getitem__ (dict, pandas.DataFrame, h5py, ...) to access array like values with string keys.
+    #
+    #In addition to this, some other changes were made, which makes working with labeled data (ex pandas.Series) easier:
+    #
+    #For plotting methods with label keyword argument, one of the data inputs is designated as the label source. If the user does not supply a label that value object will be introspected for a label, currently by looking for a name attribute. If the value object does not have a name attribute but was specified by as a key into the data kwarg, then the key is used. In the above examples, this results in an implicit label="var2" for both cases.
+    #plot() now uses the index of a Series instead of np.arange(len(y)), if no x argument is supplied.
+    plt.scatter('area','poptotal',#注意这里的area和poptotal就是对应的列名，所以这是一种很巧妙的方法
+                data=midwest.loc[midwest.category==cat,:],
+                s=20,cmap=colors[i],label=str(cat))
+    
+plt.gca().set(xlim=(0.0,0.1),ylim=(0,90000),xlabel='Area',ylabel='Population')#plt.gca()获取当前axe实例
+plt.xticks(fontsize=12)
+plt.yticks(fontsize=12)
+plt.title('Scatterplot of Midwest Area vs Population',fontsize=22)
+plt.legend(fontsize=12)
+plt.show()
 
 ##如何使用np.meshgrid 主要用来解决坐标网格点太多时候显示的问题
 import numpy as np
