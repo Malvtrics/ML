@@ -13,7 +13,7 @@ x = np.linspace(-10,10,1000)
 ax1.plot(np.sin(x),np.cos(x))
 
 ax2 = plt.subplot(2,2,3)
-ax2.axis([200,800,-0.75,0.75])
+ax2.axis([200,800,-0.75,0.75])#这里的作用和xlim ylim一样的
 ax2.plot(np.sin(np.linspace(-2*np.pi,2*np.pi,1000)))
 
 ax3 = plt.subplot(2,2,4)
