@@ -1,3 +1,19 @@
+##基础
+import numpy as np
+import matplotlib.pyplot as plt 
+
+plt.figure(figsize=[20,5])#注意这里20的含义是指横坐标每个inch的像素值，5是纵坐标
+
+ax1 = plt.subplot(1,3,1)
+ax1.plot(np.sin(np.linspace(-2*np.pi,2*np.pi,100)))
+
+ax1 = plt.subplot(1,3,2)
+ax1.plot(np.sin(np.linspace(-2*np.pi,2*np.pi,1000)))
+
+ax1 = plt.subplot(1,3,3)
+ax1.plot(np.sin(np.linspace(-2*np.pi,2*np.pi,10000)))
+
+
 ##如何使用np.meshgrid 主要用来解决坐标网格点太多时候显示的问题
 import numpy as np
 import matplotlib.pyplot as plt
