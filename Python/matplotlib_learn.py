@@ -4,15 +4,23 @@ import matplotlib.pyplot as plt
 
 plt.figure(figsize=[20,5])#注意这里20的含义是指横坐标每个inch的像素值，5是纵坐标
 
-ax1 = plt.subplot(1,3,1)
+ax1 = plt.subplot(2,2,1)
+ax1.grid(color='g',linestyle='-.')
 ax1.plot(np.sin(np.linspace(-2*np.pi,2*np.pi,100)))
 
-ax1 = plt.subplot(1,3,2)
-ax1.plot(np.sin(np.linspace(-2*np.pi,2*np.pi,1000)))
+ax1 = plt.subplot(2,2,2)
+x = np.linspace(-10,10,1000)
+ax1.plot(np.sin(x),np.cos(x))
 
-ax1 = plt.subplot(1,3,3)
-ax1.plot(np.sin(np.linspace(-2*np.pi,2*np.pi,10000)))
+ax2 = plt.subplot(2,2,3)
+ax2.axis([200,800,-0.75,0.75])
+ax2.plot(np.sin(np.linspace(-2*np.pi,2*np.pi,1000)))
 
+ax3 = plt.subplot(2,2,4)
+ax3.axis('tight')#这感觉是做了归一化呢
+#关于tight的例子，这不是一个好的例子，具体可以参考这个链接，画直方图的时候用到的例子
+#https://stackoverflow.com/questions/37558329/matplotlib-set-axis-tight-only-to-x-or-y-axis
+ax3.plot(np.sin(np.linspace(-5*np.pi,5*np.pi,100)))
 
 ##如何使用np.meshgrid 主要用来解决坐标网格点太多时候显示的问题
 import numpy as np
