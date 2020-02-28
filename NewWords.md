@@ -65,6 +65,9 @@
 他们可以说是自滚石以来最重要的乐队。
 + A commonality(通用性) of the three methods is that ...
 + Note that this discussion is only preliminary(初步的) and heuristic(启发式的)
++ outliers -> 离群值
++ medians -> 中位数
+
 
 ### Abbreviations:
 
