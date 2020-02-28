@@ -55,7 +55,7 @@ plt.bar(np.arange(16), y, alpha=0.5, width=0.3, color='yellow',edgecolor='red', 
 plt.bar(np.arange(16)+0.4, y, alpha=0.2, width=0.3, color='green',edgecolor='blue', label='The Second Bar', lw=3)
 #饼图
 plt.pie(np.array([0.4,0.2,0.15,0.2]),labels=['dog','cat','bird','cow'],shadow=True,explode=[0.1,0,0,0],autopct='%0.1f%%')
-#散点图
+#散点图，主要用来区分数据的相似程度，正相关，负相关，不相关可以直接从图中看出来
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -100,6 +100,32 @@ plt.yticks(fontsize=12)
 plt.title('Scatterplot of Midwest Area vs Population',fontsize=22)
 plt.legend(fontsize=12)
 plt.show()
+
+#箱线图的作用：介绍的比较详细： 
+#https://wiki.mbalib.com/wiki/%E7%AE%B1%E7%BA%BF%E5%9B%BE#:~:text=%E7%AE%B1%E7%BA%BF%E5%9B%BE%E6%A6%82%E8%BF%B0,%E5%87%A0%E4%B8%AA%E6%A0%B7%E6%9C%AC%E7%9A%84%E6%AF%94%E8%BE%83%E3%80%82
+#一批数据中的异常值值得关注，忽视异常值的存在是十分危险的，不加剔除地把异常值包括进数据的计算分析过程中，对结果会带来不良影响；
+#重视异常值的出现，分析其产生的原因，常常成为发现问题进而改进决策的契机。
+#箱线图为我们提供了识别异常值的一个标准：异常值被定义为小于Q1－1.5IQR或大于Q3＋1.5IQR的值。
+#虽然这种标准有点任意性，但它来源于经验判断，经验表明它在处理需要特别注意的数据方面表现不错。这与识别异常值的经典方法有些不同。
+#众所周知，基于正态分布的3σ法则或z分数方法是以假定数据服从正态分布为前提的，但实际数据往往并不严格服从正态分布。
+#它们判断异常值的标准是以计算数据批的均值和标准差为基础的，而均值和标准差的耐抗性极小，异常值本身会对它们产生较大影响，
+#这样产生的异常值个数不会多于总数0.7%。显然，应用这种方法于非正态分布数据中判断异常值，其有效性是有限的。
+#箱线图的绘制依靠实际数据，不需要事先假定数据服从特定的分布形式，没有对数据作任何限制性要求，它只是真实直观地表现数据形状的本来面貌；
+#另一方面，箱线图判断异常值的标准以四分位数和四分位距为基础，四分位数具有一定的耐抗性，多达25%的数据可以变得任意远而不会很大地扰动四分位数，
+#所以异常值不能对这个标准施加影响，箱线图识别异常值的结果比较客观。由此可见，箱线图在识别异常值方面有一定的优越性。
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+np.random.seed(1)
+fig,axes = plt.subplots(2,1,figsize=(10,6))
+df = pd.DataFrame(np.random.rand(10,5),columns=['a','b','c','d','e'])
+#whisker分位数与最大最小值之间的颜色 caps最大最小值颜色
+color = dict(boxes='DarkGreen',whiskers='DarkOrange',medians='DarkBlue',caps='Gray')
+
+df.plot.box(ylim=[0,1.2],grid=True,color=color,ax=axes[0])
+df.plot.box(vert=False,positions=[1,4,5,6,8],ax=axes[1],grid=True,color=color)
+
 
 ##如何使用np.meshgrid 主要用来解决坐标网格点太多时候显示的问题
 import numpy as np
