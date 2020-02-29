@@ -1,5 +1,102 @@
 ##一些比较好玩的第三方库
 
+##request库用来做爬虫的，后面继续补充例子
+import requests
+
+# url = 'https://www.baidu.com'
+# r = requests.get(url)
+# print(r.encoding)
+# print(r.status_code)
+# text = r.text.encode("ISO-8859-1").decode("utf-8")
+# print(text)
+
+r2 = requests.get('https://github.com/timeline.json')
+print(r2.text)
+j_data = r2.json()
+print(j_data)
+
+from bs4 import BeautifulSoup
+ua = 'https://mail.163.com/'
+headers = {'user-agent',ua}
+url_login = 'https://mail.163.login.com'
+
+session = requests.Session()
+formdata = {'redir':'www.baidu.com','form_user_name':'mengwang','form_password':'***'}
+resp = session.post(url_login,data=formdata,headers=headers)
+
+bs = BeautifulSoup(resp.text,'html5lib')
+captcha = bs.select('#img#captcha_image')
+if captcha:
+    captcha = captcha[0]
+    print(captcha.text)
+    img_url = captcha.get('src').strip()
+    print(img_url)
+    id_ = img_url.split('?')[1].split('&')[0].split('=')[1]
+    text = input('please input code')
+    formdata['captcha-solution'] = text
+    formdata['captcha-id'] = id_
+    resp = session.post(url_login,data=formdata,headers=headers)
+
+with open('163_login.txt','w+',encoding='utf-8') as f:
+    f.write(resp.text)
+
+##处理json文件的库 
+import json
+config = {"name":"martin","location":"shanghai"}
+#load/dump use to json file
+with open("jsonL.txt", 'w+') as f:
+    json.dump(config,f) #overwrite the file
+with open("jsonL.txt","r") as f:
+    newconfig = json.load(f)
+print(type(newconfig))
+print(newconfig)
+#loads/dumps used to string vs json object
+config_str = '{"name":"jimmy","location":"USA"}'
+config = json.loads(config_str)
+print(config)
+new_config_str = json.dumps(config)
+print(type(new_config_str))
+
+##处理csv文件
+import csv
+
+label_list = []
+feature_list = []
+
+with open("sales.csv","r") as f:
+    reader = csv.reader(f)
+    headers = next(reader)
+    for row in reader:
+        label_list.append(row[-1])
+        row_dict = {}
+        for i in range(1,len(row)-1):
+            row_dict[headers[i]] = row[i]
+        feature_list.append(row_dict)
+
+print(feature_list)
+print(label_list)
+
+##scipy后面可能考虑单独列出来，暂时放在这里
+--求解方程
+from scipy.optimize import fsolve
+
+def f(i):
+    x = i[0]
+    y = i[1]
+    z = i[2]
+    return [2363.98*((1+x)**7)-5000,
+            10306.4*((1+y)**7)-20000,
+            10460*((1+z)**7)-20000]
+
+result = fsolve(f, [0,0,0])
+print(result)
+
+##画中心热度图
+import scipy.ndimage
+gaussian = scipy.ndimage.filters.gaussian_filter(noisy_horizon,3.0)
+plt.imshow(gaussian,aspect=0.5,vmin=vmin,vmax=vmax)
+plt.show()
+
 
 ##专门用来读配置文件的库，这个库还是有点用的
 from configobj import ConfigObj
