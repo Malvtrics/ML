@@ -79,7 +79,15 @@ win10下如何运行.sh文件?
 7. 安装Cython
 8. 安装pycocotools
 9. 改模型加载数据集的参数，找到正确的路径
-10.  
+10. 然后发现有的参数无法加载 pytorch版本不对
+11. 重装pytorch和torchvision
+12. 发现平台GPU是9000的驱动，pytorch只能安装1.1 项目要求是1.2 GPU不好改驱动只能先安装1.1试一下
+13. 装pytorch1.1发现下好了但是没有权限安装
+14. 自己建立一个新的conda环境 conda create -n pose_est python=3.5 (用3.5因为有个团队成员说只有3.5demo才能跑出来)
+15. 然后自己不相信，先建了一个Python=3.7的
+16. 如果pytorch1.1 torchvision只能是0.3.0 pytorch1.2对应torchvision0.4.0
+17. 继续安装剩下的没装的nupmy opencv-python等等
+18. 跑起来了艹！ 目前py3.7 torch1.1.0 torchvision0.3.0 太他妈不容易了
 
 
 
