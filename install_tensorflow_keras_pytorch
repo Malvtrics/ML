@@ -67,6 +67,21 @@ win10下如何运行.sh文件?
 5.alt+shift+f9调整某个文件对应的项目相对路径->设置为项目根目录etc
 6.pose_model.pth文件放在根目录下
 7.然后发现TMD电脑必须有NVIDIA的GPU，去你妈的，明天MAC上继续部署
+8.然后发现mac上也没有只能用平台GPU
+使用平台GPU
+1. install winscp and xshell
+2. 把项目源码copy到目录下
+3. 用了一个名字类似pytoch的conda环境
+4. 安装cv2(pip install opencv-python)
+5. 把train文件放在根目录，需要找其他不需要拉出来的方法q
+6. 安装yacs
+7. 安装Cython
+9. 安装pycocotools
+10. 改模型加载数据集的参数，找到正确的路径
+
+
+
+
 
 
 
