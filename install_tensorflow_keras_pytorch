@@ -89,8 +89,8 @@ win10下如何运行.sh文件?
 17. 继续安装剩下的没装的nupmy opencv-python等等
 18. 跑起来了艹！ 目前py3.7 torch1.1.0 torchvision0.3.0 太他妈不容易了
 19. 跑一半内存爆了，所以还是硬件得跟上啊！
-
-
-
+##几个小白的坑
+#注意pythonpath的设置 export pythonpath='xxxx'把目录加到环境变量中可以解决找不到对应库的问题
+#调用Python文件的时候，如果文件在根目录，直接python filename.py,否则要python a/b/c.py 这样c.py中涉及到路径的都是从根目录开始找
 
 
