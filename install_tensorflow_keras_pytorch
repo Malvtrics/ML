@@ -75,9 +75,11 @@ win10下如何运行.sh文件?
 4. 安装cv2(pip install opencv-python)
 5. 把train文件放在根目录，需要找其他不需要拉出来的方法q
 6. 安装yacs
+#mac下安装pycocotools是78两步，win的话，要参考网上解决方案，还要装c++一些东西
 7. 安装Cython
-9. 安装pycocotools
-10. 改模型加载数据集的参数，找到正确的路径
+8. 安装pycocotools
+9. 改模型加载数据集的参数，找到正确的路径
+10.  
 
 
 
