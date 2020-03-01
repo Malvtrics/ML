@@ -73,13 +73,13 @@ win10下如何运行.sh文件?
 2. 把项目源码copy到目录下
 3. 用了一个名字类似pytoch的conda环境
 4. 安装cv2(pip install opencv-python)
-5. 把train文件放在根目录，需要找其他不需要拉出来的方法q
+5. 把train文件放在根目录，需要找其他不需要拉出来的方法
 6. 安装yacs
 #mac下安装pycocotools是78两步，win的话，要参考网上解决方案，还要装c++一些东西
 7. 安装Cython
 8. 安装pycocotools
 9. 改模型加载数据集的参数，找到正确的路径
-10. 然后发现有的参数无法加载 pytorch版本不对
+10. 然后发现有的参数无法加载(reduction error) pytorch版本不对
 11. 重装pytorch和torchvision
 12. 发现平台GPU是9000的驱动，pytorch只能安装1.1 项目要求是1.2 GPU不好改驱动只能先安装1.1试一下
 13. 装pytorch1.1发现下好了但是没有权限安装
@@ -88,10 +88,7 @@ win10下如何运行.sh文件?
 16. 如果pytorch1.1 torchvision只能是0.3.0 pytorch1.2对应torchvision0.4.0
 17. 继续安装剩下的没装的nupmy opencv-python等等
 18. 跑起来了艹！ 目前py3.7 torch1.1.0 torchvision0.3.0 太他妈不容易了
-
-
-
-
+19. 跑一半内存爆了，所以还是硬件得跟上啊！
 
 
 
