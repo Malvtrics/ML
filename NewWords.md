@@ -67,7 +67,10 @@
 + Note that this discussion is only preliminary(初步的) and heuristic(启发式的)
 + outliers -> 离群值
 + medians -> 中位数
-
++ subtly -> 巧妙的
++ analogous -> 类似的
++ oscillate -> 摆动
++ dampening -> 减震
 
 ### Abbreviations:
 
