@@ -2,6 +2,7 @@
 
 ### args库
 + meavar给参数提供别名[https://blog.csdn.net/weixin_41803874/article/details/102586362]
+
 ### pilow库
 + 对图像做各种处理
 
@@ -11,3 +12,18 @@
 ### pytorch dataset类
 + https://www.cnblogs.com/demo-deng/p/10623334.html
 + https://blog.csdn.net/sinat_42239797/article/details/93855728
+
+import torch
+import torch.utils.data as d
+batch_size = 4
+x = torch.linspace(1,10,10)
+y = torch.linspace(10,1,10)
+torch_dataset = d.TensorDataset(x,y)
+loader = d.DataLoader(dataset=torch_dataset,batch_size=batch_size,shuffle=True,num_workers=2,drop_last=True)
+print(enumerate(loader))
+def show_batch():
+    for epoch in range(3):
+        for step, (batch_x,batch_y) in enumerate(loader):
+            #training:
+            print('epoch:{},step:{},batch_x:{}，batch_y:{}'.format(epoch,step,batch_x,batch_y))
+show_batch()
