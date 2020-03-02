@@ -28,3 +28,10 @@ def show_batch():
             print('epoch:{},step:{},batch_x:{}，batch_y:{}'.format(epoch,step,batch_x,batch_y))
 show_batch()
 
+train的时候数据做shuffle
+val的数据集不做shuffle
+
+python中collection库中的有序字典类 OrderdDict
+https://www.cnblogs.com/notzy/p/9312049.html
+
+
