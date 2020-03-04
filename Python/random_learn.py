@@ -22,6 +22,7 @@ np.random.randn()：#2.3507557480531194
 np.random.randn(2) #array([ 0.60471507, -1.19679745])
 np.random.randn(2,3) #array([[-0.96738554,  0.77820108,  1.84241556],[ 0.36377721, -0.16803053, -1.78429077]])
 
-np.random.randint(10) #6 均匀分布
+np.random.randint(10) #6 
+np.random.randint(0,3) #0/1/2 指定size的时候可以变成多维，默认是一个数
 np.random.randint(low=1, high=4, size=4, dtype='l')  #array([1, 3, 2, 2]) 
 np.random.randint(low=1, high=4, size=(2,2), dtype='l')  #array([[1, 2],[1, 3]])
