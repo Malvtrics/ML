@@ -1,15 +1,16 @@
-首先都是左闭右开
+#首先都是左闭右开
+#其次python自带的random函数肯定效率要相对高一些
 
-python自带的random 返回一个小数或者一个整数 没有维度概念
+#python自带的random 返回一个小数或者一个整数 没有维度概念
 random.random() #0.15543373681847383
-random.randint(1,50)  #37
+random.randint(1,50)  #37 注意这里的50是小于等于50，不同于np中的randint
 
 #randrange = one random integer in the range
 random.randrange(100) #78
 random.randrange(70,100) #89
 random.randrange(2,4,1) #3 #start end step 
 
-numpy中的random
+#numpy中的random
 np.array([2,3,4])
 np.arange(6).reshape(2,3) # 从0到5 两行三列
 
