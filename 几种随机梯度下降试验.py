@@ -5,7 +5,6 @@ import matplotlib.pyplot as plt
 
 
 def GD(data, mode='minibatch-sgd', lr=0.01, presicion=0.0001, max_iters=10000, batch_size=16):
-
     N = len(data)
     x = data[:, 0:2]
     y = data[:, -1]
@@ -23,7 +22,7 @@ def GD(data, mode='minibatch-sgd', lr=0.01, presicion=0.0001, max_iters=10000, b
             theta = theta - lr * err
             loss = np.sum(np.power((np.matmul(x, theta) - y), 2)) / (2 * N)
         elif mode == 'sgd':
-            i = random.randint(0, 3)
+            i = random.randint(0, N-1)
             y_predict = np.matmul(x[i], theta)
             err = np.dot(x[i].T, y_predict - y[i])
             theta = theta - lr * err
@@ -48,22 +47,30 @@ def GD(data, mode='minibatch-sgd', lr=0.01, presicion=0.0001, max_iters=10000, b
 
 
 # prepare data
-N = 100000
-x = np.random.randn(N).reshape(N // 2, 2)
-np.random.shuffle(x)
-y = np.reshape(6 * x[:, 0] + 8 * x[:, 1], (N // 2, 1))
-data = np.hstack((x, y))
+N = [50, 5000, 50000, 500000]
+for i in range(len(N)):
 
-print('----------Gradient Descend----------')
-x_gd, y_gd = GD(data, mode='gd')
-print('----------Stochastic Gradient Descend----------')
-x_sgd, y_sgd = GD(data, mode='sgd')
-print('----------Mini-batch Stochastic Gradient Descent----------')
-x_msgd, y_msgd = GD(data)
+    x = np.random.randn(N[i]).reshape(N[i] // 2, 2)
+    np.random.shuffle(x)
+    y = np.reshape(6 * x[:, 0] + 8 * x[:, 1], (N[i] // 2, 1))
+    data = np.hstack((x, y))
 
-ax = plt.subplot(111)
-ax.plot(x_gd, y_gd, 'b', label='GD')
-ax.plot(x_sgd, y_sgd, 'g', label='SGD')
-ax.plot(x_msgd, y_msgd, 'r', label='MSGD')
-ax.legend()
+    print('----------Gradient Descend----------')
+    x_gd, y_gd = GD(data, mode='gd')
+    print('----------Stochastic Gradient Descend----------')
+    x_sgd, y_sgd = GD(data, mode='sgd')
+    print('----------Mini-batch Stochastic Gradient Descent----------')
+    x_msgd, y_msgd = GD(data)
+
+    s = '22' + str(i+1)
+    ax = plt.subplot(s)
+    ax.plot(x_gd, y_gd, 'b', label='GD')
+    ax.plot(x_sgd, y_sgd, 'g', label='SGD')
+    ax.plot(x_msgd, y_msgd, 'r', label='MSGD')
+    ax.legend()
+
 plt.show()
+
+#可以看出数据量在50万量级的时候，其实SGD和GD的速度已经差不多了，也就意味着SGD的边缘效应越来越小
+#minibatch无论在何时都是最牛逼的
+
