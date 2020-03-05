@@ -43,3 +43,15 @@ res = s.addTwoNumbers(l1,l2)
 while(res):
     print(res.val)
     res = res.next
+
+#单链表反转
+class Solution(object):
+	def reverseList(self, head):
+		pre = None
+		cur = head
+		while cur:
+			tmp = cur.next
+			cur.next = pre
+			pre = cur
+			cur = tmp
+		return pre
