@@ -1,4 +1,9 @@
-932漂亮数组
+#面试题 16.07. 最大数值
+#编写一个方法，找出两个数字a和b中最大的那一个。不得使用if-else或其他比较运算符。
+_abs = int(pow((a-b)*(a-b),0.5))
+return (a+b+_abs)//2
+        
+#932漂亮数组
 class Solution:
     def beautifulArray(self, N: int) -> List[int]:
         def _helper(nob_list):
@@ -13,7 +18,7 @@ class Solution:
         beatiful_list = _helper(n_list)
         return beatiful_list
 
-1250检查好数组
+#1250检查好数组
 数论：如果两个数互斥，则存在整数 x,yx,y，使得 ax+by=1。 推到多个数也成立。
 import math  
 求最大公约数
