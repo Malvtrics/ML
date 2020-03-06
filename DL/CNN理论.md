@@ -53,7 +53,7 @@
 + 先看下GD BGD SGD
 + BGD(Batch Gradient Descent，批量梯度下降)：
 + SGD(Stochastic Gradient Descent，随机梯度下降)：仅仅选取一个样本j来求梯度。=> CNN 用这个
-+ 简单代码实现参考：几种随机梯度下降试验.py
++ [简单代码实现参考](https://github.com/Malvtrics/ML/blob/master/%E5%87%A0%E7%A7%8D%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E8%AF%95%E9%AA%8C.py)
 
 ## CNN 优缺点？
 + 优
