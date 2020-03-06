@@ -13,7 +13,7 @@
 
 ## CNN包括哪些层？
 + input layer=>CONV layer=>activation layer=>pooling layer=>FC(full connection???全连接层) layer=>batch normalization(optional)
-  + input layer=> 
++ input layer=> 
   + 去均值 （回到坐标原点） 
     + 方式：比如AlexNet会把100w个 256*256*3 的矩阵在每一个矩阵上求均值
           + 比如VGG会在每一个颜色通道上求均值
@@ -27,12 +27,11 @@
   + depth = 深度 = 神经元个数 理解：每个神经元都会得到一层图像(feature map) 图像的层数=深度
   + stride = 步长 = 窗口滑动多少格
   + zero-padding 得到的feature map可能是对应到一个值 维度、数量会变小 最后就收缩没了，所以要用0填充（注意这里是给原来数据填充0以满足滑窗）
-+ 过程： 所有的滑窗先和第一个神经元（filter w0）做卷积 得到第一层
+  + 过程： 所有的滑窗先和第一个神经元（filter w0）做卷积 得到第一层
        + 所有的滑窗再和第二个神经元（filter w1）做卷积 得到第二层
        + w0可能捕捉的是图像的颜色  w1可能捕捉的是图像的轮廓 每个神经元都有各自的功能
-
-+ 所以总结下来，每个神经元连接窗体的权重是一样的（参数共享性质） 每个神经元只关注一个特性 
-+ 这样一组固定的权重和不同窗口内的数据做内积的过程 就是 卷积
+  + 所以总结下来，每个神经元连接窗体的权重是一样的（参数共享性质） 每个神经元只关注一个特性 
+  + 这样一组固定的权重和不同窗口内的数据做内积的过程 就是 卷积
 
 + activation layer=> 对卷积层的结果做非线性映射  
   + 常用的一些 老（sigmoid  tanh） 新（leaky-relu maxout relu elu）
@@ -47,7 +46,7 @@
  + 问题1：w权重参数是怎么定义出来的？
  + 问题2：max pooling 最强特征为什么等同于最大值？
  
- + fc layer=> 一般放在CNN尾部 用softmax 做分类或者 做回归
++ fc layer=> 一般放在CNN尾部 用softmax 做分类或者 做回归
  + 如果放在其他层次 可能是做融合，使信息更加完善
  + google2014 inception net中用全局池化代替全连接层，从那以后这个层可有可无 inception net 参考论文going deep with revolutions
 
@@ -66,7 +65,7 @@
   + 需要调参，大样本数据量， GPU硬件依赖
   + 物理含义不明确，可解释性不强
 
-## 梯度消失的本质原因？
+## 梯度消失的本质原因？？？
 + sigmoid函数求导后在0处取得最大值1/4
 > import numpy as np
 
@@ -86,4 +85,10 @@
 + 所以乘积永远都小于1/4
 
 ## CNN既然有先天缺陷，能替代吗？？？
-+ https://baijiahao.baidu.com/s?id=1634461796649152771&wfr=spider&for=pc
++ [中文简介](https://baijiahao.baidu.com/s?id=1634461796649152771&wfr=spider&for=pc)
++ [英文详介](https://medium.com/ai%C2%B3-theory-practice-business/understanding-hintons-capsule-networks-part-i-intuition-b4b559d1159b)
+
+## 如何解决梯度消失？？？
++ 激活函数
++ BN
++ 残差网络
