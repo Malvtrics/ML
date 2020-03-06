@@ -52,22 +52,24 @@ activation layer=> 对卷积层的结果做非线性映射
  如果放在其他层次 可能是做融合，使信息更加完善
  google2014 inception net中用全局池化代替全连接层，从那以后这个层可有可无 inception net 参考论文going deep with revolutions
 
-3.CNN的损失函数是怎样的？
-先看下GD BGD SGD
-BGD(Batch Gradient Descent，批量梯度下降)：
-SGD(Stochastic Gradient Descent，随机梯度下降)：仅仅选取一个样本j来求梯度。=> CNN 用这个
+##  CNN的损失函数是怎样的？
++ 先看下GD BGD SGD
++ BGD(Batch Gradient Descent，批量梯度下降)：
++ SGD(Stochastic Gradient Descent，随机梯度下降)：仅仅选取一个样本j来求梯度。=> CNN 用这个
++ 简单代码实现参考：几种随机梯度下降试验.py
 
-4. CNN 优缺点？
-共享卷积核 优化计算量 
-不用手选特征，自动训练权重  
-深层次网络抽取图像信息丰富，表达效果好
+## CNN 优缺点？
++ 共享卷积核 优化计算量 
++ 不用手选特征，自动训练权重  
++ 深层次网络抽取图像信息丰富，表达效果好
 
-需要调参，大样本数据量， GPU硬件依赖
-物理含义不明确
++ 需要调参，大样本数据量， GPU硬件依赖
++ 物理含义不明确，可解释性不强
 
 ## 梯度消失的本质原因？
 + sigmoid函数求导后在0处取得最大值1/4
 > import numpy as np
+
 > import matplotlib.pyplot as plt
 > x = np.linspace(-10,10,200)
 > y = np.exp(-x) / pow((1+np.exp(-x)),2)
