@@ -42,12 +42,12 @@
   + 某些情况tanh有不错效果 但是比较少
   
 + pooling layer=> 下采样来减小过拟合 max pooling / average pooling  取滑窗的均值还是最大值（最强特征）
- + 问题1：w权重参数是怎么定义出来的？
- + 问题2：max pooling 最强特征为什么等同于最大值？
+  + 问题1：w权重参数是怎么定义出来的？
+  + 问题2：max pooling 最强特征为什么等同于最大值？
  
 + fc layer=> 一般放在CNN尾部 用softmax 做分类或者 做回归
- + 如果放在其他层次 可能是做融合，使信息更加完善
- + google2014 inception net中用全局池化代替全连接层，从那以后这个层可有可无 inception net 参考论文going deep with revolutions
+  + 如果放在其他层次 可能是做融合，使信息更加完善 
+  + google2014 inception net中用全局池化代替全连接层，从那以后这个层可有可无 inception net 参考论文going deep with revolutions
 
 ##  CNN的损失函数？
 + 先看下GD BGD SGD
@@ -82,5 +82,7 @@ plt.show()</code></pre>
 
 ## 如何解决梯度消失？？？
 + 激活函数
-+ BN
++ [BN](https://zhuanlan.zhihu.com/p/34879333)
+  + 理解：通过对每一层的输出规范为均值和方差一致的做法，消除了反向传播因式中w带来的方法或者缩小的影响
+  + 在论文中这个影响叫做 Internal Covariate Shift (由于网络中参数变化而引起内部结点数据分布发生变化的这一过程)
 + 残差网络
