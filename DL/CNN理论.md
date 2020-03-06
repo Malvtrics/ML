@@ -42,7 +42,6 @@
   + 某些情况tanh有不错效果 但是比较少
   
 + pooling layer=> 下采样来减小过拟合 max pooling / average pooling  取滑窗的均值还是最大值（最强特征）
- 
  + 问题1：w权重参数是怎么定义出来的？
  + 问题2：max pooling 最强特征为什么等同于最大值？
  
@@ -67,20 +66,15 @@
 
 ## 梯度消失的本质原因？？？
 + sigmoid函数求导后在0处取得最大值1/4
-> import numpy as np
-
-> import matplotlib.pyplot as plt
-
-> x = np.linspace(-10,10,200)
-
-> y = np.exp(-x) / pow((1+np.exp(-x)),2)
-
-> ax = plt.subplot(111)
-
-> ax.plot(x,y)
-
-> plt.show()
-
+<pre><code>
+import numpy as np
+import matplotlib.pyplot as plt
+x = np.linspace(-10,10,200)
+y = np.exp(-x) / pow((1+np.exp(-x)),2)
+ax = plt.subplot(111)
+ax.plot(x,y)
+plt.show()
+</code></pre>
 + 通常初始化权重用均值为0标准差为1的高斯分布
 + 所以乘积永远都小于1/4
 
