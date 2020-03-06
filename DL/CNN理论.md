@@ -1,15 +1,15 @@
-首先看清楚几个缩写 
-ANN artificial neural network 人工神经网络 
-FNN feedforward 前馈神经网络 
-CNN convolutional 卷积神经网络 
-RNN recurrent 循环神经网络
+## 首先看清楚几个缩写 !!!
++ ANN artificial neural network 人工神经网络 
++ FNN feedforward 前馈神经网络 
++ CNN convolutional 卷积神经网络 
++ RNN recurrent 循环神经网络
 
-1.为什么要用CNN? 
-1）过拟合 2）计算量
-以图像为例
-假设原始图像有256*256*3个像素的数据，粗略计算可能是10万，然后经过第一层神经元，如果神经元个数太少则无法表达原始丰富信息
-假设第一层有4096个神经元，那么参数有大概4亿 这么多的参数，训练之后是很可能过拟合的
-这么多的参数，现在都是放到GPU上，会有很大的计算量，消耗资源严重
+## 为什么要用CNN? 
++ 1）过拟合 2）计算量
++ 以图像为例
++ 假设原始图像有256*256*3个像素的数据，粗略计算可能是10万，然后经过第一层神经元，如果神经元个数太少则无法表达原始丰富信息
++ 假设第一层有4096个神经元，那么参数有大概4亿 这么多的参数，训练之后是很可能过拟合的
++ 这么多的参数，现在都是放到GPU上，会有很大的计算量，消耗资源严重
 
 2.CNN包括哪些层？
 input layer=>CONV layer=>activation layer=>pooling layer=>FC(full connection???全连接层) layer=>batch normalization(optional)
@@ -64,3 +64,18 @@ SGD(Stochastic Gradient Descent，随机梯度下降)：仅仅选取一个样本
 
 需要调参，大样本数据量， GPU硬件依赖
 物理含义不明确
+
+## 梯度消失的本质原因？
++ sigmoid函数求导后在0处取得最大值1/4
+> import numpy as np
+> import matplotlib.pyplot as plt
+> x = np.linspace(-10,10,200)
+> y = np.exp(-x) / pow((1+np.exp(-x)),2)
+> ax = plt.subplot(111)
+> ax.plot(x,y)
+> plt.show()
++ 通常初始化权重用均值为0标准差为1的高斯分布
++ 所以乘积永远都小于1/4
+
+## CNN既然有先天缺陷，能替代吗？？？
++ https://baijiahao.baidu.com/s?id=1634461796649152771&wfr=spider&for=pc
