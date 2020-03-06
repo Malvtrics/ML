@@ -66,15 +66,13 @@
 
 ## 梯度消失的本质原因？？？
 + sigmoid函数求导后在0处取得最大值1/4
-<pre><code>
-import numpy as np
+<pre><code>import numpy as np
 import matplotlib.pyplot as plt
 x = np.linspace(-10,10,200)
 y = np.exp(-x) / pow((1+np.exp(-x)),2)
 ax = plt.subplot(111)
 ax.plot(x,y)
-plt.show()
-</code></pre>
+plt.show()</code></pre>
 + 通常初始化权重用均值为0标准差为1的高斯分布
 + 所以乘积永远都小于1/4
 
