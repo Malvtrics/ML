@@ -16,6 +16,8 @@ pip install tensorflow==1.14.0 -i https://pypi.tuna.tsinghua.edu.cn/simple --tru
 pip install tensorflow==1.14.0 -i https://www.lfd.uci.edu/~gohlke/pythonlibs/ --trusted-host www.lfd.uci.edu
 pip install tensorflow==1.14.0 -i https://mirrors.ustc.edu.cn/pypi/web/simple --trusted-host mirrors.ustc.edu.cn
 pip install tensorflow==1.14.0 -i https://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
+注意一个问题！这里默认安装的是gpu版本的，如果要安装CPU版本，需要这样指定
+pip install tensorflow-cpu==1.14.0 -i https://pypi.tuna.tsinghua.edu.cn/simple --trusted-host pypi.tuna.tsinghua.edu.cn
 
 没有依赖包时候的几个解决方法 ：
 1) anaconda search -t conda 要安装的包,选择符合条件的安装包路径
