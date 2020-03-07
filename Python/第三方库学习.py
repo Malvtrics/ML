@@ -1,3 +1,17 @@
+##总论
+##数据分析 1)Numpy: 表达N维数组的最基础库 2)Pandas: Python数据分析高层次应用库  3)SciPy: 数学、科学和工程计算功能库
+##数据可视化 1)Matplotlib: 高质量的二维数据可视化功能库 2)Seaborn: 统计类数据可视化功能库 3)Mayavi:三维科学数据可视化功能库
+##文本处理 1)PyPDF2： 用来处理pdf文件的工具集 2)NLTK： 自然语言文本处理第三方库  3)Python-docx： 创建或更新Microsoft Word文件的第三方库
+##机器学习 1)Scikit-learn: 机器学习方法工具集 2)MXNet:基于神经网络的深度学习计算框架 3)TensorFlow:谷歌开发的机器学习计算框架
+##网络爬虫 1)Requests: 最友好的网络爬虫功能库 2)Scrapy: 优秀的网络爬虫框架，Python数据分析高层次应用库 3)pyspider: 强大的Web页面爬取系统
+##Web信息提取 1)Beautiful Soup: HTML和XML的解析库 2)Re: 正则表达式解析和处理功能库（无需安装） 3)Python-Goose: 提取文章类型Web页面的功能库
+##Web网站开发 1)Django: 最流行的Web应用框架 2)Pyramid: 规模适中的Web应用框架 3)Flask: Web应用开发微框架
+##网络应用开发 1)WeRoBot: 微信公众号开发框架 2)aip: 百度AI开放平台接口 3)MyQR: 二维码生成第三方库
+##图形用户界面 Graphical User Interface 1)PyQt5: Qt开发框架的Python接口 2)wxPython: 跨平台GUI开发框架 3)PyGObject: 使用GTK+开发GUI的功能库
+##游戏开发 1) PyGame: 简单的游戏开发功能库 2) Panda3D: 开源、跨平台的3D渲染和游戏开发库 3) cocos2d: 构建2D游戏和图形界面交互式应用的框架
+##虚拟现实 1)VR Zero: 在树莓派上开发VR应用的Python库 2) pyovr: Oculus Rift的Python开发接口 3)Vizard: 基于Python的通用VR开发引擎
+##图形艺术 1)Quads: 迭代的艺术 2)ascii_art: ASCII艺术库 3)turtle: 海龟绘图体系
+
 ##1.request库用来做爬虫的，后面继续补充例子
 import requests
 
