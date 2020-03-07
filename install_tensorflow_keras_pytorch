@@ -93,4 +93,9 @@ win10下如何运行.sh文件?
 #注意pythonpath的设置 export pythonpath='xxxx'把目录加到环境变量中可以解决找不到对应库的问题
 #调用Python文件的时候，如果文件在根目录，直接python filename.py,否则要python a/b/c.py 这样c.py中涉及到路径的都是从根目录开始找
 
-
+检测本机tensorflow是否支持gpu,cmd下python环境输入下面命令
+import tensorflow as tf
+sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))
+如果可以使用gpu会出现匹配设备信息
+Device mapping:
+/job:localhost/replica:0/task:0/device:GPU:0 -> device: 0, name: GeForce GTX 960M, pci bus id: 0000:02:00.0, compute capability: 5.0
