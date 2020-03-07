@@ -176,3 +176,7 @@ with tf.Session() as sess:
             batch_num += 1
         print("test loss:", test_loss / batch_num)
         print("test acc:", test_acc / batch_num)
+
+        
+##熟悉一下网络结构，最后没有跑成功 164行代码没有跑成功，需要进一步查看问题
+##https://blog.csdn.net/enchanted_zhouh/article/details/76855108 参考链接
