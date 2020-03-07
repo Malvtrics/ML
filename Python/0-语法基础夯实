@@ -1,12 +1,12 @@
-夯实基础
-1:命名规范:字母/下划线开头后跟数字/字母/下划线  变量命名推荐使用驼峰标识
-3:代码包含中文要在头部指定 #coding=utf-8
-4:如果脚本文件的第一行以 #! 开头称为 "shebang" 行,Linux和其他类Unix操作系统用该行指示应该如何执行脚本
-6:错误AttributeError: module 'turtle' has no attribute 'setup' 问题:自己的文件命名不要和系统文件命名一样 turtle.py wordcloud.py etc
-7:python整数范围-308到+308 精度10的﹣16次方 / 用53位二进制表示小数部分 
+## 夯实基础
+1.命名规范:字母/下划线开头后跟数字/字母/下划线  变量命名推荐使用驼峰标识
+2.代码包含中文要在头部指定 #coding=utf-8
+3.如果脚本文件的第一行以 #! 开头称为 "shebang" 行,Linux和其他类Unix操作系统用该行指示应该如何执行脚本
+4.错误AttributeError: module 'turtle' has no attribute 'setup' 问题:自己的文件命名不要和系统文件命名一样 turtle.py wordcloud.py etc
+5.python整数范围-308到+308 精度10的﹣16次方 / 用53位二进制表示小数部分 
   注意：整数除法结果是浮点数 两个除号结果是整数 在pyhton3中，"/"表示的就是float除，不需要再引入模块，就算分子分母都是int，返回的也将是浮点数
   0o八进制 0x16
-8:pow(x,y,z)相当于x**y%z :当z这个参数不存在时 x,y 不限制是否为 float 类型, 而当使用第三个参数的时候要保证前两个参数只能为整数
+6.pow(x,y,z)相当于x**y%z :当z这个参数不存在时 x,y 不限制是否为 float 类型, 而当使用第三个参数的时候要保证前两个参数只能为整数
 9:x and y 布尔"与" - 如果 x 为 False，x and y 返回 False，否则它返回 y 的计算值。
   x or y 布尔"或" - 如果 x 是 True，它返回 True，否则它返回 y 的计算值。
 	a = 10 
@@ -228,6 +228,8 @@ x=3==3,5 从右向左  x => (True,5)
     双下划线主要是针对于类使用，单下划线主要用于模块导入时候的限制
 https://stackoverflow.com/questions/6930144/underscore-vs-double-underscore-with-variables-and-methods
 73：可以用 string.isidentifier()判断是不是有效的python标识符
+74.[python中单下划线开头变量或者函数的理解](https://blog.csdn.net/debugm/article/details/8179482)
+
 非语法问题
 1:IDE用VSCODE原因是 扩展性、易用性强，免费，具体可以参考https://arbisoft.com/vs-code-versus-pycharm-the-smackdown/
 2:根据二八法则，八成时间消耗在两成代码中，这些代码大部分是循环代码，所以主要看循环代码的性能
