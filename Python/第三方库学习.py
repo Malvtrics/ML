@@ -1,6 +1,4 @@
-##一些比较好玩的第三方库
-
-##request库用来做爬虫的，后面继续补充例子
+##1.request库用来做爬虫的，后面继续补充例子
 import requests
 
 # url = 'https://www.baidu.com'
@@ -40,7 +38,7 @@ if captcha:
 with open('163_login.txt','w+',encoding='utf-8') as f:
     f.write(resp.text)
 
-##处理json文件的库 
+##2.处理json文件的库 
 import json
 config = {"name":"martin","location":"shanghai"}
 #load/dump use to json file
@@ -57,7 +55,7 @@ print(config)
 new_config_str = json.dumps(config)
 print(type(new_config_str))
 
-##处理csv文件
+##3.处理csv文件
 import csv
 
 label_list = []
@@ -76,7 +74,7 @@ with open("sales.csv","r") as f:
 print(feature_list)
 print(label_list)
 
-##scipy后面可能考虑单独列出来，暂时放在这里
+##4.scipy后面可能考虑单独列出来，暂时放在这里
 --求解方程
 from scipy.optimize import fsolve
 
@@ -91,14 +89,14 @@ def f(i):
 result = fsolve(f, [0,0,0])
 print(result)
 
-##画中心热度图
+##5.画中心热度图
 import scipy.ndimage
 gaussian = scipy.ndimage.filters.gaussian_filter(noisy_horizon,3.0)
 plt.imshow(gaussian,aspect=0.5,vmin=vmin,vmax=vmax)
 plt.show()
 
 
-##专门用来读配置文件的库，这个库还是有点用的
+##6.专门用来读配置文件的库，这个库还是有点用的
 from configobj import ConfigObj
 conf_ini = "test.ini"
 config = ConfigObj(conf_ini, encoding='UTF8')
@@ -114,7 +112,7 @@ serverport = 8000
 server = localhost
 port = 8000
 
-##pickle库有毛用？？？ 知乎上的回答：
+##7.pickle库有毛用？？？ 知乎上的回答：
 ##很多入门教程里讲解序列化一般是这个流程：对象1->序列化->字节串->反序列化->对象2
 ##所以很多人并不知道为什么要序列化
 ##估计很多人都有耳闻 Python 在处理计算密集型的任务时性能不好，一般不能充分使用多核 CPU 的优势，这时候会使用多进程来优化
@@ -140,7 +138,7 @@ obj2 = pickle.loads(s_obj)
 print(type(obj2))
 print(obj2.x,obj2.y)
 
-##psutil库有毛用？？
+##8.psutil库有毛用？？
 ##psutil能够轻松实现获取系统运行的进程和系统利用率
 import psutil
 
@@ -161,7 +159,21 @@ print(p.name())
 print(p.cwd())
 print(p.status())
 
-#redis库有毛用？？
+#9.redis库有毛用？？
 #需要先启动本机的redis服务，熟悉一些redis的操作
 #redis主要用于实现 缓存 和 任务队列分发
 import redis 
+
+##10.glob库
+#glob模块是最简单的模块之一，内容非常少。用它可以查找符合特定规则的文件路径名。
+#跟使用windows下的文件搜索差不多。查找文件只用到三个匹配符："*", "?", "[]"。
+#"*"匹配0个或多个字符；"?"匹配单个字符；"[]"匹配指定范围内的字符，如：[0-9]匹配数字。
+import glob  
+#获取指定目录下的所有图片  
+print glob.glob(r"E:\Picture\*\*.jpg")  
+#获取上级目录的所有.py文件  
+print glob.glob(r'../*.py') #相对路径  
+
+
+
+
