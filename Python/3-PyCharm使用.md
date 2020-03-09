@@ -5,3 +5,4 @@
 + 第三方库直接cmd pip install后在pycharm里面没用，要在pycharm中设置环境
 + [快速提示函数](https://blog.csdn.net/u011012422/article/details/84839131)
 + ctrl+R replace all
++ ctrl+alt+-左箭头 返回上一个位置
