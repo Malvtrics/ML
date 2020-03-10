@@ -1,8 +1,8 @@
 ## source code[https://github.com/tensorboy/pytorch_Realtime_Multi-Person_Pose_Estimation]
 
 ## args库
-+ meavar给参数提供别名[https://blog.csdn.net/weixin_41803874/article/details/102586362]
-+ parser.add_argument参数介绍[https://blog.csdn.net/Samaritan_x/article/details/84146029]
++ (meavar给参数提供别名)[https://blog.csdn.net/weixin_41803874/article/details/102586362]
++ (parser.add_argument参数介绍)[https://blog.csdn.net/Samaritan_x/article/details/84146029]
 ## pilow库
 + 对图像做各种处理
 
@@ -63,5 +63,5 @@ from .default import _C as cfg
 from .default import update_config
 </code></pre>
 + default 文件中 通过 from yacs.config import CfgNode as CN 定义节点
-+ 具体可以参考这个博客 https://blog.csdn.net/gefeng1209/article/details/90668882
++ 具体可以参考这个(博客)[https://blog.csdn.net/gefeng1209/article/details/90668882]
 
