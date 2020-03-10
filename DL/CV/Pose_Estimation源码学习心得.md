@@ -43,10 +43,12 @@ x += learning_rate * vx
 	* 在文件夹中包含一个__init__.py，Python就会把文件夹当作一个package，里面的py文件就能够在外面被import了
 11. yacs具体怎么配置的？？？
 	* 首先lib/config 文件夹里有__init__.py文件和default文件
+	* default 文件中 通过 `from yacs.config import CfgNode as CN` 定义节点
+	* [参考](https://blog.csdn.net/gefeng1209/article/details/90668882])
 ```python
 from .default import _C as cfg
 from .default import update_config
 ```
-	* default 文件中 通过 `from yacs.config import CfgNode as CN` 定义节点
-	* [参考](https://blog.csdn.net/gefeng1209/article/details/90668882])
+
+       
 
