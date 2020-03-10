@@ -27,7 +27,7 @@ show_batch()
 6. train的时候数据做shuffle,val的数据集不做shuffle
 7. python中collection库中的有序字典类[OrderdDict](https://www.cnblogs.com/notzy/p/9312049.html)
 8. [pytorch request_grad属性](https://zhuanlan.zhihu.com/p/85506092)
-9. sgd * momentum (可以控制参数是否要momentum)
+9. SGD中的momentum干啥的？？
 	* 与传统SGD相比，这个方法使得下降更具有方向性 原来是纵轴方向的震荡更大一些，现在我们在迭代的时候
 	* 考虑水平方向和纵轴方向的震荡，希望能够在水平方向上移动更快一些，这样可以快速趋向最佳点
 	*对比伪代码：
