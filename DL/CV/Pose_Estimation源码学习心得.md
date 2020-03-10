@@ -62,6 +62,6 @@ x += learning_rate * vx
 from .default import _C as cfg
 from .default import update_config
 </code></pre>
-+ default 文件中 通过 from yacs.config import CfgNode as CN 定义节点
++ default 文件中 通过 'from yacs.config import CfgNode as CN' 定义节点
 + 具体可以参考这个(博客)[https://blog.csdn.net/gefeng1209/article/details/90668882]
 
