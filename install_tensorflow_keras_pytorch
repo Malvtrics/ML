@@ -1,6 +1,7 @@
 anaconda下安装tensorflow
 conda create --name tensorflow
 activate tensorflow 
+如果出现activate 不成功的情况 可以试一下在这个命令之前运行 source activate命令
 pip install --user tensorflow (没有--user会出现权限不够无法更新包的问题)
 
 安装Tensorflow 2.0后的坑has no attribute 'contrib'所以要装回1.x
