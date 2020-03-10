@@ -28,7 +28,7 @@ def show_batch():
             #training:
             print('epoch:{},step:{},batch_x:{}，batch_y:{}'.format(epoch,step,batch_x,batch_y))
 show_batch()
-</code><pre>
+</code></pre>
 
 ## train的时候数据做shuffle
 ## val的数据集不做shuffle
@@ -51,7 +51,7 @@ sgd momentum 伪代码：
 dx = compute_gradient(x)
 vx = rho *  vx + dx 
 x += learning_rate * vx 
-</code><pre>
+</code></pre>
 
 ## 在文件夹中包含一个__init__.py，Python就会把文件夹当作一个package，里面的py文件就能够在外面被import了
 
