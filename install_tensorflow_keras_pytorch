@@ -99,7 +99,7 @@ win10下如何运行.sh文件?
     yaml文件中的参数需要在default文件中定义才能使用，需要经过一个初始化的操作
 24. pillow版本和torchvision版本冲突问题
     https://github.com/pytorch/vision/issues/1712
-25. 
+25. 仔细看update_config这个函数，里头定义模型以及其他路径是如何拼接生成的
 
 检测本机tensorflow是否支持gpu,cmd下python环境输入下面命令
 import tensorflow as tf
