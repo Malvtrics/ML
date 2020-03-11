@@ -97,11 +97,9 @@ win10下如何运行.sh文件?
 22. 配置文件yaml也要放在根目录
 23. raise KeyError("Non-existent config key: {}".format(full_key))
     yaml文件中的参数需要在default文件中定义才能使用，需要经过一个初始化的操作
-
-
-
-#pillow版本和torchvision版本冲突问题
-https://github.com/pytorch/vision/issues/1712
+24. pillow版本和torchvision版本冲突问题
+    https://github.com/pytorch/vision/issues/1712
+25. 
 
 检测本机tensorflow是否支持gpu,cmd下python环境输入下面命令
 import tensorflow as tf
