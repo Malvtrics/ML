@@ -77,3 +77,4 @@
 + CUDA -> compute unified device architecture->NVIDIA 推出的通用并行计算架构，使GPU可以解决复杂的计算问题
 + NVIDIA -> 因为invidia被人注册改成了nvidia 所以中文翻译
 + w.r.t. -> with respect to -> 关于
++ Amazon Mechanical Turk 是一个论坛，请求者可在其上将工作发布为人工智能任务 (HIT)。工作人员完成 HIT 以兑换奖励。您使用 Mechanical Turk 开发人员沙盒、Amazon Mechanical Turk API 和 AWS 开发工具包编写、测试和发布您的 HIT
