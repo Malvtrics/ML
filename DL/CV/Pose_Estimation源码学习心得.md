@@ -55,9 +55,9 @@ from .default import update_config
 * 当计算机的内存充足的时候，可以设置pin_memory=True。当系统卡住，或者交换内存使用过多的时候，设置pin_memory=False。因为pin_memory与电脑硬件性能有关，
 * pytorch 开发者不能确保每一个炼丹玩家都有高端设备，因此pin_memory默认为False。
 13. [理解COCO数据集的标注格式](https://zhuanlan.zhihu.com/p/29393415)
-14. [COCO数据集标注格式的segmentation里的ploygon和RLE具体都是什么？](https://www.zhihu.com/question/267996016)
+14. [COCO数据集标注格式的segmentation里的ploygon和RLE具体都是什么??](https://www.zhihu.com/question/267996016)
 15. [什么是 Amazon Mechanical Turk？](https://aws.amazon.com/cn/premiumsupport/knowledge-center/mechanical-turk-use-cases/)
-16. [什么是RLE格式](https://blog.csdn.net/wangdongwei0/article/details/83820869)
+16. [什么是RLE格式??](https://blog.csdn.net/wangdongwei0/article/details/83820869)
 
 
 
