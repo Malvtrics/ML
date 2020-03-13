@@ -71,6 +71,8 @@
 + analogous -> 类似的
 + oscillate -> 摆动
 + dampening -> 减震
++ extremums -> 极值
++ homograph estimation-> 单应图估计
 
 ### Abbreviations:
 
