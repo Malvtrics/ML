@@ -58,7 +58,10 @@ from .default import update_config
 14. [COCO数据集标注格式的segmentation里的ploygon和RLE具体都是什么??](https://www.zhihu.com/question/267996016)
 15. [什么是 Amazon Mechanical Turk？](https://aws.amazon.com/cn/premiumsupport/knowledge-center/mechanical-turk-use-cases/)
 16. [什么是RLE格式??](https://blog.csdn.net/wangdongwei0/article/details/83820869)
-
+17. [adam算法刨根问底](https://blog.csdn.net/wfei101/article/details/79938305)
+   + [算法参考](https://juejin.im/entry/5983115f6fb9a03c50227fd4)
+   + 优化算法-> 一阶优化 + 二阶优化(太浪费资源，pass) -> 一阶优化 -> 梯度下降 -> 变种：SGD  MinibatchSGD 
+   + 继续优化 -> 动量法(较小无关方向震荡) -> Nesterov梯度加速法 -> Adagrad -> AdaDelta -> Adam
 
 
 
