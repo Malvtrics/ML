@@ -63,6 +63,6 @@ from .default import update_config
    + 优化算法-> 一阶优化 + 二阶优化(太浪费资源，pass) -> 一阶优化 -> 梯度下降 -> 变种：SGD  MinibatchSGD 
    + 继续优化 -> 动量法(较小无关方向震荡) -> Nesterov梯度加速法 -> Adagrad -> AdaDelta -> Adam
    + [2019 新算法Adabound](https://medium.com/syncedreview/iclr-2019-fast-as-adam-good-as-sgd-new-optimizer-has-both-78e37e8f9a34#:~:text=SGD%20is%20a%20variant%20of,random%20selection%20of%20data%20examples.&text=Essentially%20Adam%20is%20an%20algorithm,optimization%20of%20stochastic%20objective%20functions.)
-
+18. 
 
 
