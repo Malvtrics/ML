@@ -63,11 +63,15 @@ manifold.TSNE([n_components, perplexity, …])	t-distributed Stochastic Neighbor
 '''
 
 '''
-线性回归
+线性回归应用经验1
 libsvm 一个c++ 的库，稀疏向量存储格式海量数据下单机速度还OK
 高纬度离散化特征 准确率逼近非线性切分
 参数调节比较方便
 scikit learn中的LR是对libsvm的封装
+经验2 spark MLlib
+spark中有两个板块一个ml一个ml lib这两个板块中都有lr都可以完成并行化的优化
 
 '''
 '''
+from sklearn.linear_model import LinearRegression
+## kaggle旧金山犯罪问题 https://blog.csdn.net/GitzLiu/article/details/80212581
