@@ -41,6 +41,7 @@ print(ppn.coef_)#coef_是训练得到的模型参数
 y_pred = ppn.predict(X_test)
 print(y_pred)
 
+'''
 manifold模块
 
 多维度数据集非常难于可视化。反而2维或者3维数据很容易通过图表展示数据本身的内部结构，等价的高维绘图就远没有那么直观了。
@@ -59,3 +60,14 @@ Manifold Learing可以看作一种生成类似PCA的线性框架，不同的是�
 虽然存在监督变体，但是典型的流式学习问题是非监督的：它从数据本身学习高维结构，不需要使用既定的分类。
 
 manifold.TSNE([n_components, perplexity, …])	t-distributed Stochastic Neighbor Embedding.	T-SNE
+'''
+
+'''
+线性回归
+libsvm 一个c++ 的库，稀疏向量存储格式海量数据下单机速度还OK
+高纬度离散化特征 准确率逼近非线性切分
+参数调节比较方便
+scikit learn中的LR是对libsvm的封装
+
+'''
+'''
