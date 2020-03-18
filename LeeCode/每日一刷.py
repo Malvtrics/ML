@@ -19,3 +19,12 @@ class Solution(object):
             else: #注意这里for else的用法，基础语法还是不够熟练，else就是上面的for循环结束之后走这里，上面的for循环结束，也就是没有发生break
                 res += len(word)
         return res
+#面试题64 https://leetcode-cn.com/problems/qiu-12n-lcof/
+#Python基础and的用法
+class Solution(object):
+    def sumNums(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        return n and n + self.sumNums(n-1)
