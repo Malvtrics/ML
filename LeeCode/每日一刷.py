@@ -4,11 +4,6 @@
 #使用collections.Counter方法返回统计词频的字典
 class Solution(object):
     def countCharacters(self, words, chars):
-        """
-        :type words: List[str]
-        :type chars: str
-        :rtype: int
-        """
         res = 0
         t1 = collections.Counter(chars)
         for word in words:
@@ -23,8 +18,4 @@ class Solution(object):
 #Python基础and的用法
 class Solution(object):
     def sumNums(self, n):
-        """
-        :type n: int
-        :rtype: int
-        """
         return n and n + self.sumNums(n-1)
