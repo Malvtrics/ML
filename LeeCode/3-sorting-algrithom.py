@@ -69,3 +69,16 @@ def quickSort(arr,low,high):
         pi = partition(arr,low,high) 
         quickSort(arr, low, pi-1) 
         quickSort(arr, pi+1, high) 
+#快排的另外一种好理解的算法
+def quicksort(arr):
+    if len(arr) < 2:
+        return arr
+    mid = arr[len(arr)//2]
+    left,right = [],[]
+    arr.remove(mid)
+    for i in arr:
+        if i <= mid:
+            left.append(i)
+        else:
+            right.append(i)
+    return quicksort(left)+[mid]+quicksort(right)
