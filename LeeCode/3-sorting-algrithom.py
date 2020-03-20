@@ -93,7 +93,7 @@ def quicksort(arr):
 #掌握快排之后 做面试题40如鱼得水 https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/
 #可以轻松解决前k小问题
 class Solution:
-    def partition(arr,low,high):
+    def partition(self,arr,low,high):
         i = low-1
         pivot = arr[high]
         for j in range(low,high):
@@ -108,13 +108,13 @@ class Solution:
             return arr
         else: 
             low = 0
-            high = len(arr)
+            high = len(arr)-1
             while(low < high):
                 m = self.partition(arr, low, high)
                 if m == k: 
                     break
                 elif m > k:
-                    high -= 1 
+                    high = m - 1 
                 else:
                     low = m + 1
         return arr[:k]
