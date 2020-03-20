@@ -1,6 +1,6 @@
 '''
 基本的排序算法：冒泡 插入
-常见排序算法：归并 快排 拓扑
+常见排序算法：归并 快排(面试题40) 拓扑
 其他排序算法 桶排序、堆排序
 '''
 def bubblesort(arr):
@@ -61,14 +61,14 @@ def partition(arr,low,high):
     pivot = arr[high]     
     for j in range(low , high): 
         if arr[j] <= pivot: 
-            print('i=',i,';j=',j)
+            #print('i=',i,';j=',j)
             i = i+1 
-            print('i=',i,';j=',j)
-            print(arr)
+            #print('i=',i,';j=',j)
+            #print(arr)
             arr[i],arr[j] = arr[j],arr[i] 
-            print(arr)
+            #print(arr)
     arr[i+1],arr[high] = arr[high],arr[i+1] 
-    print(arr)
+    #print(arr)
     return (i+1) 
 def quickSort(arr,low,high): 
     if low < high: 
@@ -90,3 +90,31 @@ def quicksort(arr):
         else:
             right.append(i)
     return quicksort(left)+[mid]+quicksort(right)
+#掌握快排之后 做面试题40如鱼得水 https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/
+#可以轻松解决前k小问题
+class Solution:
+    def partition(arr,low,high):
+        i = low-1
+        pivot = arr[high]
+        for j in range(low,high):
+            if arr[j] < pivot:
+                i += 1
+                arr[i],arr[j]  = arr[j],arr[i]
+        arr[high],arr[i+1] = arr[i+1],arr[high]
+        return (i+1)
+
+    def getLeastNumbers(self, arr: List[int], k: int) -> List[int]:
+        if len(arr) < k:
+            return arr
+        else: 
+            low = 0
+            high = len(arr)
+            while(low < high):
+                m = self.partition(arr, low, high)
+                if m == k: 
+                    break
+                elif m > k:
+                    high -= 1 
+                else:
+                    low = m + 1
+        return arr[:k]
