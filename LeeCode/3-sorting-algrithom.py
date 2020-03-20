@@ -55,20 +55,28 @@ def mergeSort(arr,l,r):
         mergeSort(arr, m+1, r) 
         merge(arr, l, m, r) 
 
+#快速排序可以打印出具体变化
 def partition(arr,low,high): 
     i = (low-1) 
     pivot = arr[high]     
     for j in range(low , high): 
         if arr[j] <= pivot: 
+            print('i=',i,';j=',j)
             i = i+1 
+            print('i=',i,';j=',j)
+            print(arr)
             arr[i],arr[j] = arr[j],arr[i] 
+            print(arr)
     arr[i+1],arr[high] = arr[high],arr[i+1] 
+    print(arr)
     return (i+1) 
 def quickSort(arr,low,high): 
     if low < high: 
         pi = partition(arr,low,high) 
         quickSort(arr, low, pi-1) 
         quickSort(arr, pi+1, high) 
+
+print(quickSort([3,1,7,4,5,2,8,6],0,7))
 #快排的另外一种好理解的算法
 def quicksort(arr):
     if len(arr) < 2:
