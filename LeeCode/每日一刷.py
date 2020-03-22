@@ -19,3 +19,7 @@ class Solution(object):
 class Solution(object):
     def sumNums(self, n):
         return n and n + self.sumNums(n-1)
+#贝祖定理：若a,b是整数,且gcd(a,b)=d，那么对于任意的整数x,y,ax+by都一定是d的倍数，特别地，一定存在整数x,y，使ax+by=d成立。
+class Solution:
+    def canMeasureWater(self, x: int, y: int, z: int) -> bool:
+         return x+y>=z and (z==0 or y and z%math.gcd(x,y)==0)
