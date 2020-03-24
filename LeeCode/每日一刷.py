@@ -23,3 +23,4 @@ class Solution(object):
 class Solution:
     def canMeasureWater(self, x: int, y: int, z: int) -> bool:
          return x+y>=z and (z==0 or y and z%math.gcd(x,y)==0)
+#判断对称二叉树 101题
