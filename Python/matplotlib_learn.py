@@ -1,3 +1,5 @@
+##when you use jupyter notebook you need to add %matplotlib inline
+
 ##基础 点、线、坐标篇
 import numpy as np
 import matplotlib.pyplot as plt 
