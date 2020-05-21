@@ -27,3 +27,8 @@ np.random.randint(10) #6
 np.random.randint(0,3) #0/1/2 指定size的时候可以变成多维，默认是一个数
 np.random.randint(low=1, high=4, size=4, dtype='l')  #array([1, 3, 2, 2]) 
 np.random.randint(low=1, high=4, size=(2,2), dtype='l')  #array([[1, 2],[1, 3]])
+
+np.random.random() #0.646079621090194
+np.random.random(2) #array([0.86282877, 0.18232864])
+np.random.random((2,3)) #array([[0.92367119, 0.54012664, 0.6701567 ],[0.33740348, 0.90552127, 0.65167477]])
+#注意二维参数是元组类型，和np.random.rand以及np.random.randn有区别，和np.random.randint类似需要指定
