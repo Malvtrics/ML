@@ -79,9 +79,11 @@ class coco(imdb):
   cats = self._COCO.loadCats(self._COCO.getCatIds())
   self._classes = tuple(['__background__'] + [c['name'] for c in cats]) 
   #加一个背景类 知识点：数组可以用加号直接扩展，这里用tuple 类型其实是一种强调，因为tuple元素不能修改，所以强调分类数目是极其确定的
-    
-    
-    
+  
+  self._class_to_ind = dict(list(zip(self.classes, list(range(self.num_classes)))))
+  self._class_to_coco_cat_id = dict(list(zip([c['name'] for c in cats], self._COCO.getCatIds()))) 
+  #python3中使用
+
     
     
     
