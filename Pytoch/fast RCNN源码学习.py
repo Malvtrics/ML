@@ -80,10 +80,36 @@ class coco(imdb):
   self._classes = tuple(['__background__'] + [c['name'] for c in cats]) 
   #加一个背景类 知识点：数组可以用加号直接扩展，这里用tuple 类型其实是一种强调，因为tuple元素不能修改，所以强调分类数目是极其确定的
   
-  self._class_to_ind = dict(list(zip(self.classes, list(range(self.num_classes)))))
+  self._class_to_ind = dict(
+    list(
+      zip(self.classes,list(range(self.num_classes)))
+    ))
   self._class_to_coco_cat_id = dict(list(zip([c['name'] for c in cats], self._COCO.getCatIds()))) 
-  #python3中使用
+  #python3中使用了很多内存优化的技巧比如zip,在2中如果a b是两个很大的list zip函数会先把ab拼接成一个大的list放入内存，在3中生成的
+  #是迭代器，其实在3中很多地方都用迭代器来优化，比如range函数返回的就是迭代器
+  #假设有2类 self.num_classes = 2
+  #list(range(10)) = [0,1]
+  #self.classes = ['dog','cat']
+  #zip把数字和类别对应起来 list变成数组 dict变成json键值对格式 
 
-    
+#回到train文件
+from model.faster_rcnn.resnet import resnet
+# initilize the network here.
+    if args.net == 'vgg16':
+        fasterRCNN = vgg16(imdb.classes, pretrained=True, class_agnostic=args.class_agnostic)
+    elif args.net == 'res101':
+        fasterRCNN = resnet(imdb.classes, 101, pretrained=True, class_agnostic=args.class_agnostic)
+    elif args.net == 'res50':
+        fasterRCNN = resnet(imdb.classes, 50, pretrained=True, class_agnostic=args.class_agnostic)
+    elif args.net == 'res152':
+        fasterRCNN = resnet(imdb.classes, 152, pretrained=True, class_agnostic=args.class_agnostic)
+    else:
+        print("network is not defined")
+    pdb.set_trace()
+
+    fasterRCNN.create_architecture()
+#到resnet文件 发现定义了两个基本结构 basicblock bottleneck
+
+
     
     
