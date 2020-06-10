@@ -77,3 +77,5 @@ test_labels = [1,0,1,0,1]
 correct = [float(y==y_) for (y,y_) in zip(test_result,test_labels)]
 #is there any other way ?????
 
+# numpy中数据类型转换会遇到的坑 
+# https://www.cnblogs.com/hhh5460/p/5129032.html
