@@ -20,6 +20,10 @@
 #当每个 CPU 核心运行一个线程的时候，由于每个线程需要共享资源，所以这些资源必须从 CPU 的一个核心被复制到另外一个核心，才能继续运算，
 #这占用了额外的开销。换句话说，在 CPU 为多核的情况下，多线程在性能上不如多进程。
 
+# python中的进程和线程特点看下面两个博客就好
+# https://www.zhihu.com/question/23474039
+# https://zhuanlan.zhihu.com/p/20953544  
+    
 #learn muti processing with python
 #https://www.youtube.com/watch?v=fKl2JW_qrso
 #see video in youtube and learn how this work and why
