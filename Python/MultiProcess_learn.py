@@ -1,7 +1,7 @@
 #https://www.youtube.com/watch?v=fKl2JW_qrso
 #see video in youtube and learn how this work and why
 
-# part1 ---------------------------- a simple example first
+# part1 ------------------------------------------ a simple example first
 
 import time
 
