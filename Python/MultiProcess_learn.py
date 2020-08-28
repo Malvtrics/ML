@@ -1,42 +1,88 @@
-from multiprocessing import Process, Queue
-import os,time,random
+#https://www.youtube.com/watch?v=fKl2JW_qrso
+#see video in youtube and learn how this work and why
 
-def run_proc(name):
-    print("run chile process:{0}, id is {1}",name,os.getpid())
+# part1 : a simple example first
 
-def write(q):
-    print("write quere start : {0}", os.getpid())
-    for value in ['hellow','helloy','helloz','qty1']:
-        q.put(value)
-        print("write value %s" %value)
-        time.sleep(random.random())
+import time
 
-def read(q):
-    print("read queue start : {0}", os.getpid())
-    while(True):
-        value = q.get(True)
-        print("Read value %s" %value)
+start = time.perf_counter()
 
-if __name__ == "__main__":
-    #print("parent process main,id is {0}",os.getpid())
-    #p = Process(target=run_proce,args=("test",))
-    #p = Process(target=run_proc)
-    #print("child process will start:")
-    #p.start()
-    #p.join()
-    #print("child process end")
+def do_somthing():
+    print('sleep for 1 sec....')
+    time.sleep(1)
+    print('sleep 1 sec done')
 
-    q = Queue()
-    pw = Process(target=write,name="write",args=(q,))
-    pr = Process(target=read,name="read",args=(q,))
-    pw.start()
-    pr.start()
-    pw.join()
-    time.sleep(3)
-    pr.terminate()
-    print("done")
+do_somthing()
+do_somthing()
 
+finish = time.perf_counter()
 
-#注意两种不同的queue 一个是线程间 一个是进程间
-#import queue 这是一个模块 Queue.Queue uses a data structure that is shared between threads and locks/mutexes for correct behaviour.
-#from multiprocessing import queue: exchange data by pickling (serializing) objects and sending them through pipes.
+print('time consumed : ',round(finish - start,4), ' secs')
+
+# tasks are rather IO bound or CPU bound
+# CPU bound tasks are crunching a lot of numbers and using the CPU
+# IO bound tasks are wating for input and output operations to be completed and not depend on CPU much
+# some IO bound tasks like file systems and network systems like downloading stuff online
+# we wouldn't get much a speed-up when using threading on CPU bound tasks
+# because those threads are still only running one process
+
+# part2 : use multiprocessing
+
+import time
+import multiprocessing
+
+start = time.perf_counter()
+
+def do_somthing(seconds):
+    print(f'sleep for {seconds} sec....')
+    time.sleep(seconds)
+    print('sleep 1 sec done')
+
+processes = []
+for _ in range(10):
+    p = multiprocessing.Process(target=do_somthing,args=[10])
+    p.start()
+    processes.append(p)
+for process in processes:
+    process.join()
+    
+#join起阻塞的作用 保证在执行最后一行代码之前 进程都跑出结果
+
+finish = time.perf_counter()
+
+print('time consumed : ',round(finish - start,4), ' secs')
+#mac 2 cores, the it will use the free time, change between cores
+
+# python 3.2 add pool and make it easier to add multi processes
+
+# part3 : use pool
+#use concurrent.futures instead of multiprocessing
+import time
+import concurrent.futures
+
+start = time.perf_counter()
+
+def do_somthing(seconds):
+    print(f'sleep for {seconds} sec....')
+    time.sleep(seconds)
+    return f'sleep {seconds} sec done'
+
+with concurrent.futures.ProcessPoolExecutor() as excutor:
+    secs = [5,4,3,2,1]
+    results = excutor.map(do_somthing, secs)
+    for result in results:
+        print(result)
+#join起阻塞的作用 保证在执行最后一行代码之前 进程都跑出结果
+
+finish = time.perf_counter()
+
+print('time consumed : ',round(finish - start,4), ' secs')
+#mac 2 cores, the it will use the free time, change between cores
+
+# python 3.2 add pool and make it easier to add multi processes
+
+# the reason why we get more time here is that:
+# the pool may made decision based on our hardware not to a lot as many processes
+
+# part4: in the real world problems
+# for example there are 1000 images for us to process using PIL lib
