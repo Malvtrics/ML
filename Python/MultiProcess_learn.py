@@ -1,7 +1,7 @@
 #https://www.youtube.com/watch?v=fKl2JW_qrso
 #see video in youtube and learn how this work and why
 
-# part1 : a simple example first
+# part1 ---------------------------- a simple example first
 
 import time
 
@@ -26,7 +26,7 @@ print('time consumed : ',round(finish - start,4), ' secs')
 # we wouldn't get much a speed-up when using threading on CPU bound tasks
 # because those threads are still only running one process
 
-# part2 : use multiprocessing
+# part2 ------------------------------------------ use multiprocessing
 
 import time
 import multiprocessing
@@ -55,7 +55,7 @@ print('time consumed : ',round(finish - start,4), ' secs')
 
 # python 3.2 add pool and make it easier to add multi processes
 
-# part3 : use pool
+# part3 ------------------------------------------ use pool
 #use concurrent.futures instead of multiprocessing
 import time
 import concurrent.futures
@@ -84,5 +84,5 @@ print('time consumed : ',round(finish - start,4), ' secs')
 # the reason why we get more time here is that:
 # the pool may made decision based on our hardware not to a lot as many processes
 
-# part4: in the real world problems
+# part4 ------------------------------------------ in the real world problems
 # for example there are 1000 images for us to process using PIL lib
