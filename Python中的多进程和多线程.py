@@ -28,6 +28,42 @@
 #https://www.youtube.com/watch?v=fKl2JW_qrso
 #see video in youtube and learn how this work and why
 
+# --------多线程部分----------
+
+#首先看下并发和并行的区别
+#你吃饭吃到一半，电话来了，你一直到吃完了以后才去接，这就说明你不支持并发也不支持并行。
+#你吃饭吃到一半，电话来了，你停了下来接了电话，接完后继续吃饭，这说明你支持并发。
+#你吃饭吃到一半，电话来了，你一边打电话一边吃饭，这说明你支持并行。并发的关键是你有处理多个任务的能力，不一定要同时。
+#并行的关键是你有同时处理多个任务的能力。所以我认为它们最关键的点就是：是否是『同时』
+
+#对于多线程，是并发不是并行，  多进程是可以做到并行的
+
+import concurrent.futures.thread
+import time
+
+
+start = time.perf_counter()
+
+def do_somthing(sec):
+    print(f"sleeping {sec} sec(s)")
+    time.sleep(sec)
+    #print("sleeping done")
+    print(f'sleeping {sec} sec(s) done')
+
+with concurrent.futures.ThreadPoolExecutor() as excutor:
+    secs = [5,4,3,2,1]
+    results = excutor.map(do_somthing,secs)
+    for result in results:
+        print(result)
+
+    
+end = time.perf_counter()
+print(f'total seconds : {round(end-start,4)}')
+
+# 这里用图片的例子说明。如果是下载或者读取图片、存储的任务，这种是IO密集型任务，用多线程可以有很快的加速
+# 如果涉及到处理图片，应该用多进程
+
+# ---------多进程部分----------
 # part1 ------------------------------------------ a simple example first
 
 import time
