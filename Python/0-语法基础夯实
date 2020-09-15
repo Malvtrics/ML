@@ -183,7 +183,6 @@ x=3==3,5 从右向左  x => (True,5)
 60: 用rindex和rfind可以从右边开始找
 61: index和find的区别在于当元素不存在的时候index会报错find不会报错
 62: 只有不可变对象可以作为字典的key，可以被哈希 (数字、字符串和元组)              
-63: 当传递某个引用给 getrefcount时候也引用了一次，所以得到的结果比实际多1
 64: 能够被引用改变的对象是可变对象
 65: 矩阵转置的两种方法
     arr = [[1,2,3],[4,5,6],[7,8,9],[10,11,12]]
@@ -233,6 +232,30 @@ x=3==3,5 从右向左  x => (True,5)
 https://stackoverflow.com/questions/6930144/underscore-vs-double-underscore-with-variables-and-methods
 73：可以用 string.isidentifier()判断是不是有效的python标识符
 74.[python中单下划线开头变量或者函数的理解](https://blog.csdn.net/debugm/article/details/8179482)
+75.python的内存管理：https://blog.csdn.net/AlanGuoo/article/details/78756841
+	+ 动态类型语言
+		- 对变量内存地址的分配是在运行时自动检测变量类型并且赋值
+		- python会缓存整形和短字符串 用id()可以检查内存地址是否相同
+	+ 垃圾回收(引用计数+分代回收)
+		- 引用计数 用sys包中的getrefcount()可查看某个对象的引用计数
+		- 注意：当使用某个引用作为参数，传递给getrefcount()时，参数实际上创建了一个临时的引用,所以getrefcount()所得到的结果，会比期望的多1
+		- 垃圾回收时，Python不能进行其它的任务。频繁的垃圾回收将大大降低工作效率。如果内存中对象不多，就没有必要总启动垃圾回收。所以，Python只会在特定条件下，自动启动垃圾回收
+		- 当Python运行时，会记录其中分配对象(object allocation)和取消分配对象(object deallocation)的次数，当两者的差值高于某个阈值时，垃圾回收才会启动。
+		- import gc 
+		- gc.get_threshold() (700,10,10) #700是阈值 每10次0代垃圾回收，会配合1次1代的垃圾回收；而每10次1代的垃圾回收，才会有1次的2代垃圾回收
+		- gc.set_threshold(700,5,5)
+	+ 内存池(金字塔行)
+		- -1，-2层主要有操作系统进行操作
+		- 第0层是C中的malloc，free等内存分配和释放函数进行操作
+		- 第1层和第2层是内存池，由Python的接口函数PyMem_Malloc函数实现，当对象小于256K时有该层直接分配内存
+		- 第3层是最上层，也就是我们对Python对象的直接操作
+	在 C 中如果频繁的调用 malloc 与 free 时,是会产生性能问题的.再加上频繁的分配与释放小块的内存会产生内存碎片
+	Python的优化:
+		- 如果请求分配的内存在1~256字节之间就使用自己的内存管理系统,否则直接使用 malloc
+		- 这里还是会调用 malloc 分配内存,但每次会分配一块大小为256k的大块内存
+		- 经由内存池登记的内存到最后还是会回收到内存池,并不会调用 C 的 free 释放掉
+76. python队列的基本使用 https://www.cnblogs.com/yhleng/p/9493457.html
+
 
 非语法问题
 1:IDE用VSCODE原因是 扩展性、易用性强，免费，具体可以参考https://arbisoft.com/vs-code-versus-pycharm-the-smackdown/
