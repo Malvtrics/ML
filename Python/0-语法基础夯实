@@ -256,7 +256,8 @@ https://stackoverflow.com/questions/6930144/underscore-vs-double-underscore-with
 		- 这里还是会调用 malloc 分配内存,但每次会分配一块大小为256k的大块内存
 		- 经由内存池登记的内存到最后还是会回收到内存池,并不会调用 C 的 free 释放掉
 76. python队列的基本使用 https://www.cnblogs.com/yhleng/p/9493457.html
-
+77. 如何让类支持比较操作 https://python3-cookbook.readthedocs.io/zh_CN/latest/c08/p24_making_classes_support_comparison_operations.html 
+    需要重写 __lt__ 等方法
 
 非语法问题
 1:IDE用VSCODE原因是 扩展性、易用性强，免费，具体可以参考https://arbisoft.com/vs-code-versus-pycharm-the-smackdown/
