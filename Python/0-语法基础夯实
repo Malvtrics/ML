@@ -258,6 +258,7 @@ https://stackoverflow.com/questions/6930144/underscore-vs-double-underscore-with
 76. python队列的基本使用 https://www.cnblogs.com/yhleng/p/9493457.html
 77. 如何让类支持比较操作 https://python3-cookbook.readthedocs.io/zh_CN/latest/c08/p24_making_classes_support_comparison_operations.html 
     需要重写 __lt__ 等方法
+78. python中类方法去、实例方法、静态方法 https://zhuanlan.zhihu.com/p/28010894
 
 非语法问题
 1:IDE用VSCODE原因是 扩展性、易用性强，免费，具体可以参考https://arbisoft.com/vs-code-versus-pycharm-the-smackdown/
