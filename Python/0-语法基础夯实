@@ -61,7 +61,7 @@
    https://kaijento.github.io/2017/03/15/modifying-index-in-a-python-for-loop/
 18:def fab(n,m=1) m是可选参数 可选参数要放在必须参数后面 / def fab(n,*b) *b是可变参数 可以是逗号分开的很多参数
 20:可以返回0个或者多个结果 return s,s1,s2
-21:在函数中用global保留字申明使用全局
+21:在函数中用global保留字使用全局变量
 22:局部变量是组合数据类型且没有创建，等同于全局变量/如果局部变量声明了，那么还是局部变量的值 
    理解局部变量：底层是C实现的，所以用的是指针，如果没有声明的时候，相当于用的是指针，这个时候指针指向全局变量的指针
 23:f = lambda x,y : x+y
@@ -95,6 +95,8 @@ dict = dict.fromkeys(seq, 10)
 print(str(dict)))
 {'Google': 10, 'Taobao': 10, 'Runoob': 10}
 
+python中有高级的orderdict 可以按照插入顺序排序，orderdict有个方法 popitem 默认删除并返回最后一个 可以通过方法参数 last = False 删除并返回第一个
+
 元组 当有一个元素时要定义为 (1,) 如果是(1) 是int类型
 元组 add是打包添加 update是拆分添加
 
@@ -111,18 +113,17 @@ print(str(dict)))
     seek函数有三个参数012
     0表示文件头1表示当前位置2表示文件尾
     当写完一个文件时，指针在文件尾，这个时候需要将文件指针回到文件头，才能读取全部文件信息
-36:Python3 是如何解决棘手的字符编码问题的？https://foofish.net/how-python3-handle-charset-encoding.html
-  摘要：
-  Python2 字符串设计上的一些缺陷：
-    1）使用 ASCII 码作为默认编码方式，对中文处理很不友好
-    2）把字符串的牵强地分为 unicode 和 str 两种类型，误导开发者
-  Python3 把系统默认编码设置为 UTF-8。
-  文本字符全部用 str 类型表示，str 能表示 Unicode 字符集中所有字符，
-  二进制字节数据用一种全新的数据类型，用 bytes 来表示。
-  Python3 中，在字符引号前加‘b’，明确表示这是一个 bytes 类型的对象，实际上它就是一组二进制字节序列组成的数据，
-  bytes 类型可以是 ASCII范围内的字符和其它十六进制形式的字符数据，但不能用中文等非ASCII字符表示。
-  bytes类型= encode()str类型 默认utf8 反之亦然 
+36:Python3 比 2 强在哪里?
+   + print函数
+   + 用UTF-8为默认编码 中文友好
+   + 单除号默认是 float 除
+   + 引入 bytes 在字符引号前加‘b’，明确表示这是一个 bytes 类型 通过encode 和 decode 与 str 转化
+   + range 返回迭代器 统一2中的range 和 xrange
+   + map filter 返回的是生成器 提高性能
+   + reduce 放到functools
+   
 37:循环中如何控制步长 for i in range(1, 10, 2):
+   数组切片如何控制步长 arr[::2]
 38:print(''.join(['零一二三四五六七八九'[eval(i)] for i in input()]))
 39:turtle.pendown()只是放下画笔，并不绘制任何内容。
 40:Python中可以用如下方式表示正负无穷：float("inf"), float("-inf")
@@ -136,6 +137,9 @@ x=3==3,5 从右向左  x => (True,5)
    先用pass占位置 起架构 再用具体的函数代替 (注意pass也可以做空行提高可读性 类似于sql中的go)
    类中定义函数时，语法规定第一个参数必须是self 注意self是类的实例 self._class_ 指向类 self不是python关键字 可以换成其他名称
    两个下划线开头定义私有成员和私有方法 注意不是一个下划线
+   python中类方法去、实例方法、静态方法 https://zhuanlan.zhihu.com/p/28010894
+   如何让类支持比较操作 https://python3-cookbook.readthedocs.io/zh_CN/latest/c08/p24_making_classes_support_comparison_operations.html 
+       + 需要重写 __lt__ 等方法
 43:split 方法默认用空格分割
 44:一个函数可以有return，也可以没有,但无论有没有return，函数都被返回一个对象。如果没有return,返回的是None对象，它的type就是NoneType.
 45:判断一行是不是空行 len(line) == 1  and line[-1]=='\n'
@@ -256,9 +260,7 @@ https://stackoverflow.com/questions/6930144/underscore-vs-double-underscore-with
 		- 这里还是会调用 malloc 分配内存,但每次会分配一块大小为256k的大块内存
 		- 经由内存池登记的内存到最后还是会回收到内存池,并不会调用 C 的 free 释放掉
 76. python队列的基本使用 https://www.cnblogs.com/yhleng/p/9493457.html
-77. 如何让类支持比较操作 https://python3-cookbook.readthedocs.io/zh_CN/latest/c08/p24_making_classes_support_comparison_operations.html 
-    需要重写 __lt__ 等方法
-78. python中类方法去、实例方法、静态方法 https://zhuanlan.zhihu.com/p/28010894
+77. Python对象有装饰器的时候，先运行主函数 再运行装饰器函数
 
 非语法问题
 1:IDE用VSCODE原因是 扩展性、易用性强，免费，具体可以参考https://arbisoft.com/vs-code-versus-pycharm-the-smackdown/
