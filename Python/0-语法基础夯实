@@ -1,16 +1,9 @@
 0.首先的首先，python是动态类型语言中的强类型语言，强类型语言说明他是类型安全的，;动态类型语言说明python解释器在运行期间才去检测类型错误
-1.命名规范:字母/下划线开头后跟数字/字母/下划线
-	+ 变量命名推荐使用驼峰标识
-	+ 模块名一般使用全部小写 如 myphone
-	+ 类名第一个字母大写，如果有多个单词，每一个单词的第一个字母大写如 : MyPhone
-	+ 函数名 ： 小写， 如果有多个单词用下划线隔开 如 my_phone
-	+ 常量名字一般全大写 ： MYPHONE
+1.命名规范:字母/下划线开头后跟数字/字母/下划线 https://www.jianshu.com/p/a793c0d960fe
 2.代码包含中文要在头部指定 #coding=utf-8
-3.如果脚本文件的第一行以 #! 开头称为 "shebang" 行,Linux和其他类Unix操作系统用该行指示应该如何执行脚本
-4.错误AttributeError: module 'turtle' has no attribute 'setup' 问题:自己的文件命名不要和系统文件命名一样 turtle.py wordcloud.py etc
-5.python整数范围-308到+308 精度10的﹣16次方 / 用53位二进制表示小数部分 
-  注意：整数除法结果是浮点数 两个除号结果是整数 在pyhton3中，"/"表示的就是float除，不需要再引入模块，就算分子分母都是int，返回的也将是浮点数
-  0o八进制 0x16
+3.低级错误：自己的文件命名不要和系统文件命名一样
+4.整数范围-308到+308 精度10的﹣16次方 / 用53位二进制表示小数部分 
+5.pyhton3中，"/"表示的就是float除，不需要再引入模块 0o八进制 0x16
 6.pow(x,y,z)相当于x**y%z :当z这个参数不存在时 x,y 不限制是否为 float 类型, 而当使用第三个参数的时候要保证前两个参数只能为整数
 9:x and y 布尔"与" - 如果 x 为 False，x and y 返回 False，否则它返回 y 的计算值。
   x or y 布尔"或" - 如果 x 是 True，它返回 True，否则它返回 y 的计算值。
@@ -60,7 +53,11 @@
    注意python里面的for循环，在循环内部不能修改index 详细区别可以参考
    https://kaijento.github.io/2017/03/15/modifying-index-in-a-python-for-loop/
 18:def fab(n,m=1) m是可选参数 可选参数要放在必须参数后面 / def fab(n,*b) *b是可变参数 可以是逗号分开的很多参数
-20:可以返回0个或者多个结果 return s,s1,s2
+
+20:函数返回值问题
+   + 函数可以返回0个或者多个结果 return s,s1,s2
+   + 一个函数可以有return，也可以没有,但无论有没有return，函数都被返回一个对象。如果没有return,返回的是None对象，它的type就是NoneType.
+   
 21:在函数中用global保留字使用全局变量
 22:局部变量是组合数据类型且没有创建，等同于全局变量/如果局部变量声明了，那么还是局部变量的值 
    理解局部变量：底层是C实现的，所以用的是指针，如果没有声明的时候，相当于用的是指针，这个时候指针指向全局变量的指针
@@ -77,25 +74,30 @@
     t.remove('H')
     len(s)
   集合间: A&B 交集 A^B 补集 A|B 并集 
-29:字典按照value排倒序的一种方法
-a = list(dict.items())
-a.sort(key=lambda x:x[1], reverse=True)
-或者
-b=sorted(dict.items(),key=lambda x:x[1],reverse=True)
-注意两种不同的用法
+  
+29:Python中的字典
+    + 如何倒序？
+        a = list(dict.items()) # 需要先把字典转化为数组，不然没办法排序
+	a.sort(key=lambda x:x[1], reverse=True)
+	或者
+	b=sorted(dict.items(),key=lambda x:x[1],reverse=True)
+	注意两种不同的用法
+    + 取值的正确姿势？
+	对于字典，如果其中key很多，有时候不知道某个key是否存在，用key直接访问比较危险，所以应当使用 get 而且如果key不存在还可以赋值
+    + 有那些方法？
+	- fromkeys
+		seq = ('Google', 'Runoob', 'Taobao')
+		dict = dict.fromkeys(seq)
+		print(str(dict))
+		#{'Google': None, 'Taobao': None, 'Runoob': None} 
+		dict = dict.fromkeys(seq, 10)
+		print(str(dict)))
+		{'Google': 10, 'Taobao': 10, 'Runoob': 10}
+     + 只有不可变对象可以作为字典的key，可以被哈希 (数字、字符串和元组)   
+     + 高级使用？
+     	python中有高级的orderdict 可以按照插入顺序排序，orderdict有个方法 popitem 默认删除并返回最后一个 可以通过方法参数 last = False 删除并返回第一个
 
-对于字典，如果其中key很多，有时候不知道某个key是否存在，用key直接访问比较危险，所以应当使用 get 而且如果key不存在还可以赋值
 
-dict method: fromkeys
-seq = ('Google', 'Runoob', 'Taobao')
-dict = dict.fromkeys(seq)
-print(str(dict))
-#{'Google': None, 'Taobao': None, 'Runoob': None} 
-dict = dict.fromkeys(seq, 10)
-print(str(dict)))
-{'Google': 10, 'Taobao': 10, 'Runoob': 10}
-
-python中有高级的orderdict 可以按照插入顺序排序，orderdict有个方法 popitem 默认删除并返回最后一个 可以通过方法参数 last = False 删除并返回第一个
 
 元组 当有一个元素时要定义为 (1,) 如果是(1) 是int类型
 元组 add是打包添加 update是拆分添加
@@ -105,7 +107,6 @@ python中有高级的orderdict 可以按照插入顺序排序，orderdict有个�
 32:四种文件读写模式 r读 w覆盖写 x创建写 a追加写 注意区别 （默认模式是r）
    两种文件格式模式 b二进制打开 t文本文件模式 默认模式是t
    +号 和rwxa共同使用 增加读写功能
-33:在mac上使用wordcloud的时候遇到两个问题 1)文件命名不能是wordcloud.py和以前的老毛病一样 2)需额外装matplotlib库 不然运行会报错 图片无法输出
 35:文件处理
   1)The open() function returns a file object, which has a read() method for reading the content of the file:
   2)writelines函数参数是列表，但是并不是把列表中每一个元素按照行写到文件中，是把列表中元素拼接为一个字符串然后写一行到文件中
@@ -125,7 +126,6 @@ python中有高级的orderdict 可以按照插入顺序排序，orderdict有个�
 37:循环中如何控制步长 for i in range(1, 10, 2):
    数组切片如何控制步长 arr[::2]
 38:print(''.join(['零一二三四五六七八九'[eval(i)] for i in input()]))
-39:turtle.pendown()只是放下画笔，并不绘制任何内容。
 40:Python中可以用如下方式表示正负无穷：float("inf"), float("-inf")
   0 * float("inf") => nan / float('inf')/float('inf') => nan
   当涉及 > 和 < 运算时 / 所有数都比-inf大 / 所有数都比+inf小
@@ -141,13 +141,13 @@ x=3==3,5 从右向左  x => (True,5)
    如何让类支持比较操作 https://python3-cookbook.readthedocs.io/zh_CN/latest/c08/p24_making_classes_support_comparison_operations.html 
        + 需要重写 __lt__ 等方法
 43:split 方法默认用空格分割
-44:一个函数可以有return，也可以没有,但无论有没有return，函数都被返回一个对象。如果没有return,返回的是None对象，它的type就是NoneType.
+
 45:判断一行是不是空行 len(line) == 1  and line[-1]=='\n'
 46:打开文件后采用close()关闭文件,不写也行，程序关闭时也会清理
 47:处理CSV文件的时候 注意\n换行符的处理
 48:isdigit() 方法检测字符串是否只由数字组成
 49:python递归深度问题
-  Python语言默认的递归深度是很有限的，当递归深度超过值的时候，就会引发RuntimeError异常。
+  Python默认递归深度是很有限的，当递归深度超过值的时候，就会引发RuntimeError异常。
   Python专门设置的一种机制用来防止无限递归造成Python溢出，这个值理论上1000(可以用sys.getrecursionlimit()获得)，实际运行时在900多次时就会报错。
   解决方法:最大递归次数是可以重新调整的。解决的方式是手工设置递归调用深度： 
     import sys 
@@ -183,11 +183,12 @@ x=3==3,5 从右向左  x => (True,5)
     print(list(a2))
 57: any() 有true就true all() 全true才true 
 58: 两个列表的比较是逐元素进行对比  
-59: 列表推导式 l1 = list(range(300)); l2 = [x for x in l1 if x > 255] ; 
-              l3 = list(range(20)) ; l5 = [(x,y) for x in l1 if x>288 for y in l3 if y < 14]
+59: 列表推导为啥比for快？
+    l1 = [x for x in l1 if x > 255] ; 
+    通过Python字节码反汇编模块dis可以知道底层是用C实现的，具体看 https://www.zhihu.com/question/34637934
 60: 用rindex和rfind可以从右边开始找
 61: index和find的区别在于当元素不存在的时候index会报错find不会报错
-62: 只有不可变对象可以作为字典的key，可以被哈希 (数字、字符串和元组)              
+62:            
 64: 能够被引用改变的对象是可变对象
 65: 矩阵转置的两种方法
     arr = [[1,2,3],[4,5,6],[7,8,9],[10,11,12]]
