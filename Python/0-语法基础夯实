@@ -187,9 +187,7 @@ x=3==3,5 从右向左  x => (True,5)
     l1 = [x for x in l1 if x > 255] ; 
     通过Python字节码反汇编模块dis可以知道底层是用C实现的，具体看 https://www.zhihu.com/question/34637934
 60: 用rindex和rfind可以从右边开始找
-61: index和find的区别在于当元素不存在的时候index会报错find不会报错
-62:            
-64: 能够被引用改变的对象是可变对象
+61: string类型的两个方法:index和find的区别在于当元素不存在的时候index会报错find不会报错
 65: 矩阵转置的两种方法
     arr = [[1,2,3],[4,5,6],[7,8,9],[10,11,12]]
     1） list(map(list,zip(*arr)))
