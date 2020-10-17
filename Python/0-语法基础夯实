@@ -186,6 +186,34 @@ x=3==3,5 从右向左  x => (True,5)
 59: 列表推导为啥比for快？
     l1 = [x for x in l1 if x > 255] ; 
     通过Python字节码反汇编模块dis可以知道底层是用C实现的，具体看 https://www.zhihu.com/question/34637934
+    两层循环的链表表达式的写法，通过一个列子来看(判断一个矩阵是不是长对角矩阵,对角线上的元素都相等)
+    
+    class Solution(object):
+    """
+    所有对角线上的元素都满足 a_1 = a_2, a_2 = a_3, a_{k-1} = a_ka
+    对于对角线上的元素来说，如果当前元素不是第一个出现的元素，
+    那么它前面的元素一定在当前元素的左上角。
+    可以推出，对于位于坐标 (r, c) 上的元素，只需要检查 r == 0 OR c == 0 OR matrix[r-1][c-1] == matrix[r][c] 就可以了。
+    """
+
+    def isToeplitzMatrix(self, matrix):
+        # all()表示所有都为true才返回true
+        # python里面可以在列表推导式里面使用双层for循环，但不建议超过两层
+        return all(r == 0 or c == 0 or matrix[r - 1][c - 1] == val
+                   for r, row in enumerate(matrix)
+                   for c, val in enumerate(row))
+
+
+    if __name__ == '__main__':
+    matrix = [
+        [1, 2, 3, 4],
+        [5, 1, 2, 3],
+        [9, 5, 1, 2]
+    ]
+    solution = Solution()
+    output = solution.isToeplitzMatrix(matrix)
+    print(output)
+    
 60: 用rindex和rfind可以从右边开始找
 61: string类型的两个方法:index和find的区别在于当元素不存在的时候index会报错find不会报错
 65: 矩阵转置的两种方法
