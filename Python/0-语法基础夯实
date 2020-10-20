@@ -288,6 +288,54 @@ https://stackoverflow.com/questions/6930144/underscore-vs-double-underscore-with
 		- 经由内存池登记的内存到最后还是会回收到内存池,并不会调用 C 的 free 释放掉
 76. python队列的基本使用 https://www.cnblogs.com/yhleng/p/9493457.html
 77. Python对象有装饰器的时候，先运行主函数 再运行装饰器函数
+78. Python中的深拷贝和浅拷贝
+
+	# 深拷贝 copy.deepcopy() 没什么好说的
+	# 浅拷贝有几种：赋值拷贝、用copy.copy()拷贝、切片拷贝
+	# 赋值拷贝会影响原对象的值,后两个要注意是可变对象还是不可变对象去
+
+	print('**********整数数组***********')
+	a = [1,2,3]
+	b = a
+	c = a.copy()
+	d = a[:1]
+	print(a,b)
+	b[1]=4
+	print(a,b)#[1,4,3] [1,4,3]
+	c[0]='hey'
+	print(a,c)#[1,4,3],['hey',4,3]  1是不可变类型，所以不收影响
+	d[0]=100
+	print(a,d)#[1,4,3],[100]
+
+	print('**********嵌套数组***********')
+	a = [1,2,3,[4,5]]
+	b = a
+	c = a.copy()
+	d = a[:1]
+	print(a,b)
+	b[3][1]=6#[1,2,3,[4,6]],[1,2,3,[4,6]]
+	print(a,b)
+	c[3].append(7)#[1,2,3,[4,6,7]],[1,2,3,[4,6,7]] 数组是可变类型，所以受到影响
+	print(a,c)
+	d[0]=100
+	print(a,d)#[1,2,3,[4,6,7]],[100]
+
+	print('**********字典复制***********')
+	a = {'user':'Martin','score':[6,8]}
+	b = a
+	c = a.copy()
+	d = a['score'][:1]
+	print(a)
+	b['user'] = 'Tom'
+	b['score'].append(10)
+	print(a,b)#{'user':'Tom','score':[6,8,10]} {'user':'Tom','score':[6,8,10]}
+	c['user'] = 'Jack'
+	c['score'].append(11)
+	print(a,c)
+	#{'user':'Tom','score':[6,8,10,11]} {'user':'Jack','score':[6,8,10]} 
+	#字典value是不可变类型时 不收影响
+	d[0]=100
+	print(a,d)
 
 非语法问题
 1:IDE用VSCODE原因是 扩展性、易用性强，免费，具体可以参考https://arbisoft.com/vs-code-versus-pycharm-the-smackdown/
