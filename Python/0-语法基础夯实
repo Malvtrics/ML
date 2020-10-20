@@ -59,7 +59,7 @@
    + 函数可以返回0个或者多个结果 return s,s1,s2
    + 一个函数可以有return，也可以没有,但无论有没有return，函数都被返回一个对象。如果没有return,返回的是None对象，它的type就是NoneType.
    + 函数参数是空列表的问题
-   	python函数中参数默认值为一个列表且为空时，该列表只初始化一次，而不是像其他程序，每次初始化都为空。
+   	python函数中参数默认值为一个列表且为空时，该列表只初始化一次，而不是像其他程序，每次初始化都为空。为了避免这种情况，最好写成my_list=None
 	def printList(my_list=[]):
 	   my_list.append('list')
 	   print my_list
