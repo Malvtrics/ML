@@ -75,8 +75,23 @@
   一般最好使用def方式 lambda是用于特定情况, 理解：x,y是函数参数 后面的是函数主体 也可以这样用 (lambda x,y : x+y)(4,5) 注意前面上括号
   问题：为什么 print((lambda x,y : print("aver is {:.2f}".format((x+y)/2)))(4,5)) 会打印出一个多余的None
 24:写递归的主要思路: 基例（n=1时候初始处理） 链条（n-1的时候是如果处理的） 分支（用if else的形式呈现出来）
-25:append 是把对象当成一个整体加入 / extend 是分开加入
-26:remove() 函数用于移除列表中某个值的第一个匹配项， 注意是只删除第一个
+
+25:列表的几个问题：
+	+ 初始化一个空列表的两种方法以及区别
+		>>> import dis
+		>>> def f1(): return list()
+		>>> def f2(): return []
+		>>> dis.dis(f1)
+		  1           0 LOAD_GLOBAL              0 (list)
+			      3 CALL_FUNCTION            0
+			      6 RETURN_VALUE        
+		>>> dis.dis(f2)
+		  1           0 BUILD_LIST               0
+			      3 RETURN_VALUE 
+		Use the second form. It's more Pythonic, and it's probably faster (since it doesn't involve loading and calling a separate funciton).
+	+ append 是把对象当成一个整体加入 / extend 是分开加入
+	+ remove() 函数用于移除列表中某个值的第一个匹配项， 注意是只删除第一个
+	
 27:{}空大括号的形式本来是用来表示集合的，但是因为字典在编程中更常出现，所以把这个保留给空字典
 28:集合操作：
     t.add('x')            # 添加一项
