@@ -378,6 +378,7 @@ https://stackoverflow.com/questions/6930144/underscore-vs-double-underscore-with
 	3 #没有运算，直接输出缓存结果
 	calculating: 2 + 3
 	5
+80 Python提供了__future__模块，把下一个新版本的特性导入到当前版本
 	
 非语法问题
 1:IDE用VSCODE原因是 扩展性、易用性强，免费，具体可以参考https://arbisoft.com/vs-code-versus-pycharm-the-smackdown/
