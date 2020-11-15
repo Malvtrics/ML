@@ -122,8 +122,6 @@
      + 高级使用？
      	python中有高级的orderdict 可以按照插入顺序排序，orderdict有个方法 popitem 默认删除并返回最后一个 可以通过方法参数 last = False 删除并返回第一个
 
-
-
 元组 当有一个元素时要定义为 (1,) 如果是(1) 是int类型
 元组 add是打包添加 update是拆分添加
 
@@ -379,6 +377,12 @@ https://stackoverflow.com/questions/6930144/underscore-vs-double-underscore-with
 	calculating: 2 + 3
 	5
 80 Python提供了__future__模块，把下一个新版本的特性导入到当前版本
+90 如何利用自己写的排序方法 可以欣赏力扣1122题目 同时包含了字典初始化的高级写法
+	dic = {num:i for i,num in enumerate(arr2)}
+        def compare(num): #注意这里的参数是原来数组中的元素
+            return (0,dic[num]) if num in dic else (1,num)
+        arr1.sort(key=compare)
+        return arr1
 	
 非语法问题
 1:IDE用VSCODE原因是 扩展性、易用性强，免费，具体可以参考https://arbisoft.com/vs-code-versus-pycharm-the-smackdown/
