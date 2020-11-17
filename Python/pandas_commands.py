@@ -12,6 +12,9 @@ df = df.loc[ : , ~df.columns.str.contains('^Unnamed')]
 groupby = df.groupby(by=['colA','colB'],dropna=True) #返回一个groupby 对象
 df1 = groupby.sum() #后面加聚合函数 返回dataframe 对象
 
+# 取消索引 注意这里要把函数返回再赋给df
+df = df.reset_index()
+
 # 对某一列使用函数
 df['a'].apply(函数名)
 
