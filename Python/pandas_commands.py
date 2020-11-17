@@ -20,6 +20,8 @@ df['a'].apply(函数名)
 
 # plot结果，可以选择绘图类型 修改画布大小
 df.plot(kind='bar',figsize=(15,10))
+# 用bar的另外一种形式
+df.plot.bar(x='col1',y='col2',figsize=(15,10))
 
 # 简单plot两列 
 x = df['a']
