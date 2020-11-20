@@ -41,5 +41,10 @@ x = df['a']
 y = df['b']
 plt.plt(x,y)
 
-#dataframe如何转化为numpy 
-numpy_obj = df.iloc[:,:6].to_numpy().reshape(4,5)
+#dataframe如何转化为numpy array 
+numpy_array = df.iloc[:,:6].to_numpy().reshape(4,5)
+#numpy array转化为series 注意numpy array要转化成一维
+series = pd.Series(numpy_array)
+#series转化为dataframe
+frame = { 'name1': series1, 'name2': series } 
+df = pd.DataFrame(frame) 
