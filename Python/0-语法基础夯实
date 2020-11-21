@@ -391,7 +391,9 @@ https://stackoverflow.com/questions/6930144/underscore-vs-double-underscore-with
             return (0,dic[num]) if num in dic else (1,num)
         arr1.sort(key=compare)
         return arr1
-	
+91 如何优化python代码性能https://www.cnblogs.com/ajianbeyourself/p/4541826.html
+   另外有一个尾递归的优化问题https://blog.csdn.net/qq_41974297/article/details/104995696
+   
 非语法问题
 1:IDE用VSCODE原因是 扩展性、易用性强，免费，具体可以参考https://arbisoft.com/vs-code-versus-pycharm-the-smackdown/
 2:根据二八法则，八成时间消耗在两成代码中，这些代码大部分是循环代码，所以主要看循环代码的性能
@@ -405,7 +407,6 @@ https://stackoverflow.com/questions/6930144/underscore-vs-double-underscore-with
 实证思维 实验和验证 物理为代表 引力波 -> 实验
 计算思维 设计和构造 计算机为代表 汉诺塔递归
   计算思维主要用于抽象问题的计算过程 关心设计和构造而非因果， 关心抽象和自动化
-5:天气预报现在利用的是MM5模型
 6:计算生态的概念 开源历史 python现在有超过15万个第三方库，以网络爬虫库为例，python自带的库已经被淘汰
 7:python数据分析中常用的库 https://www.cnblogs.com/chaojiyingxiong/p/9939303.html
 8:数据存储 主要关心存储格式 / 数据表示 主要关心数据类型 / 数据操作 主要关心操作方式
