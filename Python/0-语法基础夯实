@@ -301,6 +301,7 @@ https://stackoverflow.com/questions/6930144/underscore-vs-double-underscore-with
 		- python会缓存整形和短字符串 用id()可以检查内存地址是否相同
 	+ 垃圾回收(引用计数+分代回收)
 		- 引用计数 用sys包中的getrefcount()可查看某个对象的引用计数
+		  * 这里就可以理解python中为什么会有GIL， 因为对某一个对象计数是需要线程安全的，不然每个线程都同时去计数，会发生内存泄露
 		- 注意：当使用某个引用作为参数，传递给getrefcount()时，参数实际上创建了一个临时的引用,所以getrefcount()所得到的结果，会比期望的多1
 		- 垃圾回收时，Python不能进行其它的任务。频繁的垃圾回收将大大降低工作效率。如果内存中对象不多，就没有必要总启动垃圾回收。所以，Python只会在特定条件下，自动启动垃圾回收
 		- 当Python运行时，会记录其中分配对象(object allocation)和取消分配对象(object deallocation)的次数，当两者的差值高于某个阈值时，垃圾回收才会启动。
@@ -318,7 +319,23 @@ https://stackoverflow.com/questions/6930144/underscore-vs-double-underscore-with
 		- 这里还是会调用 malloc 分配内存,但每次会分配一块大小为256k的大块内存
 		- 经由内存池登记的内存到最后还是会回收到内存池,并不会调用 C 的 free 释放掉
 76. python队列的基本使用 https://www.cnblogs.com/yhleng/p/9493457.html
-77. Python对象有装饰器的时候，先运行主函数 再运行装饰器函数
+77. Python对象有装饰器的时候，先运行主函数 再运行装饰器函数，不能眼高手低，手动实现一个python装饰器, 有多个装饰器的时候，执行顺序 123321
+    def check_time(func):
+    from time import time
+    def wrapper(*args,**kwargs):
+        t1 = time()
+        rtn = func(*args,**kwargs) #执行并且返回结果
+        t2 = time()
+        print('time elapsed:{}'.format(t2-t1))
+        return rtn
+    return wrapper
+    
+    @check_time
+    def test():
+	s = 0 
+	for i in range(10)
+	    s += i
+	return s
 78. Python中的深拷贝和浅拷贝
 
 	# 深拷贝 copy.deepcopy() 没什么好说的
