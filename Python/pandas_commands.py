@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 
 #参数说明: 文件路径 | 分隔符(默认是逗号) | 指定将哪一列作为索引 | 指定列的数据类型
 df = pd.read_csv('path', delimiter=';', index_col=0, dtype={‘a’: np.float64, ‘b’: np.int32}) 
+df = pd.read_excel('xxx.xlsx',sheet_name='xxx')
 
 # 查看当前所有列的类型
 df.dtypes
@@ -11,7 +12,7 @@ df.dtypes
 ## 增加、查询略
 ## 精准删除
 df = df.drop(['col1', 'col2'], axis=1)
-## 模糊删除
+## 模糊删除 ~表示not df.loc[]
 df = df.loc[ : , ~df.columns.str.contains('Unnamed')]
 df = df.loc[ : , ~df.columns.str.contains('^Unnamed')]
 ## 修改类型 
@@ -23,6 +24,9 @@ df['cola'] = df['cola'].cat.codes
 df['a'].apply(函数名)
 ### 使用lambda时 elif需要多个if else嵌套
 df['col1'] = df['col1'].apply(lambda x:1 if x=='HS' else (2 if x=='C' else 3))
+### 如何使用col2更新col1 
+### 举例：当col1包含abc时,col2为0,注意col1为None时不更新  第一个参数可以更新为其他条件 比如 df['col1']==2 
+df.loc[df['col1'].str.contains('abc',na=False), 'col2'] = 0
 
 # groupby语法 指定需要聚合的列 以及聚合过程中是否需要丢弃聚合列对应的空值
 groupby = df.groupby(by=['colA','colB'],dropna=True) #返回一个groupby 对象
