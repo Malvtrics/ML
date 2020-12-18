@@ -4,17 +4,28 @@ import matplotlib.pyplot as plt
 #参数说明: 文件路径 | 分隔符(默认是逗号) | 指定将哪一列作为索引 | 指定列的数据类型
 df = pd.read_csv('path', delimiter=';', index_col=0, dtype={‘a’: np.float64, ‘b’: np.int32}) 
 df = pd.read_excel('xxx.xlsx',sheet_name='xxx')
+#初始化一个df 因为有时候文件不是csv或者excel 这时需要读取文件,比如已经从第一行读取20个列
+df = pd.DataFrame([[None]*20],columns=cols)
 
 # 查看当前所有列的类型
 df.dtypes
 
-# 列的增删改查 
-## 增加、查询略
-## 精准删除
-df = df.drop(['col1', 'col2'], axis=1)
+# 列(行)的增删改查 
+
+## 增加一行其实是新建一个df然后append上去,感觉比较蠢
+df2 = pd.DataFrame(['val1','val2'...],columns=cols)
+df.appen(df2)
+
+## 删查同理
+## 删除某(些)列
+df = df.drop(['col1', 'col2'],axis=1)
+df = df.dropna(how='any/all',axis=1) #空值类型
 ## 模糊删除 ~表示not df.loc[]
 df = df.loc[ : , ~df.columns.str.contains('Unnamed')]
 df = df.loc[ : , ~df.columns.str.contains('^Unnamed')]
+## 可以使用各种条件筛选
+df[df['column name'].map(len) < 2]
+
 ## 修改类型 
 ### pandas中的8种数据类型(object\int64\float64\bool\datetime64\timedelta[ns]\category->字符枚举)
 df['cola'] = df['cola'].astype('category')
